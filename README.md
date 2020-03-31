@@ -10,6 +10,4 @@ fail
 dunno
 ty
 tyzeru
-pop
-op
-sdlds
+pm
