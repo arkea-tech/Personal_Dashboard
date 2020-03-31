@@ -6,3 +6,4 @@ good
 nice
 great
 change
+fail
