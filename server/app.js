@@ -1,7 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
+
+mongoose.connect('mongodb+srv://WoshiWoshu:greatwish987@cluster0-97mzz.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => {
+    console.log('Successfully connected to MongoDB Atlas !');
+})
+.catch((error) => {
+    console.log('Unable to connect to MongoDB Atlas !');
+    console.error(error);
+});
 
 app
 .use((req, res, next) => {
