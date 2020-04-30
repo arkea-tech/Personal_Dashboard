@@ -30,7 +30,7 @@ app
 })
 .use(bodyParser.json());
 
-app.use('/images', express.static(path.join(__dirname, "images")));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/api/stuff/file', stuffFileRoutes);
