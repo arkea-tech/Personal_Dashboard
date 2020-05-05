@@ -3,13 +3,21 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
+//To delete
+const Weather = require('./models/widgets/weather');
+const Calendar = require('./models/widgets/calendar');
+const MusicPlayer = require('./models/widgets/music_player');
+
+const servicesRoutes = require('./routes/services');
+const youtubeRoutes = require('./routes/widgets/youtube');
+
 const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
 const stuffFileRoutes = require('./routes/stuff_file');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://WoshiWoshu:greatwish987@cluster0-97mzz.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://WoshiWoshu:greatwish987@cluster0-97mzz.mongodb.net/dashboard?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -34,5 +42,8 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/api/stuff/file', stuffFileRoutes);
+
+app.use('/api/services', servicesRoutes);
+app.use('/api/widget/youtube', youtubeRoutes);
 
 module.exports = app;
