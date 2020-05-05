@@ -1,5 +1,4 @@
-const Youtube = require('../../models/widgets/youtube');
-const video = require('../../interfaces/video');
+const MusicPlayer = require('../../models/widgets/music_player');
 
 exports.createWidget = (req, res, next) => {
     // const thing = new Thing({

@@ -1,5 +1,3 @@
-const video = require('../../interface/video');
-
 const mongoose = require('mongoose');
 
 const youtubeSchema = mongoose.Schema({
