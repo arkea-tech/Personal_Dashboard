@@ -4,12 +4,13 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 //To delete
-const Weather = require('./models/widgets/weather');
-const Calendar = require('./models/widgets/calendar');
-const MusicPlayer = require('./models/widgets/music_player');
+//const Weather = require('./models/widgets/weather');
 
 const servicesRoutes = require('./routes/services');
 const youtubeRoutes = require('./routes/widgets/youtube');
+const weatherRoutes = require('./routes/widgets/weather');
+const musicPlayerRoutes = require('./routes/widgets/music_player');
+const calendarRoutes = require('./routes/widgets/calendar');
 
 const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
@@ -45,5 +46,8 @@ app.use('/api/stuff/file', stuffFileRoutes);
 
 app.use('/api/services', servicesRoutes);
 app.use('/api/widget/youtube', youtubeRoutes);
+app.use('/api/widget/weather', weatherRoutes);
+app.use('/api/widget/music_player', musicPlayerRoutes);
+app.use('/api/widget/calendar', calendarRoutes);
 
 module.exports = app;

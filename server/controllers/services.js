@@ -1,4 +1,5 @@
 const Service = require('../models/services');
+const widget = require('../interfaces/widget');
 
 exports.createService = (req, res, next) => {
     // const thing = new Thing({
@@ -52,7 +53,7 @@ exports.getServices = (req, res, next) => {
     // );
 }
 
-exports.getAllServices = (req, res, next) => {
+exports.getManagedServices = (req, res, next) => {
     // Thing.find().then(
     //     (things) => {
     //         res.status(200).json(things);
