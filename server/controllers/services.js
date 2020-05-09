@@ -1,5 +1,5 @@
-const Service = require('../models/services');
-const widget = require('../interfaces/widget');
+//const Service = require('../models/services');
+//const Widget = require('../interfaces/widget').Widget;
 
 exports.createService = (req, res, next) => {
     // const thing = new Thing({
@@ -40,20 +40,6 @@ exports.deleteService = (req, res, next) => {
 }
 
 exports.getServices = (req, res, next) => {
-    // Thing.find().then(
-    //     (things) => {
-    //         res.status(200).json(things);
-    //     }
-    // ).catch(
-    //     (error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     }
-    // );
-}
-
-exports.getManagedServices = (req, res, next) => {
     // Thing.find().then(
     //     (things) => {
     //         res.status(200).json(things);
