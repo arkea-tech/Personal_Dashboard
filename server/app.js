@@ -2,11 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const fs = require('fs');
 
 //To delete
 //const Weather = require('./models/widgets/weather');
 
 const servicesRoutes = require('./routes/services');
+const managedServicesRoutes = require('./routes/managed_services');
 const youtubeRoutes = require('./routes/widgets/youtube');
 const weatherRoutes = require('./routes/widgets/weather');
 const musicPlayerRoutes = require('./routes/widgets/music_player');
@@ -15,6 +17,7 @@ const calendarRoutes = require('./routes/widgets/calendar');
 const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
 const stuffFileRoutes = require('./routes/stuff_file');
+const Widget = require('./interfaces/widget');
 
 const app = express();
 
@@ -44,10 +47,11 @@ app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/api/stuff/file', stuffFileRoutes);
 
-app.use('/api/services', servicesRoutes);
-app.use('/api/widget/youtube', youtubeRoutes);
-app.use('/api/widget/weather', weatherRoutes);
-app.use('/api/widget/music_player', musicPlayerRoutes);
-app.use('/api/widget/calendar', calendarRoutes);
+app.use('/about.json', managedServicesRoutes);
+app.use('/services', servicesRoutes);
+app.use('/widget/youtube', youtubeRoutes);
+app.use('/widget/weather', weatherRoutes);
+app.use('/widget/music_player', musicPlayerRoutes);
+app.use('/widget/calendar', calendarRoutes);
 
 module.exports = app;
