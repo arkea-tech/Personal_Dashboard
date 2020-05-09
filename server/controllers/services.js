@@ -1,31 +1,44 @@
-//const Service = require('../models/services');
-//const Widget = require('../interfaces/widget').Widget;
+const Service = require('../models/service');
+const Widget = require('../interfaces/widget').Widget;
 
 exports.createService = (req, res, next) => {
-    // const thing = new Thing({
-    //     title: req.body.title,
-    //     description: req.body.description,
-    //     imageUrl: req.body.imageUrl,
-    //     price: req.body.price,
-    //     userId: req.body.userId
-    // });
-    //
-    // thing.save().then(
-    //     () => {
-    //         res.status(201).json({
-    //             message: 'Post saved successfully !'
-    //         });
-    //     }
-    // ).catch(
-    //     (error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     }
-    // );
+    let widgets = [];
+    let service = {};
+
+    for (const widget of req.body.widgets) {
+        widgets.push(new Widget(widget.name, widget.description, widget.params));
+    }
+    service = new Service({
+        name: req.body.name,
+        widgets: widgets,
+    });
+    service.save().then(
+        () => {
+            res.status(201).json({
+                message: 'Service Saved Successfully !'
+            });
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
 }
 
 exports.deleteService = (req, res, next) => {
+    Service.deleteOne({_id: req.params.id}).then(
+        () => {
+            res.status(200).json({ message: 'Service Deleted !'});
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
     // Thing.deleteOne({_id: req.params.id}).then(
     //     () => {
     //         res.status(200).json({ message: 'Deleted !'});
@@ -40,15 +53,15 @@ exports.deleteService = (req, res, next) => {
 }
 
 exports.getServices = (req, res, next) => {
-    // Thing.find().then(
-    //     (things) => {
-    //         res.status(200).json(things);
-    //     }
-    // ).catch(
-    //     (error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     }
-    // );
+    Service.find().then(
+        (services) => {
+            res.status(200).json(services);
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
 }

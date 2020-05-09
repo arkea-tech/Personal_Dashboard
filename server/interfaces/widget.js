@@ -6,7 +6,7 @@ class Widget {
         this.description = description;
         this.params = [];
 
-        fillParams.call(this, params);
+        this.fillParams(params);
     }
 
     fillParams(params)
@@ -15,12 +15,10 @@ class Widget {
 
         for (const param of params) {
             values = Object.values(param);
-            for (const value of values) {
-                this.params.push({
-                    name: value.name,
-                    type: value.type
-                });
-            }
+            this.params.push({
+                name: values[0],
+                type: values[1]
+            });
         }
     }
 

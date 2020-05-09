@@ -9,7 +9,7 @@
                 "name": "Entertainment",
                 "widgets": [
                     {
-                        "name": "Youtube Videos",
+                        "name": "YouTube Videos",
                         "description": "Display your favorite YouTube channels, liked and most popular videos.",
                         "params": [
                             {

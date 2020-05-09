@@ -29,7 +29,7 @@ exports.createThing = (req, res, next) => {
 }
 
 exports.modifyThing = (req, res, next) => {
-    let thing = new Thing({ _id: req.params.id});
+    let thing = new Thing({ _id: req.params.id });
 
     if (req.file) {
         const url = req.protocol + "://" + req.get('host');
