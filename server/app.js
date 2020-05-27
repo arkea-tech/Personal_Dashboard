@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const path = require('path');
 const fs = require('fs');
 
-//To delete
-//const Weather = require('./models/widgets/weather');
+//To Delete
+const cookieParser = require('cookie-parser');
+
 const oauth2Routes = require('./routes/oauth2');
 const servicesRoutes = require('./routes/services');
 const managedServicesRoutes = require('./routes/managed_services');
@@ -31,6 +32,10 @@ mongoose.connect('mongodb+srv://WoshiWoshu:greatwish987@cluster0-97mzz.mongodb.n
     console.log('Unable to connect to MongoDB Atlas !');
     console.error(error);
 });
+//To delete
+app.use(cookieParser());
+app.set('view engine', 'ejs');
+app.set('views', __dirname);
 
 app
 .use((req, res, next) => {

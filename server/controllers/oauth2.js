@@ -1,3 +1,9 @@
+const google = require('googleapis').google;
+const OAuth2 = google.auth.OAuth2;
+const jwt = require('jsonwebtoken');
+
+const CONFIG = require('../config/config.js');
+
 exports.getPermission = (req, res, next) => {
     // const thing = new Thing({
     //     title: req.body.title,
