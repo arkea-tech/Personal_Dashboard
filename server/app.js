@@ -6,7 +6,7 @@ const fs = require('fs');
 
 //To delete
 //const Weather = require('./models/widgets/weather');
-
+const oauth2Routes = require('./routes/oauth2');
 const servicesRoutes = require('./routes/services');
 const managedServicesRoutes = require('./routes/managed_services');
 const youtubeRoutes = require('./routes/widgets/youtube');
@@ -47,6 +47,7 @@ app.use('/api/auth', userRoutes);
 app.use('/api/stuff/file', stuffFileRoutes);
 
 app.use('/about.json', managedServicesRoutes);
+app.use('/oauth2', oauth2Routes);
 app.use('/services', servicesRoutes);
 app.use('/widget/youtube', youtubeRoutes);
 app.use('/widget/weather', weatherRoutes);
