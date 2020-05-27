@@ -17,7 +17,6 @@ const calendarRoutes = require('./routes/widgets/calendar');
 const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
 const stuffFileRoutes = require('./routes/stuff_file');
-const Widget = require('./interfaces/widget');
 
 const app = express();
 
