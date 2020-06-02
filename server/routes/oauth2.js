@@ -5,6 +5,10 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 
 router.get('/', oauth2Ctrl.getPermission);
+router.get('/callback', oauth2Ctrl.getCredentials);
+
+router.get('/infos', oauth2Ctrl.getInfos);
+router.get('/client', oauth2Ctrl.getClient);
 // router.get('/:id', auth, youtubeCtrl.getWidget);
 // router.post('/', auth, youtubeCtrl.createWidget);
 // router.put('/:id', auth, youtubeCtrl.modifyWidget);

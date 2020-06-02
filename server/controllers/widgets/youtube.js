@@ -1,5 +1,6 @@
 const Youtube = require('../../models/widgets/youtube');
-const video = require('../../interfaces/video');
+const google = require('googleapis').google;
+const { handleChannelInfos, handleVideosInfos } = require('../handlers/youtubeHandler');
 
 exports.createWidget = (req, res, next) => {
     // const thing = new Thing({
@@ -80,7 +81,154 @@ exports.modifyWidget = (req, res, next) => {
     // );
 }
 
+function getChannelInfos(service, channelName)
+{
+    var channels = [];
+    const promise = new Promise((resolve, reject) => {
+        service.channels.list({
+            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            forUsername: channelName,
+            part: 'snippet,contentDetails'
+        }).then(response => {
+            channels = response.data.items;
+            resolve({
+                relatedPlaylists: channels[0].contentDetails.relatedPlaylists,
+                thumbnails: channels[0].snippet.thumbnails,
+                title: channels[0].snippet.title
+            });
+        }).catch(
+            (error) => {
+                reject(error);
+                // res.status(400).json({
+                //      error: error
+                // });
+            }
+        );
+    });
+
+    return promise;
+}
+
+function getUploads(service, playlistId)
+{
+    const promise = new Promise((resolve, reject) => {
+        service.playlistItems.list({
+            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            playlistId: playlistId,
+            part: 'snippet,contentDetails',
+            maxResults: 25
+        }).then(response => {
+            resolve(response.data.items);
+        }).catch(
+            (error) => {
+                reject(error);
+            }
+        );
+    });
+
+    return promise;
+}
+
+function getMostPopularUploads(service)
+{
+    let datas = {
+        uploads: null
+    };
+
+    const promise = new Promise((resolve, reject) => {
+        service.searchResult.list({
+            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            playlistId: 'UU5nc_ZtjKW1htCVZVRxlQAQ',
+            part: 'snippet',
+            maxResults: 25,
+            channelId: 'UC5nc_ZtjKW1htCVZVRxlQAQ',
+            order: 'viewCount',
+            type: 'video'
+        }).then(response => {
+            datas = {
+                uploads: response.data.items
+            };
+            resolve(datas);
+        }).catch(
+            (error) => {
+                reject(error);
+                // res.status(400).json({
+                //      error: error
+                // });
+            }
+        );
+    });
+
+    return promise;
+}
+
+function getVideosDetails(service, uploads)
+{
+    var videos = [];
+    const promise = new Promise((resolve, reject) => {
+        uploads.forEach((upload, i) => {
+            videos.push(upload.contentDetails.videoId);
+        });
+        service.videos.list({
+            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            part: 'statistics',
+            id: videos
+        }).then(response => {
+            resolve(response.data.items);
+        }).catch(
+            (error) => {
+                reject(error);
+            }
+        );
+    });
+
+    return promise;
+}
+
+
 exports.getWidgets = (req, res, next) => {
+    const service = google.youtube('v3');
+
+    let youtubeVideos = {
+        title: "",
+        picture: "",
+        videos: []
+    };
+
+    getChannelInfos(service, 'stayseemusic').then(
+        channelInfos =>
+        {
+            handleChannelInfos(channelInfos, youtubeVideos);
+            getUploads(service, channelInfos.relatedPlaylists.uploads).then(
+                uploads => {
+                    getVideosDetails(service, uploads).then(
+                            videosDetails => {
+                                handleVideosInfos(uploads, videosDetails, youtubeVideos);
+                                res.status(200).json(youtubeVideos);
+                            }
+                    ).catch(
+                        (error) => {
+                            res.status(400).json({
+                                error: error
+                            });
+                        }
+                    );
+                }
+            ).catch(
+                (error) => {
+                    res.status(400).json({
+                        error: error
+                    });
+                }
+            );
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
     // Thing.find().then(
     //     (things) => {
     //         res.status(200).json(things);
