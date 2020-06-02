@@ -1,4 +1,4 @@
-const Video = require('../../interfaces/video').Video;
+const Video = require('../../../interfaces/video').Video;
 
 exports.handleChannelInfos = (channelInfos, youtubeVideos) => {
     youtubeVideos.title = channelInfos.title;
