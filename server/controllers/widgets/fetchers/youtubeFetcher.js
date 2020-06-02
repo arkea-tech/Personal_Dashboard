@@ -1,11 +1,7 @@
-exports.getChannelInfos = (service, channelName) => {
+exports.getChannelInfos = (service, channelName, channelConfig) => {
     var channels = [];
     const promise = new Promise((resolve, reject) => {
-        service.channels.list({
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
-            forUsername: channelName,
-            part: 'snippet,contentDetails'
-        }).then(response => {
+        service.channels.list(channelConfig).then(response => {
             channels = response.data.items;
             resolve({
                 relatedPlaylists: channels[0].contentDetails.relatedPlaylists,
@@ -25,14 +21,9 @@ exports.getChannelInfos = (service, channelName) => {
     return promise;
 };
 
-exports.getUploads = (service, playlistId) => {
+exports.getUploads = (service, uploadsConfig) => {
     const promise = new Promise((resolve, reject) => {
-        service.playlistItems.list({
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
-            playlistId: playlistId,
-            part: 'snippet,contentDetails',
-            maxResults: 25
-        }).then(response => {
+        service.playlistItems.list(uploadsConfig).then(response => {
             resolve(response.data.items);
         }).catch(
             (error) => {
@@ -76,14 +67,14 @@ exports.getMostPopularUploads = (service) => {
     return promise;
 };
 
-exports.getVideosDetails = (service, uploads) => {
+exports.getVideosDetails = (service, uploads, auth) => {
     var videos = [];
     const promise = new Promise((resolve, reject) => {
         uploads.forEach((upload, i) => {
             videos.push(upload.contentDetails.videoId);
         });
         service.videos.list({
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            auth: auth,
             part: 'statistics',
             id: videos
         }).then(response => {

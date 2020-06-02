@@ -188,14 +188,40 @@ exports.modifyWidget = (req, res, next) => {
 
 function userVideos(service, youtubeVideos, res)
 {
+    // const config = [{
+    //     auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+    //     forUsername: 'stayseemusic',
+    //     part: 'snippet,contentDetails'
+    // },
+    // {
+    //     auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+    //     playlistId: '',
+    //     part: 'snippet,contentDetails',
+    //     maxResults: 25
+    // }
+    // ];
+    const config = [{
+        auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+        forUsername: 'stayseemusic',
+        part: 'snippet,contentDetails'
+    },
+    {
+        auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+        playlistId: '',
+        part: 'snippet,contentDetails',
+        maxResults: 25
+    }
+    ];
+    var isMine = false;
 
-    getChannelInfos(service, 'stayseemusic').then(
+    getChannelInfos(service, 'stayseemusic', config[0]).then(
         channelInfos =>
         {
             handleChannelInfos(channelInfos, youtubeVideos);
-            getUploads(service, channelInfos.relatedPlaylists.uploads).then(
+            config[1].playlistId = isMine ? channelInfos.relatedPlaylists.likes : channelInfos.relatedPlaylists.uploads;
+            getUploads(service, config[1]).then(
                 uploads => {
-                    getVideosDetails(service, uploads).then(
+                    getVideosDetails(service, uploads, 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q').then(
                             videosDetails => {
                                 handleVideosInfos(uploads, videosDetails, youtubeVideos);
                                 res.status(200).json(youtubeVideos);
