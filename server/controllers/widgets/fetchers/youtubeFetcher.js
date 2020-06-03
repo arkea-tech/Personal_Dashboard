@@ -9,7 +9,8 @@ exports.getChannelInfos = (channelConfig) => {
             resolve({
                 relatedPlaylists: channels[0].contentDetails.relatedPlaylists,
                 thumbnails: channels[0].snippet.thumbnails,
-                title: channels[0].snippet.title
+                title: channels[0].snippet.title,
+                id: channels[0].id
             });
         }).catch(
             (error) => {
@@ -39,32 +40,15 @@ exports.getUploads = (uploadsConfig) => {
     return promise;
 };
 
-exports.getMostPopularUploads = () => {
-    // let datas = {
-    //     uploads: null
-    // };
+exports.getMostPopularUploads = (popularUploadsConfig) => {
     const service = google.youtube('v3');
 
     const promise = new Promise((resolve, reject) => {
-        service.searchResult.list({
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
-            playlistId: 'UU5nc_ZtjKW1htCVZVRxlQAQ',
-            part: 'snippet',
-            maxResults: 25,
-            channelId: 'UC5nc_ZtjKW1htCVZVRxlQAQ',
-            order: 'viewCount',
-            type: 'video'
-        }).then(response => {
-            // datas = {
-            //     uploads: response.data.items
-            // };
+        service.searchResult.list(popularUploadsConfig).then(response => {
             resolve(response.data.items);
         }).catch(
             (error) => {
                 reject(error);
-                // res.status(400).json({
-                //      error: error
-                // });
             }
         );
     });

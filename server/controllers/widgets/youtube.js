@@ -2,7 +2,7 @@ const Youtube = require('../../models/widgets/youtube');
 // const google = require('googleapis').google;
 const { handleChannelInfos, handleVideosInfos, handleUploadsInfos } = require('./handlers/youtubeHandler');
 const { getChannelInfos, getUploads, getMostPopularUploads, getVideosDetails } = require('./fetchers/youtubeFetcher');
-const { generateOAuth2Client } = require('../oauth2');
+const { generateConfig } = require('./config/youtubeConfig');
 // const OAuth2 = google.auth.OAuth2;
 // const CONFIG = require('../../config/config.js');
 // const jwt = require('jsonwebtoken');
@@ -191,44 +191,14 @@ exports.modifyWidget = (req, res, next) => {
 //     return promise;
 // }
 
-function userVideos(youtubeVideos, res, oauth2Client)
+function userVideos(youtubeVideos, res, config, filter)
 {
-    // const config = [{
-    //     auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
-    //     forUsername: 'stayseemusic',
-    //     part: 'snippet,contentDetails'
-    // },
-    // {
-    //     auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
-    //     playlistId: '',
-    //     part: 'snippet,contentDetails',
-    //     maxResults: 25
-    // }
-    // ];
-    const config = [{
-        auth: oauth2Client,
-        mine: true,
-        part: 'snippet,contentDetails'
-    },
-    {
-        auth: oauth2Client,
-        playlistId: '',
-        part: 'snippet,contentDetails',
-        maxResults: 25
-    },
-    {
-        auth: oauth2Client,
-        part: 'statistics',
-        id: []
-    }];
-    var isMine = true;
-
     getChannelInfos(config[0]).then(
         channelInfos =>
         {
 
             handleChannelInfos(channelInfos, youtubeVideos);
-            config[1].playlistId = isMine ? channelInfos.relatedPlaylists.likes : channelInfos.relatedPlaylists.uploads;
+            config[1].playlistId = config[0].mine ? channelInfos.relatedPlaylists.likes : channelInfos.relatedPlaylists.uploads;
             getUploads(config[1]).then(
                 uploads => {
                     handleUploadsInfos(uploads, config[2]);
@@ -272,12 +242,14 @@ exports.getWidgets = (req, res, next) => {
         videos: []
     };
     const option = {
-        first_step: 'Channel Uploads',
-        second_step: 'Recent'
-
+        first_step: "Channel Uploads",
+        second_step: {
+            channel_name: "stayseemusic",
+            filter: "Recent"
+        }
     }
-    const oauth2Client = generateOAuth2Client(req.query.token);
-    userVideos(youtubeVideos, res, oauth2Client);
+    const config = generateConfig(option, req.query.token);
+    userVideos(youtubeVideos, res, config);
 
     // getChannelInfos(service, 'stayseemusic').then(
     //     channelInfos =>
