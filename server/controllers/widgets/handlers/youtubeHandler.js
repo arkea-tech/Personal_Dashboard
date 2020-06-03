@@ -5,22 +5,27 @@ exports.handleChannelInfos = (channelInfos, youtubeVideos) => {
     youtubeVideos.picture = channelInfos.thumbnails;
 };
 
-exports.handleUploadsInfos = (uploads, videosConfig) => {
+exports.handleUploadsInfos = (uploads, videosConfig, isPopular = false) => {
+    let videoId;
+
     uploads.forEach((upload, i) => {
-        videosConfig.id.push(upload.contentDetails.videoId);
+        videoId = isPopular ? upload.id.videoId : upload.contentDetails.videoId;
+        videosConfig.id.push(videoId);
     });
 };
 
-exports.handleVideosInfos = (uploads, videosDetails, youtubeVideos) => {
+exports.handleVideosInfos = (videosDetails, youtubeVideos, filter) => {
     var date;
 
-    uploads.forEach((upload, i) => {
-        date = new Date(upload.contentDetails.videoPublishedAt);
+    videosDetails.forEach((videoDetail, i) => {
+        date = new Date(videoDetail.snippet.publishedAt);
         youtubeVideos.videos.push(new Video(
-            upload.snippet.title,
-            upload.snippet.thumbnails,
+            videoDetail.snippet.title,
+            videoDetail.snippet.thumbnails,
             `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
-            videosDetails[i].statistics.viewCount)
+            videoDetail.statistics.viewCount)
         );
     });
+    if (filter == "Old")
+        youtubeVideos.videos.reverse();
 };

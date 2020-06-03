@@ -16,7 +16,7 @@ module.exports = {
             `${baseURL}/oauth2/callback`
         ],
         scopes: [
-            'https://www.googleapis.com/auth/youtube.readonly'
+            'https://www.googleapis.com/auth/calendar.readonly'
         ]
     }
 };

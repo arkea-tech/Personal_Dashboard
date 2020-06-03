@@ -15,6 +15,11 @@ function filterPopularChannelUploads(channelName)
             channelId: '',
             order: 'viewCount',
             type: 'video'
+        },
+        {
+            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            part: 'statistics,snippet',
+            id: []
         }
     ];
 
@@ -37,7 +42,7 @@ function channelUploads(channelName, filter)
         },
         {
             auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
-            part: 'statistics',
+            part: 'statistics,snippet',
             id: []
         }
     ];
@@ -63,10 +68,23 @@ function myLiked(token)
         },
         {
             auth: oauth2Client,
-            part: 'statistics',
+            part: 'statistics,snippet',
             id: []
         }
     ];
+
+    return config;
+}
+
+function mostPopular()
+{
+    const config = {
+            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            part: 'snippet,statistics',
+            chart: 'mostPopular',
+            regionCode: 'US',
+            maxResults: 25
+    };
 
     return config;
 }
@@ -76,7 +94,7 @@ exports.generateConfig = (option, token) => {
         return channelUploads(option.second_step.channel_name, option.second_step.filter);
     } else if (option.first_step == "My Liked") {
         return myLiked(token);
-    }// } else if (option.first_step == "Most Popular") {
-    //     return mostPopular();
-    // }
+    } else if (option.first_step == "Most Popular") {
+        return mostPopular();
+    }
 };

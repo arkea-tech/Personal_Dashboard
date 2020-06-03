@@ -42,9 +42,8 @@ exports.getUploads = (uploadsConfig) => {
 
 exports.getMostPopularUploads = (popularUploadsConfig) => {
     const service = google.youtube('v3');
-
     const promise = new Promise((resolve, reject) => {
-        service.searchResult.list(popularUploadsConfig).then(response => {
+        service.search.list(popularUploadsConfig).then(response => {
             resolve(response.data.items);
         }).catch(
             (error) => {

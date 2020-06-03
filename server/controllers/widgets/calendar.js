@@ -1,5 +1,7 @@
 const Calendar = require('../../models/widgets/calendar');
 const userEvent = require('../../interfaces/event');
+const google = require('googleapis').google;
+const { generateOAuth2Client } = require('../oauth2');
 
 exports.createWidget = (req, res, next) => {
     // const thing = new Thing({
@@ -81,6 +83,20 @@ exports.modifyWidget = (req, res, next) => {
 }
 
 exports.getWidgets = (req, res, next) => {
+    const service = google.calendar('v3');
+
+    const oauth2Client = generateOAuth2Client(req.query.token);
+
+    service.events.list({
+        auth: oauth2Client,
+        calendarId: 'primary'
+    }).then(events => res.status(200).json(events.data.items)).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
     // Thing.find().then(
     //     (things) => {
     //         res.status(200).json(things);
