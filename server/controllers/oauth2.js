@@ -85,8 +85,9 @@ exports.getInfos = (req, res, next) => {
       // Create an OAuth2 client object from the credentials in our config file
       const oauth2Client = new OAuth2(CONFIG.oauth2Credentials.client_id, CONFIG.oauth2Credentials.client_secret, CONFIG.oauth2Credentials.redirect_uris[0]);
       // Add this specific user's credentials to our OAuth2 client
-      console.log("token after :", req.query.token);
+     // console.log("token after :", req.query.token);
       oauth2Client.setCredentials(jwt.verify(req.query.token, CONFIG.JWTsecret));
+      //return oauth2Client;
       // Get the youtube service
       const service = google.youtube('v3');
       // Get five of the user's subscriptions (the channels they're subscribed to)
@@ -101,4 +102,11 @@ exports.getInfos = (req, res, next) => {
                      response: resp
                  });
       });
+}
+
+exports.generateOAuth2Client = (encryptedToken) => {
+    const oauth2Client = new OAuth2(CONFIG.oauth2Credentials.client_id, CONFIG.oauth2Credentials.client_secret, CONFIG.oauth2Credentials.redirect_uris[0]);
+
+    oauth2Client.setCredentials(jwt.verify(encryptedToken, CONFIG.JWTsecret));
+    return oauth2Client;
 }

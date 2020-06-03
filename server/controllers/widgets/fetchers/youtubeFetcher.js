@@ -1,4 +1,7 @@
-exports.getChannelInfos = (service, channelName, channelConfig) => {
+const google = require('googleapis').google;
+
+exports.getChannelInfos = (channelConfig) => {
+    const service = google.youtube('v3');
     var channels = [];
     const promise = new Promise((resolve, reject) => {
         service.channels.list(channelConfig).then(response => {
@@ -21,7 +24,8 @@ exports.getChannelInfos = (service, channelName, channelConfig) => {
     return promise;
 };
 
-exports.getUploads = (service, uploadsConfig) => {
+exports.getUploads = (uploadsConfig) => {
+    const service = google.youtube('v3');
     const promise = new Promise((resolve, reject) => {
         service.playlistItems.list(uploadsConfig).then(response => {
             resolve(response.data.items);
@@ -35,10 +39,11 @@ exports.getUploads = (service, uploadsConfig) => {
     return promise;
 };
 
-exports.getMostPopularUploads = (service) => {
-    let datas = {
-        uploads: null
-    };
+exports.getMostPopularUploads = () => {
+    // let datas = {
+    //     uploads: null
+    // };
+    const service = google.youtube('v3');
 
     const promise = new Promise((resolve, reject) => {
         service.searchResult.list({
@@ -50,10 +55,10 @@ exports.getMostPopularUploads = (service) => {
             order: 'viewCount',
             type: 'video'
         }).then(response => {
-            datas = {
-                uploads: response.data.items
-            };
-            resolve(datas);
+            // datas = {
+            //     uploads: response.data.items
+            // };
+            resolve(response.data.items);
         }).catch(
             (error) => {
                 reject(error);
@@ -67,17 +72,10 @@ exports.getMostPopularUploads = (service) => {
     return promise;
 };
 
-exports.getVideosDetails = (service, uploads, auth) => {
-    var videos = [];
+exports.getVideosDetails = (videosConfig) => {
+    const service = google.youtube('v3');
     const promise = new Promise((resolve, reject) => {
-        uploads.forEach((upload, i) => {
-            videos.push(upload.contentDetails.videoId);
-        });
-        service.videos.list({
-            auth: auth,
-            part: 'statistics',
-            id: videos
-        }).then(response => {
+        service.videos.list(videosConfig).then(response => {
             resolve(response.data.items);
         }).catch(
             (error) => {

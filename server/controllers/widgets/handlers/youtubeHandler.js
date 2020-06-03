@@ -5,11 +5,17 @@ exports.handleChannelInfos = (channelInfos, youtubeVideos) => {
     youtubeVideos.picture = channelInfos.thumbnails;
 };
 
+exports.handleUploadsInfos = (uploads, videosConfig) => {
+    uploads.forEach((upload, i) => {
+        videosConfig.id.push(upload.contentDetails.videoId);
+    });
+};
+
 exports.handleVideosInfos = (uploads, videosDetails, youtubeVideos) => {
     var date;
 
     uploads.forEach((upload, i) => {
-        date = new Date(upload.snippet.publishedAt);
+        date = new Date(upload.contentDetails.videoPublishedAt);
         youtubeVideos.videos.push(new Video(
             upload.snippet.title,
             upload.snippet.thumbnails,
