@@ -8,6 +8,53 @@ const { generateConfig } = require('./config/youtubeConfig');
 
 
 exports.createWidget = (req, res, next) => {
+    const option = {
+        first_step: req.body.first_step,
+        second_step: {
+            channel_name: req.body.second_step.channel_name,
+            filter: req.body.second_step.filter,
+        }
+    }
+    const config = generateConfig(option, req.query.token);
+    let promise;
+    let youtube;
+
+    if (option.first_step == "Most Popular") {
+        promise = mostPopularVideos(config);
+    } else {
+        promise = userVideos(config, option.second_step.filter);
+    }
+    promise.then(
+        youtubeVideos => {
+            if (option.first_step == 'My Liked') {
+                youtubeVideos.title = 'My Liked';
+            }
+            youtube = new Youtube({
+                title: youtubeVideos.title,
+                picture: youtubeVideos.picture,
+                videos: youtubeVideos.videos
+            });
+            youtube.save().then(
+                () => {
+                    res.status(201).json({
+                        message: 'YouTube widget saved successfully !'
+                    });
+                }
+            ).catch(
+                (error) => {
+                    res.status(400).json({
+                        error: error
+                    });
+                }
+            );
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
     // const thing = new Thing({
     //     title: req.body.title,
     //     description: req.body.description,
@@ -32,17 +79,17 @@ exports.createWidget = (req, res, next) => {
 }
 
 exports.deleteWidget = (req, res, next) => {
-    // Thing.deleteOne({_id: req.params.id}).then(
-    //     () => {
-    //         res.status(200).json({ message: 'Deleted !'});
-    //     }
-    // ).catch(
-    //     (error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     }
-    // );
+    Youtube.deleteOne({_id: req.params.id}).then(
+        () => {
+            res.status(200).json({ message: 'YouTube Widget Deleted !'});
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
 }
 
 exports.getWidget = (req, res, next) => {
@@ -87,34 +134,15 @@ exports.modifyWidget = (req, res, next) => {
 }
 
 exports.getWidgets = (req, res, next) => {
-
-    let youtubeVideos = {
-        title: "",
-        picture: "",
-        videos: []
-    };
-    const option = {
-        first_step: "My Liked",
-        second_step: {
-            channel_name: "stayseemusic",
-            filter: "Recent"
+    Youtube.find().then(
+        (youtubeWidgets) => {
+            res.status(200).json(youtubeWidgets);
         }
-    }
-    const config = generateConfig(option, req.query.token);
-
-    if (option.first_step == "Most Popular") {
-        mostPopularVideos(res, youtubeVideos, config);
-    } else
-        userVideos(youtubeVideos, res, config, option.second_step.filter);
-    // Thing.find().then(
-    //     (things) => {
-    //         res.status(200).json(things);
-    //     }
-    // ).catch(
-    //     (error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     }
-    // );
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
 }

@@ -1,91 +1,116 @@
 const { handleChannelInfos, handleVideosInfos, handleUploadsInfos } = require('../handlers/youtubeHandler');
 const { getChannelInfos, getUploads, getMostPopularUploads, getVideosDetails } = require('../fetchers/youtubeFetcher');
 
-function userRecentMyLiked(channelInfos, res, youtubeVideos, config, filter)
+function userRecentMyLiked(channelInfos, youtubeVideos, config, filter)
 {
-    config[1].playlistId = config[0].mine ? channelInfos.relatedPlaylists.likes : channelInfos.relatedPlaylists.uploads;
-    getUploads(config[1]).then(
-        uploads => {
-            handleUploadsInfos(uploads, config[2]);
-            getVideosDetails(config[2]).then(
-                    videosDetails => {
-                        handleVideosInfos(videosDetails, youtubeVideos, filter);
-                        res.status(200).json(youtubeVideos);
+    const promise = new Promise((resolve, reject) => {
+        config[1].playlistId = config[0].mine ? channelInfos.relatedPlaylists.likes : channelInfos.relatedPlaylists.uploads;
+        getUploads(config[1]).then(
+            uploads => {
+                handleUploadsInfos(uploads, config[2]);
+                getVideosDetails(config[2]).then(
+                        videosDetails => {
+                            handleVideosInfos(videosDetails, youtubeVideos, filter);
+                            resolve();
+                        }
+                ).catch(
+                    (error) => {
+                        reject(error);
                     }
-            ).catch(
-                (error) => {
-                    res.status(400).json({
-                        error: error
-                    });
-                }
-            );
-        }
-    ).catch(
-        (error) => {
-            res.status(400).json({
-                error: error
-            });
-        }
-    );
+                );
+            }
+        ).catch(
+            (error) => {
+                reject(error);
+            }
+        );
+    });
+
+    return promise;
 }
 
-function userPopular(channelInfos, res, youtubeVideos, config)
+function userPopular(channelInfos, youtubeVideos, config)
 {
-    config[1].channelId = channelInfos.id;
-    getMostPopularUploads(config[1]).then(
-        popularUploads => {
-            handleUploadsInfos(popularUploads, config[2], true);
-            getVideosDetails(config[2]).then(
-                    videosDetails => {
-                        handleVideosInfos(videosDetails, youtubeVideos);
-                        res.status(200).json(youtubeVideos);
+    const promise = new Promise((resolve, reject) => {
+        config[1].channelId = channelInfos.id;
+        getMostPopularUploads(config[1]).then(
+            popularUploads => {
+                handleUploadsInfos(popularUploads, config[2], true);
+                getVideosDetails(config[2]).then(
+                        videosDetails => {
+                            handleVideosInfos(videosDetails, youtubeVideos);
+                            resolve();
+                        }
+                ).catch(
+                    (error) => {
+                        reject(error);
                     }
-            ).catch(
-                (error) => {
-                    res.status(400).json({
-                        error: error
-                    });
-                }
-            );
-        }
-    ).catch(
-        (error) => {
-            res.status(400).json({
-                error: error
-            });
-        }
-    );
+                );
+            }
+        ).catch(
+            (error) => {
+                reject(error);
+            }
+        );
+    });
+
+    return promise
 }
 
-exports.userVideos = (youtubeVideos, res, config, filter) => {
-    getChannelInfos(config[0]).then(
-        channelInfos => {
-            handleChannelInfos(channelInfos, youtubeVideos);
-            if (filter == "Most Popular") {
-                userPopular(channelInfos, res, youtubeVideos, config);
-            } else
-                userRecentMyLiked(channelInfos, res, youtubeVideos, config, filter);
-        }
-    ).catch(
-        (error) => {
-            res.status(400).json({
-                error: error
-            });
-        }
-    );
+exports.userVideos = (config, filter) => {
+    let youtubeVideos = {
+        title: "",
+        picture: "",
+        videos: []
+    };
+    const promise = new Promise((resolve, reject) => {
+        getChannelInfos(config[0]).then(
+            channelInfos => {
+                handleChannelInfos(channelInfos, youtubeVideos);
+                if (filter == "Most Popular") {
+                    userPopular(channelInfos, youtubeVideos, config).then(() => {
+                        resolve(youtubeVideos);
+                    }).catch(
+                        (error) => {
+                            reject(error);
+                        }
+                    );
+                } else {
+                    userRecentMyLiked(channelInfos, youtubeVideos, config, filter).then(() => resolve(youtubeVideos)).catch(
+                        (error) => {
+                            reject(error);
+                        }
+                    );
+                }
+            }
+        ).catch(
+            (error) => {
+                reject(error);
+            }
+        );
+    });
+
+    return promise;
 };
 
-exports.mostPopularVideos = (res, youtubeVideos, config) => {
-    getVideosDetails(config).then(
-            videosDetails => {
-                handleVideosInfos(videosDetails, youtubeVideos);
-                res.status(200).json(youtubeVideos);
+exports.mostPopularVideos = (config) => {
+    let youtubeVideos = {
+        title: "Most Popular",
+        picture: {},
+        videos: []
+    };
+    const promise = new Promise((resolve, reject) => {
+        getVideosDetails(config).then(
+                videosDetails => {
+                    handleVideosInfos(videosDetails, youtubeVideos);
+                    resolve(youtubeVideos);
+                }
+        ).catch(
+            (error) => {
+                reject(error);
             }
-    ).catch(
-        (error) => {
-            res.status(400).json({
-                error: error
-            });
-        }
-    );
+        );
+    });
+
+    return promise;
 };

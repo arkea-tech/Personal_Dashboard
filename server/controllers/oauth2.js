@@ -11,7 +11,6 @@ function handlePermission(scope)
         access_type: 'offline',
         scope: scope
     });
-    console.log(scope);
 
     return loginLink;
 }
