@@ -1,40 +1,35 @@
 const google = require('googleapis').google;
 const OAuth2 = google.auth.OAuth2;
 const jwt = require('jsonwebtoken');
-var url = require("url");
 
 const CONFIG = require('../config/config.js');
 
-exports.getPermission = (req, res, next) => {
+function handlePermission(scope)
+{
     const oauth2Client = new OAuth2(CONFIG.oauth2Credentials.client_id, CONFIG.oauth2Credentials.client_secret, CONFIG.oauth2Credentials.redirect_uris[0]);
     const loginLink = oauth2Client.generateAuthUrl({
         access_type: 'offline',
-        scope: CONFIG.oauth2Credentials.scopes
+        scope: scope
     });
+    console.log(scope);
+
+    return loginLink;
+}
+
+exports.getYoutubePermission = (req, res, next) => {
+    const loginLink = handlePermission(CONFIG.oauth2Credentials.scopes[0]);
+
     res.status(200).json({
         permission_url: loginLink
     });
-    // const thing = new Thing({
-    //     title: req.body.title,
-    //     description: req.body.description,
-    //     imageUrl: req.body.imageUrl,
-    //     price: req.body.price,
-    //     userId: req.body.userId
-    // });
-    //
-    // thing.save().then(
-    //     () => {
-    //         res.status(201).json({
-    //             message: 'Post saved successfully !'
-    //         });
-    //     }
-    // ).catch(
-    //     (error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     }
-    // );
+}
+
+exports.getGoogleCalendarPermission = (req, res, next) => {
+    const loginLink = handlePermission(CONFIG.oauth2Credentials.scopes[1]);
+
+    res.status(200).json({
+        permission_url: loginLink
+    });
 }
 
 exports.getCredentials = (req, res, next) => {

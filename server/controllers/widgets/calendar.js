@@ -89,7 +89,8 @@ exports.getWidgets = (req, res, next) => {
 
     service.events.list({
         auth: oauth2Client,
-        calendarId: 'primary'
+        calendarId: 'primary',
+        timeMin: '2018-01-01T00:00:00-04:00'
     }).then(events => res.status(200).json(events.data.items)).catch(
         (error) => {
             res.status(400).json({

@@ -4,7 +4,8 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-router.get('/', oauth2Ctrl.getPermission);
+router.get('/calendar', oauth2Ctrl.getGoogleCalendarPermission);
+router.get('/youtube', oauth2Ctrl.getYoutubePermission);
 router.get('/callback', oauth2Ctrl.getCredentials);
 
 router.get('/infos', oauth2Ctrl.getInfos);
