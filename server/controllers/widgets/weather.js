@@ -163,7 +163,6 @@ exports.modifyWidget = (req, res, next) => {
                 );
             } else if (req.body.city == weatherWidget.city && !req.body.details && weatherWidget.forecast) {
                 //disable details
-                console.log('second');
                 weather = new Weather({
                     _id: req.params.id,
                     city: weatherWidget.city,
