@@ -1,44 +1,90 @@
 const Calendar = require('../../models/widgets/calendar');
-const userEvent = require('../../interfaces/event');
+const Event = require('../../interfaces/event').Event;
 const google = require('googleapis').google;
 const { generateOAuth2Client } = require('../oauth2');
 
+function myEvents(token)
+{
+    let events = [];
+    const service = google.calendar('v3');
+    const oauth2Client = generateOAuth2Client(token);
+    const promise = new Promise((resolve, reject) => {
+        service.events.list({
+            auth: oauth2Client,
+            calendarId: 'primary',
+            timeMin: '2018-01-01T00:00:00-04:00'
+        }).then(datas => {
+            datas.data.items.forEach((item, i) => {
+                events.push(new Event(item.summary, item.colorId, item.start.dateTime, item.end.dateTime));
+            });
+            resolve(events);
+        }).catch(
+            (error) => {
+                resolve(error);
+            }
+        );
+    });
+
+    return promise;
+}
+
 exports.createWidget = (req, res, next) => {
-    // const thing = new Thing({
-    //     title: req.body.title,
-    //     description: req.body.description,
-    //     imageUrl: req.body.imageUrl,
-    //     price: req.body.price,
-    //     userId: req.body.userId
-    // });
-    //
-    // thing.save().then(
-    //     () => {
-    //         res.status(201).json({
-    //             message: 'Post saved successfully !'
-    //         });
-    //     }
-    // ).catch(
-    //     (error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     }
-    // );
+    let calendar;
+    let promise;
+
+    if (req.body.events) {
+        promise = myEvents(req.query.token).then(events => {
+            calendar = new Calendar({
+                view: req.body.view,
+                events: events
+            });
+        }).catch(
+            (error) => {
+                res.status(400).json({
+                    error: error
+                });
+            }
+        );
+    } else {
+        calendar = new Calendar({
+            view: req.body.view,
+            events: null
+        });
+        promise = new Promise((resolve, reject) => {
+            resolve();
+        });
+    }
+    promise.then(
+        () => {
+            calendar.save().then(
+                () => {
+                    res.status(201).json({
+                        message: 'Calendar Widget Saved Successfully !'
+                    });
+                }
+            ).catch(
+                (error) => {
+                    res.status(400).json({
+                        error: error
+                    });
+                }
+            );
+        }
+    );
 }
 
 exports.deleteWidget = (req, res, next) => {
-    // Thing.deleteOne({_id: req.params.id}).then(
-    //     () => {
-    //         res.status(200).json({ message: 'Deleted !'});
-    //     }
-    // ).catch(
-    //     (error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     }
-    // );
+    Calendar.deleteOne({_id: req.params.id}).then(
+        () => {
+            res.status(200).json({ message: 'Calendar Widget Deleted !'});
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
 }
 
 exports.getWidget = (req, res, next) => {
@@ -58,6 +104,22 @@ exports.getWidget = (req, res, next) => {
 }
 
 exports.modifyWidget = (req, res, next) => {
+    Calendar.findOne({
+        _id: req.params.id
+    }).then(
+        (myEvent) => {
+            if (req.body.view != myEvent.view && req.body.events && myEvent.events) {}
+            else if (req.body.view != myEvent.view && !req.body.events) {}
+            else if (req.body.events && !myEvent.events)
+
+        }
+    ).catch(
+        (error) => {
+            res.status(404).json({
+                error: error
+            });
+        }
+    );
     // const thing = new Thing({
     //     _id: req.params.id,
     //     title: req.body.title,
@@ -83,30 +145,15 @@ exports.modifyWidget = (req, res, next) => {
 }
 
 exports.getWidgets = (req, res, next) => {
-    const service = google.calendar('v3');
-
-    const oauth2Client = generateOAuth2Client(req.query.token);
-
-    service.events.list({
-        auth: oauth2Client,
-        calendarId: 'primary',
-        timeMin: '2018-01-01T00:00:00-04:00'
-    }).then(events => res.status(200).json(events.data.items)).catch(
+    Calendar.find().then(
+        (events) => {
+            res.status(200).json(events);
+        }
+    ).catch(
         (error) => {
             res.status(400).json({
                 error: error
             });
         }
     );
-    // Thing.find().then(
-    //     (things) => {
-    //         res.status(200).json(things);
-    //     }
-    // ).catch(
-    //     (error) => {
-    //         res.status(400).json({
-    //             error: error
-    //         });
-    //     }
-    // );
 }
