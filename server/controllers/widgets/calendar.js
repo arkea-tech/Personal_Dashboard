@@ -104,14 +104,71 @@ exports.getWidget = (req, res, next) => {
 }
 
 exports.modifyWidget = (req, res, next) => {
+    let calendar;
+    let promise;
+
     Calendar.findOne({
         _id: req.params.id
     }).then(
-        (myEvent) => {
-            if (req.body.view != myEvent.view && req.body.events && myEvent.events) {}
-            else if (req.body.view != myEvent.view && !req.body.events) {}
-            else if (req.body.events && !myEvent.events)
-
+        (calendarWidget) => {
+            if (req.body.view != calendarWidget.view && req.body.events && calendarWidget.events) {
+                //update only view
+                calendar = new Calendar({
+                    _id: req.params.id,
+                    view: req.body.view,
+                    events: calendarWidget.events
+                });
+                promise = new Promise((resolve, reject) => {
+                    resolve();
+                });
+            } else if (!req.body.events && calendarWidget.events) {
+                //disable the events
+                calendar = new Calendar({
+                    _id: req.params.id,
+                    view: req.body.view,
+                    events: null
+                });
+                promise = new Promise((resolve, reject) => {
+                    resolve();
+                });
+            } else if (req.body.events && !calendarWidget.events) {
+                //upadte all
+                promise = myEvents(req.query.token).then(events => {
+                    calendar = new Calendar({
+                        _id: req.params.id,
+                        view: req.body.view,
+                        events: events
+                    });
+                }).catch(
+                    (error) => {
+                        res.status(400).json({
+                            error: error
+                        });
+                    }
+                );
+            } else {
+                res.status(400).json({
+                    error: 'Same Inputs'
+                });
+                return;
+            }
+            promise.then(
+                () => {
+                    Calendar.updateOne({_id: req.params.id}, calendar).then(
+                        () => {
+                            res.status(201).json({
+                                message: 'Calendar Widget Updated Successfully !'
+                            });
+                        }
+                    ).catch(
+                        (error) => {
+                            res.status(400).json({
+                                error: error
+                            });
+                        }
+                    );
+                }
+            );
         }
     ).catch(
         (error) => {

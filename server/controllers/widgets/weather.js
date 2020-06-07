@@ -66,16 +66,16 @@ exports.createWidget = (req, res, next) => {
     let weather;
 
     getWeather(req.body.city, req.body.unit, req.body.details).then(
-        weather => {
+        weatherDatas => {
             weather = new Weather({
-                city: weather.city,
-                date: weather.date,
-                temperature: weather.temperature,
-                condition: weather.condition,
-                wind: weather.wind,
-                humidity: weather.humidity,
-                pressure: weather.pressure,
-                forecast: weather.forecast
+                city: weatherDatas.city,
+                date: weatherDatas.date,
+                temperature: weatherDatas.temperature,
+                condition: weatherDatas.condition,
+                wind: weatherDatas.wind,
+                humidity: weatherDatas.humidity,
+                pressure: weatherDatas.pressure,
+                forecast: weatherDatas.forecast
             });
             weather.save().then(
                 () => {
@@ -131,6 +131,84 @@ exports.getWidget = (req, res, next) => {
 }
 
 exports.modifyWidget = (req, res, next) => {
+    let weather;
+    let promise;
+
+    Weather.findOne({
+        _id: req.params.id
+    }).then(
+        (weatherWidget) => {
+            if (req.body.city != weatherWidget.city || req.body.details && !weatherWidget.forecast) {
+                //upadte all
+                promise = getWeather(req.body.city, 'celsius', req.body.details).then(
+                    weatherDatas => {
+                        weather = new Weather({
+                            _id: req.params.id,
+                            city: weatherDatas.city,
+                            date: weatherDatas.date,
+                            temperature: weatherDatas.temperature,
+                            condition: weatherDatas.condition,
+                            wind: weatherDatas.wind,
+                            humidity: weatherDatas.humidity,
+                            pressure: weatherDatas.pressure,
+                            forecast: weatherDatas.forecast
+                        });
+                    }
+                ).catch(
+                    error => {
+                        res.status(400).json({
+                            error: error
+                        });
+                    }
+                );
+            } else if (req.body.city == weatherWidget.city && !req.body.details && weatherWidget.forecast) {
+                //disable details
+                console.log('second');
+                weather = new Weather({
+                    _id: req.params.id,
+                    city: weatherWidget.city,
+                    date: weatherWidget.date,
+                    temperature: weatherWidget.temperature,
+                    condition: weatherWidget.condition,
+                    wind: null,
+                    humidity: null,
+                    pressure: null,
+                    forecast: null
+                });
+                promise = new Promise((resolve, reject) => {
+                    resolve();
+                });
+            } else {
+                res.status(400).json({
+                    error: 'Same Inputs'
+                });
+                return;
+            }
+            promise.then(
+                () => {
+                    Weather.updateOne({_id: req.params.id}, weather).then(
+                        () => {
+                            res.status(201).json({
+                                message: 'Weather Widget Updated Successfully !'
+                            });
+                        }
+                    ).catch(
+                        (error) => {
+                            res.status(400).json({
+                                error: error
+                            });
+                        }
+                    );
+                }
+            );
+        }
+    ).catch(
+        (error) => {
+            res.status(404).json({
+                error: error
+            });
+        }
+    );
     // const thing = new Thing({
     //     _id: req.params.id,
     //     title: req.body.title,
