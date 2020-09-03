@@ -1,5 +1,6 @@
 # Personal_Dashboard
 
+
 ## Table of contents
 * [Description](#description)
 * [Technologies](#technologies)
@@ -7,6 +8,7 @@
 * [Features](#features)
 * [Sources](#sources)
 * [Author](#author)
+
 
 ## Description
 
@@ -23,36 +25,41 @@ Currently, the available **Services** and managed **Widgets** are :
     - **Calendar** : Display monthly/weekly/daily Calendar view and user events.
 
 By subscribing to these **Services**, the user can then compose his/her dashboard by inserting preconfigured **Widgets instances**.
+
 Also, it's possible to edit, delete and move **Widgets** on the dashboard.
+
 _Note : some Widgets configuration (exemple : YouTube, Google Calendar) required user to authenticate through an OAuth2 autorisation process in order to allow his/her personal datas_.
+
 
 ## Technologies
 
 Frameworks        | Version | Description
------------------------------------------
+------------------|---------|-----------------
 Express.js        | 4.1     | REST API Manager
 Angular.js        | 9.0     | Client Interface
 
 
 Libs & Database   | Version | Description
-------------------------------------------------------------------------
+------------------|---------|-------------------------------------------
 MongoDB           |  0+     | Database that store datas into collections
 Node              | 10.1    | Server side development and stacks handler
 npm               | 6.1     | Package and dependency manager
 
+
 ## Setup
 
-### To run the *server* :
+### To run the server :
 
 1. `cd ./server`.
 1. Required __one time__ to install all dependencies : `npm install`.
 2. `node server.js`.
 
-### To run the *client* :
+### To run the client :
 
 ## Features
 
-### Server Side
+
+#### Server Side
 
 - [x] User Management Module
 - [x] OAuth2
@@ -61,17 +68,18 @@ npm               | 6.1     | Package and dependency manager
 - [x] Widgets operations & datas fetched
 - [x] Managed Services
 
-## Client Side
+#### Client Side
 
-- [] Register/Auth
-- [] Navigation & Screens
-- [] YouTube Widget
-- [] Calendar Widget
-- [] Weather Widget
-- [] Add, Modify, Edit, Delete & Move Widgets
-- [] Subscriptions
-- [] Profile
-- [] Timer
+- [ ] Register/Auth
+- [ ] Navigation & Screens
+- [ ] YouTube Widget
+- [ ] Calendar Widget
+- [ ] Weather Widget
+- [ ] Add, Modify, Edit, Delete & Move Widgets
+- [ ] Subscriptions
+- [ ] Profile
+- [ ] Timer
+
 
 ## Sources
 
@@ -79,12 +87,15 @@ MEAN Stack and Front-end structure based from _Open Classrooms_ tutorials :
 - [MEAN Stack Set-up](https://openclassrooms.com/en/courses/5614116-go-full-stack-with-node-js-express-and-mongodb/exercises/2998).
 - [Angular](https://openclassrooms.com/en/courses/4668271-developpez-des-applications-web-avec-angular/6730441-entrainez-vous-en-creant-une-application-de-type-blog).
 
-OAuth2 implementation: [OAuth2 in Node.js](https://github.com/googleapis/google-api-nodejs-client#using-api-keys).
+OAuth2 implementation:
+
+[OAuth2 in Node.js](https://github.com/googleapis/google-api-nodejs-client#using-api-keys).
 
 API Documentations:
-- [OpenWeather](https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwjZt6KRks3rAhVHBWAKHZeqBKUYABABGgJ0bQ&ohost=www.google.com&cid=CAESQeD21YxlghBge-Uvqs5IWKYgCoGxfHCL8n74UkVr9zsfSNbgGyEw77OM8aRJAx1Y6IuGRofvPimXWKfyiiN2DERA&sig=AOD64_3FfAkbfaVBCKtAedtoidV9WaFbxg&q&adurl&ved=2ahUKEwiVrZqRks3rAhWFNKYKHQASC34Q0Qx6BAgcEAE).
+- [OpenWeather](https://openweathermap.org/api).
 - [YouTube](https://developers.google.com/youtube/v3).
 - [Google Calendar](https://developers.google.com/calendar).
+
 
 ## Author
 
