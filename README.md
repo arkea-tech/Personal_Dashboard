@@ -59,7 +59,7 @@ npm               | 6.1     | Package and dependency manager
 ## Features
 
 
-#### Server Side
+### Server Side
 
 - [x] User Management Module
 - [x] OAuth2
@@ -68,7 +68,7 @@ npm               | 6.1     | Package and dependency manager
 - [x] Widgets operations & datas fetched
 - [x] Managed Services
 
-#### Client Side
+### Client Side
 
 - [ ] Register/Auth
 - [ ] Navigation & Screens
@@ -87,9 +87,7 @@ MEAN Stack and Front-end structure based from _Open Classrooms_ tutorials :
 - [MEAN Stack Set-up](https://openclassrooms.com/en/courses/5614116-go-full-stack-with-node-js-express-and-mongodb/exercises/2998).
 - [Angular](https://openclassrooms.com/en/courses/4668271-developpez-des-applications-web-avec-angular/6730441-entrainez-vous-en-creant-une-application-de-type-blog).
 
-OAuth2 implementation:
-
-[OAuth2 in Node.js](https://github.com/googleapis/google-api-nodejs-client#using-api-keys).
+OAuth2 implementation: [OAuth2 in Node.js](https://github.com/googleapis/google-api-nodejs-client#using-api-keys).
 
 API Documentations:
 - [OpenWeather](https://openweathermap.org/api).
@@ -99,4 +97,4 @@ API Documentations:
 
 ## Author
 
-Created with :heart: by [Gabriel Pironneau](https://github.com/WoshiWoshu/Personal_Dashboard).
+Created with :heart: by [WoshiWoshu](https://github.com/WoshiWoshu).
