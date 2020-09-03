@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 const path = require('path');
 const fs = require('fs');
 
-//To delete
-//const Weather = require('./models/widgets/weather');
+//To Delete
+const cookieParser = require('cookie-parser');
 
+const oauth2Routes = require('./routes/oauth2');
 const servicesRoutes = require('./routes/services');
 const managedServicesRoutes = require('./routes/managed_services');
 const youtubeRoutes = require('./routes/widgets/youtube');
@@ -17,7 +18,6 @@ const calendarRoutes = require('./routes/widgets/calendar');
 const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
 const stuffFileRoutes = require('./routes/stuff_file');
-const Widget = require('./interfaces/widget');
 
 const app = express();
 
@@ -32,6 +32,10 @@ mongoose.connect('mongodb+srv://WoshiWoshu:greatwish987@cluster0-97mzz.mongodb.n
     console.log('Unable to connect to MongoDB Atlas !');
     console.error(error);
 });
+//To delete
+app.use(cookieParser());
+app.set('view engine', 'ejs');
+app.set('views', __dirname);
 
 app
 .use((req, res, next) => {
@@ -48,6 +52,7 @@ app.use('/api/auth', userRoutes);
 app.use('/api/stuff/file', stuffFileRoutes);
 
 app.use('/about.json', managedServicesRoutes);
+app.use('/oauth2', oauth2Routes);
 app.use('/services', servicesRoutes);
 app.use('/widget/youtube', youtubeRoutes);
 app.use('/widget/weather', weatherRoutes);

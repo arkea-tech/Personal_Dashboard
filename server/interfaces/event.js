@@ -1,10 +1,12 @@
 class Event {
-    constructor(title, color, date, time)
+    constructor(title, colorId, startDate, endDate)
     {
         this.title = title;
-        this.color = color;
-        this.date = date;
-        this.time = time;
+        this.colorId = colorId;
+        this.time = {
+            start_date: startDate,
+            end_date: endDate
+        };
     }
 }
 

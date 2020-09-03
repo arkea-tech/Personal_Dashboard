@@ -5,7 +5,7 @@ const multer = require('../middleware/multer-config.js');
 
 const router = express.Router();
 
-router.post('/', auth, multer, stuffFileCtrl.createThing);
-router.put('/:id', auth, multer, stuffFileCtrl.modifyThing);
+router.post('/', multer, stuffFileCtrl.createThing);
+router.put('/:id', multer, stuffFileCtrl.modifyThing);
 
 module.exports = router;

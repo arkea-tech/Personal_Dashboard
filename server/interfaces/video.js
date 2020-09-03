@@ -1,7 +1,8 @@
 class Video {
-    constructor(title, date, views)
+    constructor(title, picture, date, views)
     {
         this.title = title;
+        this.picture = picture;
         this.date = date;
         this.views = views;
     }
