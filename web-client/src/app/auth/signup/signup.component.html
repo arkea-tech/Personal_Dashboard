@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+            <div class="form-group">
+                <label>Username<input class="form-control" type="text" ngModel></label>
+            </div>
+            <div class="form-group">
+                <label>Password<input class="form-control" type="password" ngModel></label>
+            </div>
+            <div class="form-group">
+                <label>Confirm Password<input class="form-control" type="password" ngModel></label>
+            </div>
+            <div class="form-group">
+                <label>Birthdate<input class="form-control" type="date" ngModel></label>
+            </div>
+            <div class="form-group">
+                <label for="job_title">
+                    Job Title
+                </label>
+                <select class="form-control" id="job_title" ngModel>
+                    <option value="developer">Developer</option>
+                    <option value="manager">Manager</option>
+                    <option value="ceo">CEO</option>
+                    <option value="scientist">Scientist</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gender">
+                    Gender
+                </label>
+                <select class="form-control" id="gender" ngModel>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="myself">Tell us about yourself</label>
+                <textarea id="myself" name="myself" rows="8" cols="80" ngModel>
+                </textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Signup</button>
+        </form>
+    </div>
+</div>
