@@ -15,10 +15,14 @@ export class LoginComponent implements OnInit {
     ngOnInit(): void {
     }
 
-
     onSubmit(form: NgForm)
     {
         const username = form.value["username"];
         const password =  form.value["password"];
+        this.authService.login(username, password).then(
+            success => console.log(success)
+        ).catch(
+            (error) => { console.log(error) }
+        );
     }
 }

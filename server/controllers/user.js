@@ -6,7 +6,7 @@ exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(
         (hash) => {
             const user = new User({
-                email: req.body.email,
+                username: req.body.username,
                 password: hash
             });
             user.save().then(
@@ -27,7 +27,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    User.findOne({email: req.body.email}).then(
+    User.findOne({username: req.body.username}).then(
         (user) => {
             if (!user) {
                 return res.status(401).json({

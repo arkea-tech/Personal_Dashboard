@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
+
     token: string;
     userId: string;
     isAuth$ = new BehaviorSubject<boolean>(false);
@@ -19,8 +20,14 @@ export class AuthService {
             {
                 username: username,
                 password: password
-            });
-            resolve();
+            }).subscribe(
+                () => {
+                    resolve('User Created');
+                },
+                (error) => {
+                    reject(error);
+                }
+            );
         });
     }
 
@@ -35,7 +42,7 @@ export class AuthService {
                 (authData: { token: string, userId: string }) => {
                     this.token = authData.token;
                     this.userId = authData.userId;
-                    resolve();
+                    resolve('Success !');
                 },
                 (error) => {
                     reject(error);
@@ -43,4 +50,5 @@ export class AuthService {
             );
         });
     }
+
 };
