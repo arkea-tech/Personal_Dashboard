@@ -8,13 +8,19 @@ import { NgForm } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+    constructor()
+    { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void
+    {
+    }
 
-  onSubmit(form:NgForm) {
-      console.log(form.value);
-  }
+    onSubmit(form: NgForm)
+    {
+
+        const username = form.value["username"];
+        const password =  form.value["password"];
+        //console.log(form.value);
+    }
 
 }
