@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-router.post('/', auth, profileCtrl.createProfile);
+router.post('/', profileCtrl.createProfile);
 router.get('/:id', auth, profileCtrl.getProfile);
 router.put('/:id', auth, profileCtrl.modifyProfile);
 router.delete('/:id', auth, profileCtrl.deleteProfile);

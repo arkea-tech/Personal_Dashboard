@@ -12,7 +12,7 @@ exports.signup = (req, res, next) => {
             user.save().then(
                 () => {
                     res.status(201).json({
-                        message: 'User added successfully !'
+                        message: 'Account created successfully !'
                     });
                 }
             ).catch(
@@ -47,6 +47,7 @@ exports.login = (req, res, next) => {
                         { expiresIn: '24h' }
                     );
                     res.status(200).json({
+                        message: 'Successful access to Personal Dashboard !',
                         userId: user._id,
                         token: token
                     });

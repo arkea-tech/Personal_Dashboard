@@ -21,8 +21,8 @@ export class AuthService {
                 username: username,
                 password: password
             }).subscribe(
-                () => {
-                    resolve('User Created');
+                (data: { message: string }) => {
+                    resolve(data.message);
                 },
                 (error) => {
                     reject(error);
@@ -39,10 +39,10 @@ export class AuthService {
                 username: username,
                 password: password
             }).subscribe(
-                (authData: { token: string, userId: string }) => {
-                    this.token = authData.token;
-                    this.userId = authData.userId;
-                    resolve('Success !');
+                (data: { message: string, token: string, userId: string }) => {
+                    this.token = data.token;
+                    this.userId = data.userId;
+                    resolve(data.message);
                 },
                 (error) => {
                     reject(error);
