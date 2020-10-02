@@ -1,18 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+
+import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { AuthService } from './services/auth.service';
+import { ProfileService } from './services/profile.service';
+
 import { AppComponent } from './app.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { LoginComponent } from './auth/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrigamiFormsModule } from '@codebakery/origami/forms';
 
 @NgModule({
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
-    AppComponent
+    AppComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    OrigamiFormsModule
   ],
-  providers: [],
+  providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+      AuthService,
+      ProfileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,105 @@
+    <div class="uk-container uk-container-xsmall">
+        <div uk-spinner *ngIf="loading"></div>
+        <form class="uk-form-stacked" (ngSubmit)="onSubmit(form)" #form="ngForm">
+
+            <div class="uk-grid-column-large" uk-grid>
+
+                <div>
+                    <label class="uk-form-label" for="username">Username</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input uk-form-width-small" type="text" id="username" name="username" ngModel required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="uk-form-label" for="birthdate">Birthdate</label>
+                    <div class="uk-form-controls">
+                        <vaadin-date-picker placeholder="DD/MM/YYYY" id="birthdate" name="birthdate" origami ngModel>
+                        </vaadin-date-picker>
+                        <!-- <input data-uk-datepicker="{format:'DD.MM.YYYY'}" type="date" id="birthdate" name="birthdate" placeholder="DD/MM/YYYY" ngModel> -->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="uk-grid-column-large uk-grid-row-medium" uk-grid>
+
+                <div>
+                    <label class="uk-form-label" for="password">Password</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input uk-form-width-small" type="password" id="password" name="password" ngModel required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="uk-form-label" for="confirm_password">Confirm Password</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input uk-form-width-small" type="password" id="confirm_password" name="confirm_password" ngModel required
+                        [ngClass]="{
+                            'uk-form-success': form.value.password === form.value.confirm_password && form.value.password !== '',
+                            'uk-form-danger': form.value.password !== form.value.confirm_password && form.value.confirm_password !== ''
+                        }">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="uk-grid-column-large uk-grid-row-medium" uk-grid>
+
+                <div>
+                    <label class="uk-form-label" for="gender">Gender</label>
+                    <div class="uk-form-controls">
+                        <div class="uk-grid uk-grid-small" id="gender">
+                            <label>
+                                <input class="uk-radio" type="radio" name="gender" value="male" ngModel>
+                                Male
+                            </label>
+                            <br>
+                            <label>
+                                <input class="uk-radio" type="radio" name="gender" value="female" ngModel>
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="uk-form-label" for="job_title">Job Title</label>
+                    <div class="uk-form-controls">
+                        <select class="uk-select uk-form-width-small" id="job_title" name="job_title" ngModel>
+                            <option value="developer">Developer</option>
+                            <option value="manager">Manager</option>
+                            <option value="ceo">CEO</option>
+                            <option value="scientist">Scientist</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="uk-margin">
+                <label class="uk-form-label" for="description">
+                    Tell us about yourself
+                </label>
+                <div class="uk-form-controls">
+                    <textarea class="uk-textarea uk-width-1-2" id="description" rows="8" cols="80" placeholder="I love coding and playing the guitar...bla bla bla..." name="description" ngModel>
+                    </textarea>
+                </div>
+            </div>
+
+            <div uk-alert class="uk-alert-danger" [ngClass]="{
+                'uk-alert-success': message.substring(0, 4) != 'Http' ,
+                'uk-alert-danger': message.substring(0, 4) == 'Http' }
+                "*ngIf="message != null">
+                <button class="uk-alert-close" uk-close></button>
+                {{ message }}
+            </div>
+            
+            <button class="uk-button uk-button-primary uk-margin" type="submit" [disabled]="form.invalid || form.value.password != form.value.confirm_password">
+                Signup
+            </button>
+
+        </form>
+
+    </div>
