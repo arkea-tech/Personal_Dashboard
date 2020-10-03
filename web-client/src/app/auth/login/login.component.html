@@ -1,36 +1,33 @@
-<div class="uk-container uk-container-xsmall">
-    <div uk-spinner *ngIf="loading"></div>
-    <form class="uk-form-stacked" (ngSubmit)="onSubmit(form)" #form="ngForm">
+<div uk-spinner *ngIf="loading"></div>
+<form class="uk-form-stacked" (ngSubmit)="onSubmit(form)" #form="ngForm">
 
-        <div class="uk-margin">
-            <div>
-                <label class="uk-form-label" for="username">Username</label>
-                <div class="uk-form-controls">
-                    <input class="uk-input uk-form-width-small" type="text" id="username" name="username" ngModel required>
-                </div>
-            </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="username">
+            Username
+        </label>
+        <div class="uk-form-controls">
+            <input class="uk-input uk-form-width-small" type="text" id="username" name="username" ngModel required>
         </div>
+    </div>
 
-        <div class="uk-margin">
-            <div>
-                <label class="uk-form-label" for="password">Password</label>
-                <div class="uk-form-controls">
-                    <input class="uk-input uk-form-width-small" type="password" id="password" name="password" ngModel required>
-                </div>
-            </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="password">
+            Password
+        </label>
+        <div class="uk-form-controls">
+            <input class="uk-input uk-form-width-small" type="password" id="password" name="password" ngModel required>
         </div>
+    </div>
 
-        <div uk-alert class="uk-alert-danger" [ngClass]="{
-            'uk-alert-success': message.substring(0, 4) != 'Http' ,
-            'uk-alert-danger': message.substring(0, 4) == 'Http' }
-            "*ngIf="message != null">
-            <button class="uk-alert-close" uk-close></button>
-            {{ message }}
-        </div>
+    <div uk-alert *ngIf="message != null" [ngClass]="{
+        'uk-alert-success': message.substring(0, 4) != 'Http' ,
+        'uk-alert-danger': message.substring(0, 4) == 'Http' }">
+        <button class="uk-alert-close" uk-close></button>
+        {{ message }}
+    </div>
 
-        <button class="uk-button uk-button-primary uk-margin" type="submit" [disabled]="form.invalid">
-            Login
-        </button>
+    <button class="uk-button uk-button-primary uk-margin" type="submit" [disabled]="form.invalid">
+        Login
+    </button>
 
-    </form>
-</div>
+</form>
