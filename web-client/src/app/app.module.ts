@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrigamiFormsModule } from '@codebakery/origami/forms';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FloatingButtonComponent } from './dashboard/floating-button/floating-button.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -25,7 +26,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SignupComponent,
     LoginComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    FloatingButtonComponent
   ],
   imports: [
     BrowserModule,

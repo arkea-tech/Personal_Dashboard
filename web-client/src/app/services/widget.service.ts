@@ -7,25 +7,25 @@ import { Youtube } from '../models/Youtube.model';
 @Injectable()
 export class WidgetService {
 
-    public youtubeVideos: Youtube[] = [
+    public youtubeWidgets: Youtube[] = [
         {
             _id: '324sdfmoih3',
             title: 'Stay See',
             picture: {
-                default: {
-                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s88-c-k-c0xffffffff-no-rj-mo',
-                    width: 88,
-                    height: 88
+                high: {
+                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
+                    width: 480,
+                    height: 360
                 }
             },
             videos: [
                 {
                     title: 'JackLNDN - Twisted',
                     picture: {
-                        default: {
-                            url: 'https://i.ytimg.com/vi/b9xzh10s6_Q/default.jpg',
-                            width: 120,
-                            height: 90
+                        high: {
+                            url: 'https://i.ytimg.com/vi/b9xzh10s6_Q/hqdefault.jpg',
+                            width: 480,
+                            height: 360
                         }
                     },
                     date: '27/5/2020',
@@ -34,10 +34,10 @@ export class WidgetService {
                 {
                     title: 'Feeling Happy - Stay See Summer Mix 2020',
                     picture: {
-                        default: {
-                            url: 'https://i.ytimg.com/vi/-XZR6yGpi60/default.jpg',
-                            width: 120,
-                            height: 90
+                        high: {
+                            url: 'https://i.ytimg.com/vi/-XZR6yGpi60/hqdefault.jpg',
+                            width: 480,
+                            height: 360
                         }
                     },
                     date: '19/5/2020',
@@ -46,10 +46,10 @@ export class WidgetService {
                 {
                     title: 'Fabich - Can\'t Even Be',
                     picture: {
-                        default: {
-                            url: 'https://i.ytimg.com/vi/l2wqALgBjq4/default.jpg',
-                            width: 120,
-                            height: 90
+                        high: {
+                            url: 'https://i.ytimg.com/vi/l2wqALgBjq4/hqdefault.jpg',
+                            width: 480,
+                            height: 360
                         }
                     },
                     date: '6/5/2020',
@@ -58,23 +58,23 @@ export class WidgetService {
             ]
         },
         {
-            _id: '324sdfmoih3',
-            title: 'Mr Suicide Sheep',
+            _id: '324sdfmoihs3',
+            title: 'Stay See',
             picture: {
-                default: {
-                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s88-c-k-c0xffffffff-no-rj-mo',
-                    width: 88,
-                    height: 88
+                high: {
+                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
+                    width: 480,
+                    height: 360
                 }
             },
             videos: [
                 {
                     title: 'JackLNDN - Twisted',
                     picture: {
-                        default: {
-                            url: 'https://i.ytimg.com/vi/b9xzh10s6_Q/default.jpg',
-                            width: 120,
-                            height: 90
+                        high: {
+                            url: 'https://i.ytimg.com/vi/b9xzh10s6_Q/hqdefault.jpg',
+                            width: 480,
+                            height: 360
                         }
                     },
                     date: '27/5/2020',
@@ -83,10 +83,10 @@ export class WidgetService {
                 {
                     title: 'Feeling Happy - Stay See Summer Mix 2020',
                     picture: {
-                        default: {
-                            url: 'https://i.ytimg.com/vi/-XZR6yGpi60/default.jpg',
-                            width: 120,
-                            height: 90
+                        high: {
+                            url: 'https://i.ytimg.com/vi/-XZR6yGpi60/hqdefault.jpg',
+                            width: 480,
+                            height: 360
                         }
                     },
                     date: '19/5/2020',
@@ -95,10 +95,10 @@ export class WidgetService {
                 {
                     title: 'Fabich - Can\'t Even Be',
                     picture: {
-                        default: {
-                            url: 'https://i.ytimg.com/vi/l2wqALgBjq4/default.jpg',
-                            width: 120,
-                            height: 90
+                        high: {
+                            url: 'https://i.ytimg.com/vi/l2wqALgBjq4/hqdefault.jpg',
+                            width: 480,
+                            height: 360
                         }
                     },
                     date: '6/5/2020',
@@ -107,23 +107,23 @@ export class WidgetService {
             ]
         },
         {
-            _id: '324sdfmoih3',
-            title: 'Mr Suicide Sheep',
+            _id: '324sdfmoihz3',
+            title: 'Stay See',
             picture: {
-                default: {
-                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s88-c-k-c0xffffffff-no-rj-mo',
-                    width: 88,
-                    height: 88
+                high: {
+                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
+                    width: 480,
+                    height: 360
                 }
             },
             videos: [
                 {
                     title: 'JackLNDN - Twisted',
                     picture: {
-                        default: {
-                            url: 'https://i.ytimg.com/vi/b9xzh10s6_Q/default.jpg',
-                            width: 120,
-                            height: 90
+                        high: {
+                            url: 'https://i.ytimg.com/vi/b9xzh10s6_Q/hqdefault.jpg',
+                            width: 480,
+                            height: 360
                         }
                     },
                     date: '27/5/2020',
@@ -132,10 +132,10 @@ export class WidgetService {
                 {
                     title: 'Feeling Happy - Stay See Summer Mix 2020',
                     picture: {
-                        default: {
-                            url: 'https://i.ytimg.com/vi/-XZR6yGpi60/default.jpg',
-                            width: 120,
-                            height: 90
+                        high: {
+                            url: 'https://i.ytimg.com/vi/-XZR6yGpi60/hqdefault.jpg',
+                            width: 480,
+                            height: 360
                         }
                     },
                     date: '19/5/2020',
@@ -144,10 +144,10 @@ export class WidgetService {
                 {
                     title: 'Fabich - Can\'t Even Be',
                     picture: {
-                        default: {
-                            url: 'https://i.ytimg.com/vi/l2wqALgBjq4/default.jpg',
-                            width: 120,
-                            height: 90
+                        high: {
+                            url: 'https://i.ytimg.com/vi/l2wqALgBjq4/hqdefault.jpg',
+                            width: 480,
+                            height: 360
                         }
                     },
                     date: '6/5/2020',

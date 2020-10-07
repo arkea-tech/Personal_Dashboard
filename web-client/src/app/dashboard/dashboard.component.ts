@@ -10,12 +10,12 @@ import { Youtube } from '../models/Youtube.model';
 })
 export class DashboardComponent implements OnInit {
 
-    public youtubeVideos: Youtube[] = [];
+    public youtubeWidgets: Youtube[] = [];
 
     constructor(private widgetService: WidgetService) { }
 
     ngOnInit(): void {
-        this.youtubeVideos = this.widgetService.youtubeVideos;
+        this.youtubeWidgets = this.widgetService.youtubeWidgets;
     }
 
 }
