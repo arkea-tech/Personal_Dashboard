@@ -1,0 +1,35 @@
+<div class="uk-flex-center uk-grid-large" uk-grid>
+    <div class="uk-width-3-4@s"
+    *ngFor="let service of services.server.services">
+        <div class="uk-card uk-card-default">
+            <div class="uk-card-header">
+                <div class="uk-grid-medium uk-margin-top uk-margin-bottom uk-flex-center" uk-grid>
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <h3 class="uk-card-title">{{ service.name }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <ul class="uk-list uk-list-large uk-margin-left">
+                    <li *ngFor="let widget of service.widgets">
+                        <p>
+                            <span class="uk-text-large">{{ widget.name }}</span><span class="uk-text-muted uk-margin-medium-left">{{ widget.description }}</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <h2 class="uk-text-bold uk-text-primary">Entertainment
+    <span>Take a look</span></h2>
+<p>Music Player<span class="uk-text-muted">Take a look</span></p>
+<p>YouTube Videos<span class="uk-text-muted">Take a look</span></p> -->

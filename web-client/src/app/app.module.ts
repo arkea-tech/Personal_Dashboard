@@ -9,6 +9,9 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { WidgetService } from './services/widget.service';
+import { ManagedServicesService } from './services/managed-services.service';
+import { UserServicesService } from './services/user-services.service';
+
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -18,6 +21,9 @@ import { OrigamiFormsModule } from '@codebakery/origami/forms';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FloatingButtonComponent } from './dashboard/floating-button/floating-button.component';
+import { SettingsComponent } from './settings/settings.component';
+import { SubscriptionsComponent } from './settings/subscriptions/subscriptions.component';
+import { ProfileComponent } from './settings/profile/profile.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -27,7 +33,10 @@ import { FloatingButtonComponent } from './dashboard/floating-button/floating-bu
     LoginComponent,
     HomeComponent,
     DashboardComponent,
-    FloatingButtonComponent
+    FloatingButtonComponent,
+    SettingsComponent,
+    SubscriptionsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +51,9 @@ import { FloatingButtonComponent } from './dashboard/floating-button/floating-bu
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
       AuthService,
       ProfileService,
-      WidgetService
+      WidgetService,
+      ManagedServicesService,
+      UserServicesService
   ],
   bootstrap: [AppComponent]
 })
