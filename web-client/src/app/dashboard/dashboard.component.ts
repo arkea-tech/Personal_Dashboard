@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WidgetService } from '../services/widget.service';
+import { YoutubeService } from '../services/widgets/youtube.service';
 import { Youtube } from '../models/Youtube.model';
 
 @Component({
@@ -12,10 +12,10 @@ export class DashboardComponent implements OnInit {
 
     public youtubeWidgets: Youtube[] = [];
 
-    constructor(private widgetService: WidgetService) { }
+    constructor(private youtubeService: YoutubeService) { }
 
     ngOnInit(): void {
-        this.youtubeWidgets = this.widgetService.youtubeWidgets;
+        this.youtubeWidgets = this.youtubeService.youtubeWidgets;
     }
 
 }

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
-import { Youtube } from '../models/Youtube.model';
+import { Youtube } from '../../models/Youtube.model';
 
 @Injectable()
-export class WidgetService {
+export class YoutubeService {
 
     public youtubeWidgets: Youtube[] = [
         {

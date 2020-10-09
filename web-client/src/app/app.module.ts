@@ -8,7 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
-import { WidgetService } from './services/widget.service';
+import { YoutubeService } from './services/widgets/youtube.service';
+import { WeatherService } from './services/widgets/weather.service';
 import { ManagedServicesService } from './services/managed-services.service';
 import { UserServicesService } from './services/user-services.service';
 import { AuthGuard } from './services/auth-guard.service';
@@ -55,7 +56,8 @@ import { AboutComponent } from './about/about.component';
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
       AuthService,
       ProfileService,
-      WidgetService,
+      YoutubeService,
+      WeatherService,
       ManagedServicesService,
       UserServicesService,
       AuthGuard
