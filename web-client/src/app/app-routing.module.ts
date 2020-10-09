@@ -7,6 +7,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SubscriptionsComponent } from './settings/subscriptions/subscriptions.component';
 import { ProfileComponent } from './settings/profile/profile.component';
+import { MainComponent } from './main/main.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AboutComponent } from './about/about.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
     {
@@ -19,7 +23,26 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'settings', component: SettingsComponent,
+        path: 'main', canActivate: [AuthGuard], component: MainComponent,
+        children: [
+            { path: 'dashboard', component: DashboardComponent },
+            {
+                path: 'settings', component: SettingsComponent,
+                children: [
+                    { path: 'subscriptions', component: SubscriptionsComponent },
+                    { path: 'profile', component: ProfileComponent },
+                    { path: '', pathMatch: 'full', redirectTo: 'subscriptions'
+                    },
+                    { path: '**', redirectTo: 'subscriptions' }
+                ]
+            },
+            { path: 'about', component: AboutComponent },
+            { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+            { path: '**', redirectTo: 'dashboard' }
+        ]
+    },
+    {
+        path: 'settings', component: SettingsComponent, canActivate: [AuthGuard],
         children: [
             { path: 'subscriptions', component: SubscriptionsComponent },
             { path: 'profile', component: ProfileComponent },
@@ -27,8 +50,8 @@ const routes: Routes = [
             { path: '**', redirectTo: 'subscriptions' }
         ]
     },
-    { path: '', pathMatch: 'full', redirectTo: 'settings' }, //replace by home
-    { path: '**', redirectTo: 'settings' } //replace by home
+    { path: '', pathMatch: 'full', redirectTo: 'main' }, //replace by home
+    { path: '**', redirectTo: 'main' } //replace by home
 ];
 
 @NgModule({

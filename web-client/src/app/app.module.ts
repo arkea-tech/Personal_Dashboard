@@ -11,7 +11,7 @@ import { ProfileService } from './services/profile.service';
 import { WidgetService } from './services/widget.service';
 import { ManagedServicesService } from './services/managed-services.service';
 import { UserServicesService } from './services/user-services.service';
-
+import { AuthGuard } from './services/auth-guard.service';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -24,6 +24,8 @@ import { FloatingButtonComponent } from './dashboard/floating-button/floating-bu
 import { SettingsComponent } from './settings/settings.component';
 import { SubscriptionsComponent } from './settings/subscriptions/subscriptions.component';
 import { ProfileComponent } from './settings/profile/profile.component';
+import { MainComponent } from './main/main.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -36,7 +38,9 @@ import { ProfileComponent } from './settings/profile/profile.component';
     FloatingButtonComponent,
     SettingsComponent,
     SubscriptionsComponent,
-    ProfileComponent
+    ProfileComponent,
+    MainComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ import { ProfileComponent } from './settings/profile/profile.component';
       ProfileService,
       WidgetService,
       ManagedServicesService,
-      UserServicesService
+      UserServicesService,
+      AuthGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,48 @@
+<a id="toggle" class="uk-position-top-left uk-margin-large-top uk-margin-large-left" uk-icon="icon: menu; ratio: 5" href="#menu" uk-toggle></a>
+<div id="menu" uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+        <ul class="uk-nav uk-nav-primary uk-nav-parent-icon uk-margin-top" uk-nav="multiple: true">
+            <li class="uk-text-capitalize uk-text-large uk-text-light uk-margin-bottom">
+                Personal Dashboard
+            </li>
+            <li>
+                <a routerLink="dashboard">
+                    <span class="uk-margin-small-right" uk-icon="icon: home"></span>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a routerLink="settings">
+                    <span class="uk-margin-small-right" uk-icon="icon: settings"></span>
+                    Settings
+                </a>
+            </li>
+            <li>
+                <a routerLink="about">
+                    <span class="uk-margin-small-right" uk-icon="icon: info"></span>
+                    About
+                </a>
+            </li>
+            <li class="uk-nav-divider"></li>
+            <li class="uk-parent">
+                <a>Subscriptions</a>
+                <ul class="uk-nav-sub uk-nav-parent-icon" uk-nav="multiple: true">
+                    <li class="uk-parent" *ngFor="let service of services">
+                        <a>{{ service.name }}</a>
+                        <ul class="uk-nav-sub">
+                            <li class="uk-disabled" *ngFor="let widget of service.widgets">
+                                <a>{{ widget.name }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<router-outlet>
+</router-outlet>
