@@ -7,6 +7,7 @@
         <div class="uk-modal-dialog uk-margin-large-top">
 
             <button class="uk-modal-close-default" type="button" uk-close></button>
+
             <div class="uk-modal-header">
                 <h2 class="uk-modal-title">Select a Service</h2>
             </div>
@@ -23,6 +24,7 @@
                     </a>
                 </div>
            </div>
+
         </div>
     </div>
 
@@ -42,7 +44,7 @@
                     </a>
                 </div>
                 <div class="uk-transition-toggle uk-text-center" tabindex="0">
-                    <div class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" data-src="../assets/entertainment.jpg" uk-img>
+                    <div class="uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" data-src="../assets/entertainment.jpg" uk-img>
                         <h3>Music Player</h3>
                     </div>
                     <p class="uk-text-danger uk-margin-remove-bottom uk-transition-slide-top">
@@ -72,7 +74,7 @@
 
             <div class="uk-modal-body uk-flex uk-flex-around">
                 <div class="uk-transition-toggle uk-light" tabindex="0">
-                    <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#" data-src="../assets/productivity.jpg" uk-img>
+                    <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#modal-weather" data-src="../assets/productivity.jpg" uk-img uk-toggle>
                         <h4>Weather Forecast</h4>
                     </a>
                 </div>
@@ -88,5 +90,11 @@
                     Previous
                 </a>
             </div>
+        </div>
+    </div>
+
+    <div id="modal-weather" uk-modal>
+        <div class="uk-modal-dialog uk-margin-large-top">
+            <app-weather-form></app-weather-form>
         </div>
     </div>

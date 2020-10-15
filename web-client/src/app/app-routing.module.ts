@@ -10,6 +10,7 @@ import { ProfileComponent } from './settings/profile/profile.component';
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
+import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.component';
 import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [

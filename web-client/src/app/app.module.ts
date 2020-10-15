@@ -27,6 +27,7 @@ import { SubscriptionsComponent } from './settings/subscriptions/subscriptions.c
 import { ProfileComponent } from './settings/profile/profile.component';
 import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
+import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -41,7 +42,8 @@ import { AboutComponent } from './about/about.component';
     SubscriptionsComponent,
     ProfileComponent,
     MainComponent,
-    AboutComponent
+    AboutComponent,
+    WeatherFormComponent
   ],
   imports: [
     BrowserModule,
