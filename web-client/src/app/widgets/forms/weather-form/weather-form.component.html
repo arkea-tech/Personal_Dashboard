@@ -1,0 +1,51 @@
+<button class="uk-modal-close-default" type="button" uk-close></button>
+
+<div class="uk-modal-header">
+    <h2 class="uk-modal-title">Weather</h2>
+</div>
+
+<div class="uk-modal-body">
+    <form class="uk-form-stacked uk-margin-xlarge-left uk-margin-top" [formGroup]="weatherForm" (ngSubmit)="onSubmitForm()">
+
+        <div class="uk-margin-large-left uk-margin-medium-bottom">
+            <label class="uk-form-label uk-margin-small-bottom" for="city">
+                Enter a City
+            </label>
+            <div class="uk-form-controls">
+                <input class="uk-input uk-form-width-small" type="text" id="city" formControlName="city">
+            </div>
+        </div>
+
+        <div class="uk-margin-large-left uk-margin-medium-bottom">
+            <label class="uk-form-label uk-margin-small-bottom" for="unit">
+                Select a unit
+            </label>
+            <div class="uk-form-controls">
+                <div class="uk-grid uk-flex-column" id="unit">
+                    <label class="uk-margin-small-bottom uk-text-normal">
+                        <input class="uk-radio" type="radio" value="celsius"
+                        formControlName="unit">
+                        Celsius
+                    </label>
+                    <label class="uk-text-normal">
+                        <input class="uk-radio" type="radio" value="fahrenheit"
+                        formControlName="unit">
+                        Fahrenheit
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-margin-large-left uk-margin-bottom">
+            <label>
+                <input class="uk-checkbox" type="checkbox" formControlName="details">
+                Show details
+            </label>
+        </div>
+
+        <button class="uk-button uk-button-primary uk-margin uk-width-2-3@s" type="submit" [disabled]="weatherForm.invalid">
+            Submit
+        </button>
+
+    </form>
+</div>

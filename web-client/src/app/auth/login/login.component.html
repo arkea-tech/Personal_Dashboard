@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div uk-alert *ngIf="message != null" [ngClass]="{
+    <div id="message" uk-alert *ngIf="message != null" [ngClass]="{
         'uk-alert-success': message.substring(0, 4) != 'Http' ,
         'uk-alert-danger': message.substring(0, 4) == 'Http' }">
         <button class="uk-alert-close" uk-close></button>

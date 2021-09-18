@@ -8,7 +8,6 @@ export class AuthService {
     token: string;
     userId: string;
     isAuth$ = new BehaviorSubject<boolean>(false);
-    //userId: string;
 
     constructor(private http: HttpClient)
     {}
@@ -42,6 +41,7 @@ export class AuthService {
                 (data: { message: string, token: string, userId: string }) => {
                     this.token = data.token;
                     this.userId = data.userId;
+                    this.isAuth$.next(true);
                     resolve(data.message);
                 },
                 (error) => {
@@ -49,6 +49,13 @@ export class AuthService {
                 }
             );
         });
+    }
+
+
+    logout() {
+        this.isAuth$.next(false);
+        this.userId = null;
+        this.token = null;
     }
 
 };

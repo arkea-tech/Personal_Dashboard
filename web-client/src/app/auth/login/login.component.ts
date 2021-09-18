@@ -30,7 +30,9 @@ export class LoginComponent implements OnInit {
             (message: string) => {
                 this.loading = false;
                 this.message = message;
-                this.router.navigate(['/']);
+                setTimeout(() => {
+                    this.router.navigate(['/main']);
+                }, 2000);
             }
         ).catch(
             (error) => {
