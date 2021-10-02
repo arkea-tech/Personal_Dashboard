@@ -5,30 +5,12 @@
     width: 70px;
 }
 
-.uk-card-header {
-    position: relative;
-    right: 2vh;
-}
-
 .uk-container {
     position: relative;
     left: 3vh;
 }
 
-#videos {
-    overflow-x: auto;
+.uk-grid {
+    position: relative;
+    right: 5vh
 }
-
-#videos .uk-card-title {
-    font-size: 17px
-}
-
-
-#details {
-    font-size: 12px
-}
-//
-// #videos .uk-card {
-//     position: relative;
-//     right: 1vh;
-// }

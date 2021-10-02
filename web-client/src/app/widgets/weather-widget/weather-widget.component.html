@@ -1,0 +1,40 @@
+<div class="uk-card uk-card-small uk-card-default">
+    <div class="uk-card-body uk-text-center">
+        <div class="uk-child-width-expand@s uk-flex-middle" uk-grid>
+            <div>
+                <h3>{{ weatherWidget.temperature }} °C</h3>
+            </div>
+            <div>
+                <h3 class="uk-card-title">
+                    {{ weatherWidget.city }}
+                </h3>
+                <p>{{ weatherWidget.date }}</p>
+                <!-- re-add width and height attributes -->
+                <img src="{{ weatherWidget.condition.icon }}" width="200" height="200">
+                <label>
+                    {{ weatherWidget.condition.condition }}
+                </label>
+            </div>
+            <div>
+                <p>wind {{ weatherWidget.wind }} km/h</p>
+                <p>humidity {{ weatherWidget.humidity }}%</p>
+                <p>pressure {{ weatherWidget.pressure }} PA</p>
+            </div>
+        </div>
+    </div>
+    <div class="uk-card-footer">
+        <div class="uk-grid-collapse uk-child-width-expand@s uk-margin-top uk-margin-left uk-margin-right uk-margin-bottom" uk-grid>
+            <div *ngFor="let day of weatherWidget.forecast">
+                <div class="uk-card uk-card-default uk-card-body">
+                    <h3 class="uk-card-title uk-text-small">
+                        {{ day.day }}
+                    </h3>
+                    <img data-src="{{ day.condition.icon }}" width="" height="" alt="" uk-img>
+                    <p id='forecastCondition'>{{ day.condition.condition }}</p>
+                    <p> High <span>{{ day.high }}°C</span></p>
+                    <p> Low <span>{{ day.low }}°C</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

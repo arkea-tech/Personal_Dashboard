@@ -28,6 +28,8 @@ import { ProfileComponent } from './settings/profile/profile.component';
 import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
 import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.component';
+import { WeatherWidgetComponent } from './widgets/weather-widget/weather-widget.component';
+import { YoutubeWidgetComponent } from './widgets/youtube-widget/youtube-widget.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -43,7 +45,9 @@ import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.
     ProfileComponent,
     MainComponent,
     AboutComponent,
-    WeatherFormComponent
+    WeatherFormComponent,
+    WeatherWidgetComponent,
+    YoutubeWidgetComponent
   ],
   imports: [
     BrowserModule,

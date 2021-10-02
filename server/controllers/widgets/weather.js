@@ -14,7 +14,7 @@ function getWeather(cityInput, unit, details)
     let weatherCondition = {};
     var options = [
         { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
-        { weekday: 'long', month: 'long', day: 'numeric' }
+        { weekday: 'short', month: 'short', day: 'numeric' }
     ];
     const promise = new Promise((resolve, reject) => {
         axios.get('https://api.openweathermap.org/data/2.5/onecall', {

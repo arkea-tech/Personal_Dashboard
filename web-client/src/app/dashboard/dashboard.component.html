@@ -4,134 +4,15 @@
 
 <div class="uk-section uk-margin-medium-top">
     <div class="uk-container">
-        <div uk-grid>
+        <div class="uk-grid-large" uk-grid>
 
-            <div class="uk-card-small uk-card-default uk-width-1-3@m uk-margin-xlarge-left uk-margin-large-bottom"
-            *ngFor="let youtubeWidget of youtubeWidgets">
+            <!-- remove and put the class inside youtubeWidget div -->
+            <app-youtube-widget class='uk-width-1-3@s' *ngFor="let youtubeWidget of youtubeWidgets" [youtubeWidget]='youtubeWidget'></app-youtube-widget>
 
-                <div class="uk-card-header">
-                    <div class="uk-flex-middle uk-margin-small-top uk-margin-small-bottom" uk-grid>
-                        <div class="uk-width-auto">
-                            <img class="uk-border-circle" width="100" height="80" src="{{youtubeWidget.picture.high.url}}">
-                        </div>
-                        <div class="uk-width-expand">
-                            <h3 class="uk-card-title">
-                                {{ youtubeWidget.title }}
-                            </h3>
-                            <!-- <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time></p> -->
-                        </div>
-                    </div>
-                </div>
+            <app-weather-widget class='uk-width-1-2@s' *ngFor="let weatherWidget of weatherWidgets" [weatherWidget]='weatherWidget'></app-weather-widget>
 
-                <div id="videos" class="uk-card-body uk-height-medium">
-                    <div class="uk-grid-medium uk-child-width-expand@s uk-text-center uk-flex-column" uk-grid>
-
-                        <div class="uk-card uk-card-default" *ngFor="let video of youtubeWidget.videos">
-                            <div class="uk-child-width-1-2@s" uk-grid>
-                                <div class="uk-card-media-left uk-cover-container">
-                                    <img src="{{video.picture.high.url}}" alt="" uk-cover>
-                                        <canvas width="{{video.picture.high.width}}" height="{{video.picture.high.height}}">
-                                        </canvas>
-                                </div>
-                                <div class="uk-card-body">
-                                    <h3 class="uk-card-title uk-text-light">
-                                        {{ video.title }}
-                                    </h3>
-                                    <p id="details" class="uk-text-light">
-                                        {{ video.views }} views - {{ video.date }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="uk-card uk-card-small uk-card-default uk-text-center">
-                <div class="uk-card-body">
-                    <div class="uk-grid uk-child-width-1-4@s uk-flex-middle" uk-grid>
-                        <div class="">
-                            <h3>23 °C</h3>
-                        </div>
-                        <div>
-                            <h3 class="uk-card-title">
-                                Paris
-                            </h3>
-                            <p class="uk-margin-remove-bottom" id="weather_condition">Sunday, June 7, 2020</p>
-                            <img data-src="http://openweathermap.org/img/wn/10d@2x.png" width="200" height="100" alt="" uk-img>
-                            <label for="weather_condition">
-                                light rain
-                            </label>
-                        </div>
-                        <div>
-                            <p>wind 1.5 km/h</p>
-                            <p>humidity 59%</p>
-                            <p>pressure 1011 PA</p>
-                        </div>
-                    </div>
-                    <div class="uk-card-footer">
-                        <div class="uk-grid-collapse uk-child-width-expand@s" uk-grid>
-                            <div>
-                                <div class="uk-card uk-card-small uk-card-default uk-card-body">
-                                    <h3 class="uk-card-title uk-text-small">
-                                        Monday
-                                    </h3>
-                                    <img data-src="http://openweathermap.org/img/wn/10d@2x.png" width="" height="" alt="" uk-img>
-                                    <p>light rain</p>
-                                    <p> High <span>30°C</span></p>
-                                    <p> Low <span>15°C</span></p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="uk-card uk-card-small uk-card-default uk-card-body">
-                                    <h3 class="uk-card-title uk-text-small">
-                                        Monday
-                                    </h3>
-                                    <img data-src="http://openweathermap.org/img/wn/10d@2x.png" width="" height="" alt="" uk-img>
-                                    <p>light rain</p>
-                                    <p> High <span>30°C</span></p>
-                                    <p> Low <span>15°C</span></p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="uk-card uk-card-small uk-card-default uk-card-body">
-                                    <h3 class="uk-card-title uk-text-small">
-                                        Monday
-                                    </h3>
-                                    <img data-src="http://openweathermap.org/img/wn/10d@2x.png" width="" height="" alt="" uk-img>
-                                    <p>light rain</p>
-                                    <p> High <span>30°C</span></p>
-                                    <p> Low <span>15°C</span></p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="uk-card uk-card-small uk-card-default uk-card-body">
-                                    <h3 class="uk-card-title uk-text-small">
-                                        Monday
-                                    </h3>
-                                    <img data-src="http://openweathermap.org/img/wn/10d@2x.png" width="" height="" alt="" uk-img>
-                                    <p>light rain</p>
-                                    <p> High <span>30°C</span></p>
-                                    <p> Low <span>15°C</span></p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="uk-card uk-card-small uk-card-default uk-card-body">
-                                    <h3 class="uk-card-title uk-text-small">
-                                        Monday
-                                    </h3>
-                                    <img data-src="http://openweathermap.org/img/wn/10d@2x.png" width="" height="" alt="" uk-img>
-                                    <p>light rain</p>
-                                    <p> High <span>30°C</span></p>
-                                    <p> Low <span>15°C</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-youtube-widget class='uk-width-1-3@s' *ngFor="let youtubeWidget of youtubeWidgets" [youtubeWidget]='youtubeWidget'></app-youtube-widget>
+    <app-youtube-widget class='uk-width-1-3@s' *ngFor="let youtubeWidget of youtubeWidgets" [youtubeWidget]='youtubeWidget'></app-youtube-widget>
 
         </div>
     </div>
