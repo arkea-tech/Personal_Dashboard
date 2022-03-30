@@ -30,6 +30,7 @@ import { AboutComponent } from './about/about.component';
 import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.component';
 import { WeatherWidgetComponent } from './widgets/weather-widget/weather-widget.component';
 import { YoutubeWidgetComponent } from './widgets/youtube-widget/youtube-widget.component';
+import { CalendarWidgetComponent } from './widgets/calendar-widget/calendar-widget.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -47,7 +48,8 @@ import { YoutubeWidgetComponent } from './widgets/youtube-widget/youtube-widget.
     AboutComponent,
     WeatherFormComponent,
     WeatherWidgetComponent,
-    YoutubeWidgetComponent
+    YoutubeWidgetComponent,
+    CalendarWidgetComponent
   ],
   imports: [
     BrowserModule,
