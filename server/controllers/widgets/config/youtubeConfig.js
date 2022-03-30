@@ -4,12 +4,12 @@ function filterPopularChannelUploads(channelName)
 {
     const config = [
         {
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            auth: 'AIzaSyDpa-QD0kMzXGAo1AkXTRka2PGLXorul14',
             forUsername: channelName,
             part: 'snippet,contentDetails'
         },
         {
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            auth: 'AIzaSyDpa-QD0kMzXGAo1AkXTRka2PGLXorul14',
             part: 'snippet',
             maxResults: 25,
             channelId: '',
@@ -17,7 +17,7 @@ function filterPopularChannelUploads(channelName)
             type: 'video'
         },
         {
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            auth: 'AIzaSyDpa-QD0kMzXGAo1AkXTRka2PGLXorul14',
             part: 'statistics,snippet',
             id: []
         }
@@ -30,18 +30,18 @@ function channelUploads(channelName, filter)
 {
     let config = [
         {
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            auth: 'AIzaSyDpa-QD0kMzXGAo1AkXTRka2PGLXorul14',
             forUsername: channelName,
             part: 'snippet,contentDetails'
         },
         {
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            auth: 'AIzaSyDpa-QD0kMzXGAo1AkXTRka2PGLXorul14',
             playlistId: '',
             part: 'snippet,contentDetails',
             maxResults: 25
         },
         {
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            auth: 'AIzaSyDpa-QD0kMzXGAo1AkXTRka2PGLXorul14',
             part: 'statistics,snippet',
             id: []
         }
@@ -79,7 +79,7 @@ function myLiked(token)
 function mostPopular()
 {
     const config = {
-            auth: 'AIzaSyBmQsTIX2RCJQIkkBLA95UNfqlaS4Jbs9Q',
+            auth: 'AIzaSyDpa-QD0kMzXGAo1AkXTRka2PGLXorul14',
             part: 'snippet,statistics',
             chart: 'mostPopular',
             regionCode: 'US',

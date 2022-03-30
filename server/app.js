@@ -22,7 +22,7 @@ const stuffFileRoutes = require('./routes/stuff_file');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://WoshiWoshu:greatwish987@cluster0-97mzz.mongodb.net/dashboard?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://WoshiWoshu:greatwish987@cluster0.jya02.mongodb.net/Personal_Dashboard?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

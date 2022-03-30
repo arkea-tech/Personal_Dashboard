@@ -48,8 +48,7 @@ import { CalendarWidgetComponent } from './widgets/calendar-widget/calendar-widg
     AboutComponent,
     WeatherFormComponent,
     WeatherWidgetComponent,
-    YoutubeWidgetComponent,
-    CalendarWidgetComponent
+    YoutubeWidgetComponent
   ],
   imports: [
     BrowserModule,
