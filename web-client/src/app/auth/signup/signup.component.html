@@ -7,7 +7,11 @@
                 Username
             </label>
             <div class="uk-form-controls">
-                <input class="uk-input uk-form-width-small" type="text" id="username" name="username" ngModel required>
+                <input class="uk-input uk-form-width-small" type="text" id="username" name="username" ngModel required
+                [ngClass]="{
+                    'uk-form-success': form.value.username !== '',
+                    'uk-form-danger': form.value.username === ''
+                }">
             </div>
         </div>
 
@@ -16,7 +20,7 @@
                 Birthdate
             </label>
             <div class="uk-form-controls">
-                <vaadin-date-picker placeholder="DD/MM/YYYY" id="birthdate" name="birthdate" origami ngModel>
+                <vaadin-date-picker placeholder="MM/DD/YYYY" id="birthdate" name="birthdate" origami ngModel>
                 </vaadin-date-picker>
             </div>
         </div>
@@ -28,7 +32,11 @@
                 Password
             </label>
             <div class="uk-form-controls">
-                <input class="uk-input uk-form-width-small" type="password" id="password" name="password" ngModel required>
+                <input class="uk-input uk-form-width-small" type="password" id="password" name="password" ngModel required
+                [ngClass]="{
+                    'uk-form-success': form.value.password !== '',
+                    'uk-form-danger': form.value.password === ''
+                }">
             </div>
         </div>
 
@@ -40,7 +48,7 @@
                 <input class="uk-input uk-form-width-small" type="password" id="confirm_password" name="confirm_password" ngModel required
                 [ngClass]="{
                     'uk-form-success': form.value.password === form.value.confirm_password && form.value.password !== '',
-                    'uk-form-danger': form.value.password !== form.value.confirm_password && form.value.confirm_password !== ''
+                    'uk-form-danger': form.value.password !== form.value.confirm_password || form.value.confirm_password === ''
                 }">
             </div>
         </div>
@@ -81,12 +89,12 @@
         </div>
     </div>
 
-    <div class="uk-margin">
+    <div class="uk-margin-top">
         <label class="uk-form-label" for="description">
             Tell us about yourself
         </label>
         <div class="uk-form-controls">
-            <textarea class="uk-textarea uk-width-1-2" id="description" rows="8" cols="80" placeholder="I love coding and playing the guitar...bla bla bla..." name="description" ngModel>
+            <textarea class="uk-textarea uk-width-3-4" id="description" rows="7" cols="80" placeholder="I love coding and playing the guitar...bla bla bla..." name="description" ngModel>
             </textarea>
         </div>
     </div>
@@ -98,7 +106,7 @@
         {{ message }}
     </div>
 
-    <button class="uk-button uk-button-primary uk-margin" type="submit" [disabled]="form.invalid || form.value.password != form.value.confirm_password">
+    <button class="uk-button uk-button-primary uk-width-4-5" type="submit" [disabled]="form.invalid || form.value.password != form.value.confirm_password">
         Signup
     </button>
 

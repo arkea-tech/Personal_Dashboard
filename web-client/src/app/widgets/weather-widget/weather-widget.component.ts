@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Weather } from '../../models/Weather.model';
+
 @Component({
   selector: 'app-weather-widget',
   templateUrl: './weather-widget.component.html',

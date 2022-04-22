@@ -1,11 +1,109 @@
-<button (click)="setMonth(-1)">&lt;</button>
+<!-- <button (click)="setMonth(-1)">&lt;</button>
 {{date | date}}
 <button (click)="setMonth(+1)">&gt;</button>
 <ul>
   <li class="days" *ngFor="let day of days"> {{day}} </li>
   <li *ngFor="let date of dates"
-    [ngClass]="{grey: !isSameMonth(date)}"
-    (click)="selected.emit(date)">
+    [ngClass]="{grey: !isSameMonth(date)}">
     {{date | date:'d'}}
   </li>
-</ul>
+</ul> -->
+
+<div class="uk-card uk-card-default">
+    <div class="uk-card-header">
+        <div class="uk-flex-between" uk-grid>
+            <div>
+                <ul class="uk-switcher">
+                    <li class="uk-active">
+                        <h3 class="uk-card-title">{{ dates[currentDateIndex] | date:'d, MMMM, y' }}</h3>
+                    </li>
+                    <li>
+                        <h3 class="uk-card-title">{{ date | date:'MMMM, y' }}</h3>
+                    </li>
+                    <li>
+                        <h3 class="uk-card-title">{{ date | date:'MMMM, y' }}</h3>
+                    </li>
+                </ul>
+            </div>
+            <ul uk-tab="connect: .uk-switcher">
+                <li class="uk-active"><a href="#">Day</a></li>
+                <li><a href="#">Week</a></li>
+                <li><a href="#">Month</a></li>
+            </ul>
+            <ul class="uk-switcher">
+                <li class="uk-active">
+                    <button class="uk-icon-button" uk-icon="chevron-left" (click)="setDay(-1)"></button>
+                    <button class="uk-button" (click)="setCurrentMonth()">Today</button>
+                    <button class="uk-icon-button" uk-icon="chevron-right" (click)="setDay(+1)"></button>
+                </li>
+                <li>
+                    <button class="uk-icon-button" uk-icon="chevron-left" (click)="setWeek(-7)"></button>
+                    <button class="uk-button" (click)="setCurrentMonth()">Today</button>
+                    <button class="uk-icon-button" uk-icon="chevron-right" (click)="setWeek(+7)"></button>
+                </li>
+                <li>
+                    <button class="uk-icon-button" uk-icon="chevron-left" (click)="setMonth(-1)"></button>
+                    <button class="uk-button" (click)="setCurrentMonth()">Today</button>
+                    <button class="uk-icon-button" uk-icon="chevron-right" (click)="setMonth(+1)"></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="uk-card-body">
+        <ul class="uk-switcher uk-margin">
+
+            <li class="uk-active">
+                <div class="uk-text-center uk-flex-column" uk-grid>
+                    <div *ngFor="let day of daysFull |
+                    slice:dayRange.first:dayRange.last">
+                        <div class="uk-tile uk-tile-muted uk-padding-small">
+                            <p class="uk-h5">{{ day }}</p>
+                        </div>
+                        <div id="date" class="uk-tile uk-height-medium uk-width-expand"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="uk-grid-collapse uk-text-center" uk-grid>
+                    <div class="tile-width" *ngFor="let day of days">
+                        <div class="uk-tile uk-tile-muted uk-padding-small">
+                            <p class="uk-h6">{{ day }}</p>
+                        </div>
+                    </div>
+                    <div id="date" class="tile-width" *ngFor="let date of dates | slice:weekRange.firstDay:weekRange.lastDay">
+                        <div class="uk-tile uk-tile-padding uk-height-medium"
+                        [ngClass]="{'uk-tile-muted': isSameMonth(date)}"
+                        >
+                            <p class="uk-h6" [ngClass]="{'uk-badge': isSameDate(date)}">
+                                {{ date | date:'d' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="uk-grid-collapse uk-text-center" uk-grid>
+                    <div class="tile-width" *ngFor="let day of days">
+                        <div class="uk-tile uk-tile-muted uk-padding-small">
+                            <p class="uk-h6">{{ day }}</p>
+                        </div>
+                    </div>
+                    <div id="date" class="tile-width" *ngFor="let date of dates">
+                        <div class="uk-tile uk-tile-padding"
+                        [ngClass]="{'uk-tile-muted': isSameMonth(date)}"
+                        >
+                            <p class="uk-h6" [ngClass]="{'uk-badge': isSameDate(date)}">
+                                {{ date | date:'d' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

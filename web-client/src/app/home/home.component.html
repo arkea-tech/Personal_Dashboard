@@ -1,6 +1,6 @@
-<div id="main" class="uk-background-muted uk-height-1-1">
+<div class="uk-container uk-background-default">
 
-    <div class="uk-position-top-right">
+    <div class="uk-position-top-right uk-width-1-3">
         <div class="uk-container">
             <ul class="uk-subnav uk-subnav-pill uk-subnav-divider" uk-switcher>
                 <li routerLinkActive="active">
@@ -16,25 +16,23 @@
             </ul>
         </div>
 
-        <div id="auth-form" class="uk-section uk-section-muted">
-            <div class="uk-container">
-                <router-outlet></router-outlet>
+        <div class="uk-section uk-section-muted uk-width-large">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+
+    <div class="uk-tile uk-position-left">
+        <div class="uk-section">
+            <div class="uk-cover-container uk-height-large">
+                <img src="../assets/title_background.jpg" alt="" uk-cover>
+                <h2 class="uk-text-bold">Personal Dashboard</h2>
+                <h4 class="uk-text-light">
+                    Experience an original <span class="uk-text-normal">RSS Widgets application</span> and <span class="uk-text-normal">never miss an important <br> information.</span>
+                    <br>
+                    From <span class="uk-text-normal">Weather Forecast</span> to <span class="uk-text-normal">Google Calendar</span>, all you're daily services are <span class="uk-text-normal">available <br> on the same plateform.</span>
+                </h4>
             </div>
         </div>
     </div>
-
-    <div class="uk-tile uk-width-2-3 uk-height-1-1"></div>
-
-    <div class="uk-position-top-left uk-section">
-        <div class="uk-container uk-cover-container uk-height-large">
-            <img src="../assets/title_background.jpg" alt="" uk-cover>
-            <h1 class="uk-heading-xsmall uk-text-bold">Personal Dashboard</h1>
-            <h4 class="uk-text-light">
-                Experience an original <span class="uk-text-normal">RSS Widgets application</span> and <span class="uk-text-normal">never miss an important information.</span>
-                <br>
-                From <span class="uk-text-normal">Weather Forecast</span> to <span class="uk-text-normal">Google Calendar</span>, all you're daily services are <span class="uk-text-normal">available on the same plateform.</span>
-            </h4>
-        </div>
-    </div>
-
 </div>

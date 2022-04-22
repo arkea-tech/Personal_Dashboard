@@ -1,37 +1,29 @@
-
-
 .uk-position-top-right {
     position: relative;
-    top: 10vh;
-    right: 10vh;
-    left: 130vh;
-}
-
-#auth-form {
-    background-color: #F5F5F5;
+    top: 5vh;
+    right: 3vh;
 }
 
 // .uk-text-capitalize {
 //     color: #FFFF
 // }
 
-h1 {
+h2 {
     color: #fcf7f7;
 }
+//
+// .uk-position-top-left {
+//     position: relative;
+//     top: 8vh;
+//     left: 5vh;
+// }
 
-.uk-position-top-left {
+h2, h4 {
     position: relative;
-    top: 8vh;
     left: 5vh;
 }
 
-h1, h4 {
-    position: relative;
-    top: 5vh;
-}
-
 .uk-tile {
-    position: relative;
-    right: 18vh;
     background-color: #548ea3;
+    width: 61%;
 }

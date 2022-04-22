@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
         this.loading = true;
         this.message = null;
         this.authService.signUp(username, password).then(
-            (message) => {
+            (message: string) => {
                 console.log(message);
                 this.profileService.addProfile(details.birthdate, details.jobTitle, details.gender, details.description).then(
                     (message: string) => {

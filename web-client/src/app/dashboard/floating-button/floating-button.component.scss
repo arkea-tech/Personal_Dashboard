@@ -2,8 +2,9 @@
     position: fixed;
     bottom:0;
     right:0;
+    z-index: 10;
     height: 90px;
     width: 90px;
-    background-color: #FFF;
+    background-color: transparent;
     color: #616161;
 }
