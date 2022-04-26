@@ -51,8 +51,8 @@ const routes: Routes = [
             { path: '**', redirectTo: 'subscriptions' }
         ]
     },
-    { path: '', pathMatch: 'full', redirectTo: 'main' }, //replace by home
-    { path: '**', redirectTo: 'main' } //replace by home
+    { path: '', pathMatch: 'full', redirectTo: 'home' }, //replace by home
+    { path: '**', redirectTo: 'home' } //replace by home
 ];
 
 @NgModule({

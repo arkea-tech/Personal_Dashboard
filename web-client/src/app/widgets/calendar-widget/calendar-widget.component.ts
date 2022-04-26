@@ -41,7 +41,10 @@ export class CalendarWidgetComponent implements OnInit {
                 currentDateIndex = i;
         });
         this.weekRange = { firstDay: startIndex, lastDay: startIndex + 7 };
-        this.dayRange = { first: this.currentDate.getDay() - 1, last: this.currentDate.getDay() };
+        this.dayRange = {
+            first: this.currentDate.getDay() - 1 < 0 ? 5 : this.currentDate.getDay() - 1,
+            last: this.currentDate.getDay() - 1 < 0 ? 6 : this.currentDate.getDay()
+        };
         this.currentDateIndex = currentDateIndex;
     }
 
@@ -86,8 +89,8 @@ export class CalendarWidgetComponent implements OnInit {
     setDay(inc)
     {
 
-            let firstLastDay: Date;
-            let i = 0;
+        let firstLastDay: Date;
+        let i = 0;
 
         this.dayRange.first += inc;
         this.dayRange.last += inc;
@@ -96,10 +99,16 @@ export class CalendarWidgetComponent implements OnInit {
             this.dayRange = { first: this.daysFull.length - 1, last: this.daysFull.length }
         if (this.dayRange.last > 7)
             this.dayRange = { first: 0, last: 1 }
+        if (this.currentDateIndex < 0) {
+            firstLastDay = this.dates[0];
+            this.setMonth(-1);
+            for (i = this.dates.length - 1; this.dates[i].getDate() != firstLastDay.getDate(); i--);
+            this.currentDateIndex = i - 1;
+        }
         if (this.currentDateIndex > this.dates.length - 1) {
-                firstLastDay = this.dates[this.currentDateIndex - 7];
-                this.setMonth(+1);
-                for (i = 0; this.dates[i].getDate() != firstLastDay.getDate(); i++);
+            firstLastDay = this.dates[this.currentDateIndex - 7];
+            this.setMonth(+1);
+            for (i = 0; this.dates[i].getDate() != firstLastDay.getDate(); i++);
             this.currentDateIndex = i + 7;
         }
     }
