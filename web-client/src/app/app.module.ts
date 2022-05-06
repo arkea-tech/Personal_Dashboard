@@ -10,6 +10,7 @@ import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { YoutubeService } from './services/widgets/youtube.service';
 import { WeatherService } from './services/widgets/weather.service';
+import { CalendarService } from './services/widgets/calendar.service';
 import { ManagedServicesService } from './services/managed-services.service';
 import { UserServicesService } from './services/user-services.service';
 import { AuthGuard } from './services/auth-guard.service';
@@ -66,6 +67,7 @@ import { CalendarWidgetComponent } from './widgets/calendar-widget/calendar-widg
       ProfileService,
       YoutubeService,
       WeatherService,
+      CalendarService,
       ManagedServicesService,
       UserServicesService,
       AuthGuard
