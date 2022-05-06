@@ -31,13 +31,13 @@ export class CalendarWidgetComponent implements OnInit {
     }
 
     setCurrentDate() {
-        let startIndex = 0;
-        let currentDateIndex = 0;
+        let startIndex = null;
+        let currentDateIndex = null;
 
         this.dates.forEach((date, i) => {
-            if (date.getDate() === this.currentDate.getDate() - this.currentDate.getDay() + 1)
+            if (date.getDate() === this.currentDate.getDate() - this.currentDate.getDay() + 1 && !startIndex)
                 startIndex = i;
-            if (date.getDate() === this.currentDate.getDate())
+            if (date.getDate() === this.currentDate.getDate() && !currentDateIndex)
                 currentDateIndex = i;
         });
         this.weekRange = { firstDay: startIndex, lastDay: startIndex + 7 };
