@@ -20,11 +20,8 @@ export class CalendarWidgetComponent implements OnInit {
 
     constructor()
     {
-        let startIndex = 0;
-
         this.dates = this.getDays(this.date);
         this.setCurrentDate();
-
     }
 
     ngOnInit(): void {
