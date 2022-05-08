@@ -22,6 +22,10 @@
     width: calc(100%/7);
 }
 
+.uk-label {
+    text-transform: none;
+}
+
 #date {
     display: inline-block;
     border: 0.5px solid #ccc;
@@ -29,5 +33,5 @@
 
 #date .uk-tile-padding {
     padding-top: 10px;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
 }
