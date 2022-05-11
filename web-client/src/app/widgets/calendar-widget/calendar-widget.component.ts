@@ -27,6 +27,15 @@ export class CalendarWidgetComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    ellipsify(str, lengthMax)
+    {
+        if (str.length > lengthMax) {
+            return (str.substring(0, lengthMax) + "...");
+        } else {
+            return str;
+        }
+    }
+
     setCurrentDate() {
         let startIndex = null;
         let currentDateIndex = null;

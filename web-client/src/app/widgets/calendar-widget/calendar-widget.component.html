@@ -97,17 +97,17 @@
                         <div class="uk-tile uk-tile-padding"
                         [ngClass]="{'uk-tile-muted': isSameMonth(date)}"
                         >
-                            <p class="uk-h6">
+                            <p class="uk-h6 uk-margin-small-bottom">
                                 <span [ngClass]="{'uk-badge': isSameDate(date)}">
                                     {{ date | date:'d' }}
                                 </span>
-                                <span class="uk-label uk-text-light uk-margin-small-top uk-align-right uk-margin-remove-bottom">
-                                    Test
-                                </span>
-                                <span class="uk-text-small uk-text-muted uk-text-light uk-align-right uk-margin-remove-bottom uk-text-nowrap">
-                                    3 more...
-                                </span>
                             </p>
+                            <span class="uk-label uk-text-light uk-margin-remove">
+                                {{ ellipsify("évènement", 7) }}
+                            </span>
+                            <span class="uk-text-muted uk-text-light uk-text-nowrap">
+                                3 more...
+                            </span>
                         </div>
                     </div>
                 </div>
