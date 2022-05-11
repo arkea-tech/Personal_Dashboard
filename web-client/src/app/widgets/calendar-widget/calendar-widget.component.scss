@@ -9,7 +9,11 @@
 // li.days {font-weight: bold;}
 // li.grey {color: #ccc}
 // li:hover {background-color: #ccc;}
-//
+
+#event_month {
+    width: 92%;
+}
+
 .uk-button {
     background-color: #f8f8f8;
 }
@@ -33,7 +37,7 @@
 
 #date .uk-tile-padding {
     padding-top: 10px;
-    padding-bottom: 22px;
+    padding-bottom: 12px;
     padding-left: 0px;
     padding-right: 0px;
 }

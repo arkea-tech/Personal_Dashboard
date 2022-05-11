@@ -60,8 +60,22 @@
                         <div class="uk-tile uk-tile-muted uk-padding-small">
                             <p class="uk-h5">{{ day }}</p>
                         </div>
-                        <div id="date" class="uk-tile uk-height-medium uk-width-expand"
+                        <div id="date" class="uk-tile uk-padding-small uk-height-medium uk-width-expand"
                         >
+                            <div class="uk-margin-top uk-flex uk-flex-column uk-text-left">
+                                <span class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify("évènementqsldjlqksdlkqsqsdqdjlkqjsdljqsdlkjlkqlsjdlkqsjdlkjqsldjlqsldjlqdlkqsldjqljsdlqjsldkjqlsjdlkqjsdljqslkdjqljdlkqjsdlkjqjdqsjdlqjsldjqlksdjlkjazejalzjeljlqksjdlkjqsdllj", 100) }}
+                                </span>
+                                <span class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify("évènementqsldjlqksdlkqsqsdqdjlkqjsdljqsdlkjlkqlsjdlkqsjdlkjqsldjlqsld", 100) }}
+                                </span>
+                                <span class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify("évènementqsldjlqksdlkqsqsdqdjlkqjsdljqsdlkjlkqlsjdlkqsjdlkjqsldjlqsld", 100) }}
+                                </span>
+                                <span class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify("évènementqsldjlqksdlkqsqsdqdjlkqjsdljqsdlkjlkqlsjdlkqsjdlkjqsldjlqsld", 100) }}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,9 +92,23 @@
                         <div class="uk-tile uk-tile-padding uk-height-medium"
                         [ngClass]="{'uk-tile-muted': isSameMonth(date)}"
                         >
-                            <p class="uk-h6" [ngClass]="{'uk-badge': isSameDate(date)}">
+                            <p class="uk-h6 uk-margin-bottom" [ngClass]="{'uk-badge': isSameDate(date)}">
                                 {{ date | date:'d' }}
                             </p>
+                            <div class="uk-flex uk-margin-small-left uk-flex-column uk-text-left">
+                                <span id="event_month" class="uk-label uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify("évènement", 7) }}
+                                </span>
+                                <span id="event_month" class="uk-label uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify("évèn", 7) }}
+                                </span>
+                                <span id="event_month" class="uk-label uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify("év", 7) }}
+                                </span>
+                                <span id="event_month" class="uk-label uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify("é", 7) }}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,9 +130,11 @@
                                     {{ date | date:'d' }}
                                 </span>
                             </p>
-                            <span class="uk-label uk-text-light uk-margin-remove">
-                                {{ ellipsify("évènement", 7) }}
-                            </span>
+                            <div class="uk-flex uk-margin-small-left uk-flex-column uk-text-left">
+                                <span id="event_month" class="uk-label uk-text-light">
+                                    {{ ellipsify("évènement", 7) }}
+                                </span>
+                            </div>
                             <span class="uk-text-muted uk-text-light uk-text-nowrap">
                                 3 more...
                             </span>
