@@ -10,7 +10,7 @@ import { Weather } from '../../models/Weather.model';
 export class WeatherWidgetComponent implements OnInit {
 
     //replace any by Weather
-    @Input() weatherWidget: any;
+    @Input() weatherWidget: Weather;
 
     constructor() { }
 

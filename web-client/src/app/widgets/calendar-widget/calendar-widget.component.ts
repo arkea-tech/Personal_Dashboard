@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
+import { Calendar } from '../../models/Calendar.model';
+import { Event } from '../../models/Event.model';
 const DAY_MS = 60 * 60 * 24 * 1000;
 
 @Component({
@@ -8,8 +10,9 @@ const DAY_MS = 60 * 60 * 24 * 1000;
 })
 export class CalendarWidgetComponent implements OnInit {
 
-    @Input() calendarWidget: any;
-    dates: Array<Date>;
+    @Input() calendarWidget: Calendar;
+    events: Array<Event>;
+    dates: Array<any>;
     days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     daysFull = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     date = new Date();
@@ -20,11 +23,15 @@ export class CalendarWidgetComponent implements OnInit {
 
     constructor()
     {
-        this.dates = this.getDays(this.date);
-        this.setCurrentDate();
+        // this.events = this.calendarWidget.events;
+        // this.dates = this.getDays(this.date);
+        // this.setCurrentDate();
     }
 
     ngOnInit(): void {
+        this.events = this.calendarWidget.events;
+        this.dates = this.getDays(this.date);
+        this.setCurrentDate();
     }
 
     ellipsify(str, lengthMax)
@@ -41,9 +48,9 @@ export class CalendarWidgetComponent implements OnInit {
         let currentDateIndex = null;
 
         this.dates.forEach((date, i) => {
-            if (date.getDate() === this.currentDate.getDate() - this.currentDate.getDay() + 1 && !startIndex)
+            if (date.date.getDate() === this.currentDate.getDate() - this.currentDate.getDay() + 1 && !startIndex)
                 startIndex = i;
-            if (date.getDate() === this.currentDate.getDate() && !currentDateIndex)
+            if (date.date.getDate() === this.currentDate.getDate() && !currentDateIndex)
                 currentDateIndex = i;
         });
         this.weekRange = { firstDay: startIndex, lastDay: startIndex + 7 };
@@ -79,15 +86,15 @@ export class CalendarWidgetComponent implements OnInit {
         this.weekRange.firstDay += inc;
         this.weekRange.lastDay += inc;
         if (this.weekRange.firstDay < 0) {
-            firstLastDay = this.dates[0];
+            firstLastDay = this.dates[0].date;
             this.setMonth(-1);
-            for (i = this.dates.length - 1; this.dates[i].getDate() != firstLastDay.getDate(); i--);
+            for (i = this.dates.length - 1; this.dates[i].date.getDate() != firstLastDay.getDate(); i--);
             this.weekRange = { firstDay: i - 7, lastDay: i };
         }
         if (this.weekRange.lastDay > this.dates.length - 1) {
-            firstLastDay = this.dates[this.weekRange.lastDay - 7];
+            firstLastDay = this.dates[this.weekRange.lastDay - 7].date;
             this.setMonth(+1);
-            for (i = 0; this.dates[i].getDate() != firstLastDay.getDate(); i++);
+            for (i = 0; this.dates[i].date.getDate() != firstLastDay.getDate(); i++);
             this.weekRange = { firstDay: i, lastDay: i + 7 };
         }
     }
@@ -106,15 +113,15 @@ export class CalendarWidgetComponent implements OnInit {
         if (this.dayRange.last > 7)
             this.dayRange = { first: 0, last: 1 }
         if (this.currentDateIndex < 0) {
-            firstLastDay = this.dates[0];
+            firstLastDay = this.dates[0].date;
             this.setMonth(-1);
-            for (i = this.dates.length - 1; this.dates[i].getDate() != firstLastDay.getDate(); i--);
+            for (i = this.dates.length - 1; this.dates[i].date.getDate() != firstLastDay.getDate(); i--);
             this.currentDateIndex = i - 1;
         }
         if (this.currentDateIndex > this.dates.length - 1) {
-            firstLastDay = this.dates[this.currentDateIndex - 7];
+            firstLastDay = this.dates[this.currentDateIndex - 7].date;
             this.setMonth(+1);
-            for (i = 0; this.dates[i].getDate() != firstLastDay.getDate(); i++);
+            for (i = 0; this.dates[i].date.getDate() != firstLastDay.getDate(); i++);
             this.currentDateIndex = i + 7;
         }
     }
@@ -129,6 +136,27 @@ export class CalendarWidgetComponent implements OnInit {
         return date.toDateString() === this.currentDate.toDateString();
     }
 
+    checkEventsInDate(date)
+    {
+        let eventDate = null;
+        let events = [];
+
+        for (const event of this.events) {
+            eventDate = new Date(event.time.start_date);
+
+            if (eventDate.toDateString() === date.toDateString()) {
+                events.push({
+                    title: event.title,
+                    colorId: event.colorId
+                });
+            }
+        }
+        return {
+            date: date,
+            events: events
+        };
+    }
+
     private getStartDay(date = new Date)
     {
         const [year, month] = [date.getFullYear(), date.getMonth()];
@@ -141,7 +169,11 @@ export class CalendarWidgetComponent implements OnInit {
     {
         const calendarStartTime = this.getStartDay(date).getTime() + 60 * 60 * 2 * 1000;
 
-        return this.range(0, 41).map(num => new Date(calendarStartTime + DAY_MS * num));
+        return this.range(0, 41).map(num => {
+            let date = new Date(calendarStartTime + DAY_MS * num);
+
+            return this.checkEventsInDate(date);
+        });
     }
 
     private range(start, end, length = end - start + 1)

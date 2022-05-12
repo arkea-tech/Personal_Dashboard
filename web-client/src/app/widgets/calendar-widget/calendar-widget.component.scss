@@ -11,7 +11,7 @@
 // li:hover {background-color: #ccc;}
 
 #event_month {
-    width: 92%;
+    width: 90%;
 }
 
 .uk-button {
@@ -30,14 +30,22 @@
     text-transform: none;
 }
 
-#date {
+#date, #date-month {
     display: inline-block;
     border: 0.5px solid #ccc;
 }
 
 #date .uk-tile-padding {
     padding-top: 10px;
-    padding-bottom: 12px;
+    padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
+}
+
+#date-month .uk-tile-padding {
+    padding-top: 10px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 88px;
 }

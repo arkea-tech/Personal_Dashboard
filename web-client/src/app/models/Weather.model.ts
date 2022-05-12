@@ -5,7 +5,10 @@ export class Weather {
     city: string;
     date: string;
     temperature: number;
-    condition: Object;
+    condition: {
+        condition: string;
+        icon: string;
+    };
     wind: Number;
     humidity: Number;
     pressure: Number;

@@ -15,7 +15,7 @@
             <div>
                 <ul class="uk-switcher">
                     <li class="uk-active">
-                        <h3 class="uk-card-title">{{ dates[currentDateIndex] | date:'d, MMMM, y' }}</h3>
+                        <h3 class="uk-card-title">{{ dates[currentDateIndex].date | date:'d, MMMM, y' }}</h3>
                     </li>
                     <li>
                         <h3 class="uk-card-title">{{ date | date:'MMMM, y' }}</h3>
@@ -62,18 +62,26 @@
                         </div>
                         <div id="date" class="uk-tile uk-padding-small uk-height-medium uk-width-expand"
                         >
-                            <div class="uk-margin-top uk-flex uk-flex-column uk-text-left">
-                                <span class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
-                                    {{ ellipsify("évènementqsldjlqksdlkqsqsdqdjlkqjsdljqsdlkjlkqlsjdlkqsjdlkjqsldjlqsldjlqdlkqsldjqljsdlqjsldkjqlsjdlkqjsdljqslkdjqljdlkqjsdlkjqjdqsjdlqjsldjqlksdjlkjazejalzjeljlqksjdlkjqsdllj", 100) }}
+                            <div
+                            *ngIf="dates[currentDateIndex].events.length <= 4"
+                            class="uk-margin-small-top uk-flex uk-flex-column uk-text-left"
+                            >
+                                <span *ngFor="let event of dates[currentDateIndex].events" class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify(event.title, 100) }}
                                 </span>
-                                <span class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
-                                    {{ ellipsify("évènementqsldjlqksdlkqsqsdqdjlkqjsdljqsdlkjlkqlsjdlkqsjdlkjqsldjlqsld", 100) }}
+                            </div>
+                            <div
+                            *ngIf="dates[currentDateIndex].events.length > 4"
+                            class="uk-margin-small-top uk-flex uk-flex-column uk-text-left"
+                            >
+                                <span *ngFor="let event of dates[currentDateIndex].events | slice:0:4" class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
+                                    {{ ellipsify(event.title, 100) }}
                                 </span>
-                                <span class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
-                                    {{ ellipsify("évènementqsldjlqksdlkqsqsdqdjlkqjsdljqsdlkjlkqlsjdlkqsjdlkjqsldjlqsld", 100) }}
-                                </span>
-                                <span class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
-                                    {{ ellipsify("évènementqsldjlqksdlkqsqsdqdjlkqjsdljqsdlkjlkqlsjdlkqsjdlkjqsldjlqsld", 100) }}
+                                <span class="uk-text-muted uk-margin-small-left">
+                                    {{
+                                        dates[currentDateIndex]
+                                        .events.length - 4
+                                    }} more...
                                 </span>
                             </div>
                         </div>
@@ -90,24 +98,25 @@
                     </div>
                     <div id="date" class="tile-width" *ngFor="let date of dates | slice:weekRange.firstDay:weekRange.lastDay">
                         <div class="uk-tile uk-tile-padding uk-height-medium"
-                        [ngClass]="{'uk-tile-muted': isSameMonth(date)}"
+                        [ngClass]="{'uk-tile-muted': isSameMonth(date.date)}"
                         >
-                            <p class="uk-h6 uk-margin-bottom" [ngClass]="{'uk-badge': isSameDate(date)}">
-                                {{ date | date:'d' }}
+                            <p class="uk-h6 uk-margin-bottom" [ngClass]="{'uk-badge': isSameDate(date.date)}">
+                                {{ date.date | date:'d' }}
                             </p>
                             <div class="uk-flex uk-margin-small-left uk-flex-column uk-text-left">
-                                <span id="event_month" class="uk-label uk-text-light uk-margin-small-bottom">
-                                    {{ ellipsify("évènement", 7) }}
-                                </span>
-                                <span id="event_month" class="uk-label uk-text-light uk-margin-small-bottom">
-                                    {{ ellipsify("évèn", 7) }}
-                                </span>
-                                <span id="event_month" class="uk-label uk-text-light uk-margin-small-bottom">
-                                    {{ ellipsify("év", 7) }}
-                                </span>
-                                <span id="event_month" class="uk-label uk-text-light uk-margin-small-bottom">
-                                    {{ ellipsify("é", 7) }}
-                                </span>
+                                <div *ngIf="date.events.length <= 8">
+                                    <span id="event_month" *ngFor="let event of date.events" class="uk-label uk-text-light uk-margin-small-bottom">
+                                        {{ ellipsify(event.title, 7) }}
+                                    </span>
+                                </div>
+                                <div *ngIf="date.events.length > 8">
+                                    <span id="event_month" *ngFor="let event of date.events | slice:0:7" class="uk-label uk-text-light uk-margin-small-bottom">
+                                        {{ ellipsify(event.title, 7) }}
+                                    </span>
+                                    <span class="uk-text-muted uk-margin-small-left">
+                                        {{ date.events.length - 7 }} more...
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -121,23 +130,30 @@
                             <p class="uk-h6">{{ day }}</p>
                         </div>
                     </div>
-                    <div id="date" class="tile-width" *ngFor="let date of dates">
+                    <div id="date-month" class="tile-width" *ngFor="let date of dates">
                         <div class="uk-tile uk-tile-padding"
-                        [ngClass]="{'uk-tile-muted': isSameMonth(date)}"
+                        [ngClass]="{'uk-tile-muted': isSameMonth(date.date)}"
                         >
                             <p class="uk-h6 uk-margin-small-bottom">
-                                <span [ngClass]="{'uk-badge': isSameDate(date)}">
-                                    {{ date | date:'d' }}
+                                <span [ngClass]="{'uk-badge': isSameDate(date.date)}">
+                                    {{ date.date | date:'d' }}
                                 </span>
                             </p>
                             <div class="uk-flex uk-margin-small-left uk-flex-column uk-text-left">
-                                <span id="event_month" class="uk-label uk-text-light">
-                                    {{ ellipsify("évènement", 7) }}
-                                </span>
+                                <div *ngIf="date.events.length <= 2">
+                                    <span id="event_month" *ngFor="let event of date.events" class="uk-label uk-text-light">
+                                        {{ ellipsify(event.title, 7) }}
+                                    </span>
+                                </div>
+                                <div *ngIf="date.events.length > 2">
+                                    <span id="event_month" *ngFor="let event of date.events | slice:0:1" class="uk-label uk-text-light">
+                                        {{ ellipsify(event.title, 7) }}
+                                    </span>
+                                    <span class="uk-text-muted uk-text-light uk-text-nowrap uk-margin-small-left">
+                                        {{ date.events.length - 1 }} more...
+                                    </span>
+                                </div>
                             </div>
-                            <span class="uk-text-muted uk-text-light uk-text-nowrap">
-                                3 more...
-                            </span>
                         </div>
                     </div>
                 </div>

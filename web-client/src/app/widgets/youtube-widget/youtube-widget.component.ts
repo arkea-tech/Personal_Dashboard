@@ -10,7 +10,7 @@ import { Youtube } from '../../models/Youtube.model';
 export class YoutubeWidgetComponent implements OnInit {
 
         //replace any by YouTube
-        @Input() youtubeWidget: any;
+        @Input() youtubeWidget: Youtube;
 
         constructor() { }
 

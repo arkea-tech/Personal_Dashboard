@@ -24,16 +24,67 @@ export class CalendarService {
                     title: 'S\'inscrire au tepitech !',
                     colorId: '4',
                     time: {
-                        start_date: "2022-06-10T11:00:00+02:00",
-                        end_date: "2022-06-10T12:00:00+02:00"
+                        start_date: "2022-05-10T11:00:00+02:00",
+                        end_date: "2022-05-10T12:00:00+02:00"
                     }
                 },
+                {
+                    title: 'S\'inscrire à l\'atelier cinéma !',
+                    colorId: '4',
+                    time: {
+                        start_date: "2022-05-10T13:00:00+02:00",
+                        end_date: "2022-05-10T15:00:00+02:00"
+                    }
+                },
+
+                {
+                    title: 'S\'inscrire à l\'atelier cinéma !',
+                    colorId: '4',
+                    time: {
+                        start_date: "2022-05-10T13:00:00+02:00",
+                        end_date: "2022-05-10T15:00:00+02:00"
+                    }
+                },
+
+                {
+                    title: 'S\'inscrire à l\'atelier cinéma !',
+                    colorId: '4',
+                    time: {
+                        start_date: "2022-05-10T13:00:00+02:00",
+                        end_date: "2022-05-10T15:00:00+02:00"
+                    }
+                },
+                {
+                    title: 'S\'inscrire à l\'atelier cinéma !',
+                    colorId: '4',
+                    time: {
+                        start_date: "2022-05-10T13:00:00+02:00",
+                        end_date: "2022-05-10T15:00:00+02:00"
+                    }
+                },
+                {
+                    title: 'S\'inscrire à l\'atelier cinéma !',
+                    colorId: '4',
+                    time: {
+                        start_date: "2022-05-10T13:00:00+02:00",
+                        end_date: "2022-05-10T15:00:00+02:00"
+                    }
+                },
+                {
+                    title: 'S\'inscrire à l\'atelier cinéma !',
+                    colorId: '4',
+                    time: {
+                        start_date: "2022-05-10T13:00:00+02:00",
+                        end_date: "2022-05-10T15:00:00+02:00"
+                    }
+                },
+
                 {
                     title: 'IT MCA(demain de 10h à 11h)',
                     colorId: '11',
                     time: {
-                        start_date: "2022-06-11T17:00:00+02:00",
-                        end_date: "2022-06-11T18:00:00+02:00"
+                        start_date: "2022-05-11T17:00:00+02:00",
+                        end_date: "2022-05-11T18:00:00+02:00"
                     }
                 }
             ]

@@ -1,5 +1,8 @@
 export class Event {
     title: string;
     colorId: string;
-    time: Object;
+    time: {
+        start_date: string;
+        end_date: string;
+    };
 };

@@ -16,6 +16,16 @@ export class YoutubeService {
                     url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
                     width: 480,
                     height: 360
+                },
+                medium: {
+                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
+                    width: 480,
+                    height: 360
+                },
+                default: {
+                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
+                    width: 480,
+                    height: 360
                 }
             },
             videos: [
@@ -65,6 +75,16 @@ export class YoutubeService {
                     url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
                     width: 480,
                     height: 360
+                },
+                medium: {
+                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
+                    width: 480,
+                    height: 360
+                },
+                default: {
+                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
+                    width: 480,
+                    height: 360
                 }
             },
             videos: [
@@ -111,6 +131,16 @@ export class YoutubeService {
             title: 'Stay See',
             picture: {
                 high: {
+                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
+                    width: 480,
+                    height: 360
+                },
+                medium: {
+                    url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
+                    width: 480,
+                    height: 360
+                },
+                default: {
                     url: 'https://yt3.ggpht.com/a/AATXAJxl4vCX8iMx7ROetW2BOhrWsixmTG6NjYFtuA=s800-c-k-c0xffffffff-no-rj-mo',
                     width: 480,
                     height: 360
