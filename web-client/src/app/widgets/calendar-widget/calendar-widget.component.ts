@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { Calendar } from '../../models/Calendar.model';
 import { Event } from '../../models/Event.model';
+import UIkit from 'uikit';
 const DAY_MS = 60 * 60 * 24 * 1000;
 
 @Component({
@@ -23,15 +24,57 @@ export class CalendarWidgetComponent implements OnInit {
 
     constructor()
     {
-        // this.events = this.calendarWidget.events;
-        // this.dates = this.getDays(this.date);
-        // this.setCurrentDate();
     }
 
     ngOnInit(): void {
         this.events = this.calendarWidget.events;
         this.dates = this.getDays(this.date);
         this.setCurrentDate();
+    }
+
+    getBackgroundColor(colorId)
+    {
+        let colorCode = null;
+
+        switch (colorId) {
+            case '1':
+                colorCode = "#7986cb";
+                break;
+            case '2':
+                colorCode = "#33b679";
+                break;
+            case '3':
+                colorCode = "#8e24aa";
+                break;
+            case '4':
+                colorCode = "#e67c73";
+                break;
+            case '5':
+                colorCode = "#f6c026";
+                break;
+            case '6':
+                colorCode = "#f5511d";
+                break;
+            case '7':
+                colorCode = "#039be5";
+                break;
+            case '8':
+                colorCode = "#616161";
+                break;
+            case '9':
+                colorCode = "#3f51b5";
+                break;
+            case '10':
+                colorCode = "#0b8043";
+                break;
+            case '11':
+                colorCode = "#d60000";
+                break;
+            default:
+                colorCode = "#039be5";
+                break;
+        }
+        return colorCode;
     }
 
     ellipsify(str, lengthMax)

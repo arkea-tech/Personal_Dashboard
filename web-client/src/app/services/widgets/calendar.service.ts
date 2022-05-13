@@ -47,24 +47,24 @@ export class CalendarService {
                 },
 
                 {
-                    title: 'S\'inscrire à l\'atelier cinéma !',
-                    colorId: '4',
+                    title: 'S\'inscrire à l\'atelier gogo !',
+                    colorId: '11',
                     time: {
                         start_date: "2022-05-10T13:00:00+02:00",
                         end_date: "2022-05-10T15:00:00+02:00"
                     }
                 },
                 {
-                    title: 'S\'inscrire à l\'atelier cinéma !',
-                    colorId: '4',
+                    title: 'S\'inscrire à l\'atelier haha !',
+                    colorId: '10',
                     time: {
                         start_date: "2022-05-10T13:00:00+02:00",
                         end_date: "2022-05-10T15:00:00+02:00"
                     }
                 },
                 {
-                    title: 'S\'inscrire à l\'atelier cinéma !',
-                    colorId: '4',
+                    title: 'S\'inscrire à l\'atelier test !',
+                    colorId: '8',
                     time: {
                         start_date: "2022-05-10T13:00:00+02:00",
                         end_date: "2022-05-10T15:00:00+02:00"

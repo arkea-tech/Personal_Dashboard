@@ -66,7 +66,7 @@
                             *ngIf="dates[currentDateIndex].events.length <= 4"
                             class="uk-margin-small-top uk-flex uk-flex-column uk-text-left"
                             >
-                                <span *ngFor="let event of dates[currentDateIndex].events" class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
+                                <span [ngStyle]="{backgroundColor: getBackgroundColor(event.colorId)}" *ngFor="let event of dates[currentDateIndex].events" class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
                                     {{ ellipsify(event.title, 100) }}
                                 </span>
                             </div>
@@ -74,7 +74,7 @@
                             *ngIf="dates[currentDateIndex].events.length > 4"
                             class="uk-margin-small-top uk-flex uk-flex-column uk-text-left"
                             >
-                                <span *ngFor="let event of dates[currentDateIndex].events | slice:0:4" class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
+                                <span [ngStyle]="{backgroundColor: getBackgroundColor(event.colorId)}" *ngFor="let event of dates[currentDateIndex].events | slice:0:4" class="uk-label uk-padding-small uk-text-light uk-margin-small-bottom">
                                     {{ ellipsify(event.title, 100) }}
                                 </span>
                                 <span class="uk-text-muted uk-margin-small-left">
@@ -105,12 +105,12 @@
                             </p>
                             <div class="uk-flex uk-margin-small-left uk-flex-column uk-text-left">
                                 <div *ngIf="date.events.length <= 8">
-                                    <span id="event_month" *ngFor="let event of date.events" class="uk-label uk-text-light uk-margin-small-bottom">
+                                    <span id="event_month" [ngStyle]="{backgroundColor: getBackgroundColor(event.colorId)}" *ngFor="let event of date.events" class="uk-label uk-text-light uk-margin-small-bottom">
                                         {{ ellipsify(event.title, 7) }}
                                     </span>
                                 </div>
                                 <div *ngIf="date.events.length > 8">
-                                    <span id="event_month" *ngFor="let event of date.events | slice:0:7" class="uk-label uk-text-light uk-margin-small-bottom">
+                                    <span id="event_month" [ngStyle]="{backgroundColor: getBackgroundColor(event.colorId)}" *ngFor="let event of date.events | slice:0:7" class="uk-label uk-text-light uk-margin-small-bottom">
                                         {{ ellipsify(event.title, 7) }}
                                     </span>
                                     <span class="uk-text-muted uk-margin-small-left">
@@ -141,12 +141,12 @@
                             </p>
                             <div class="uk-flex uk-margin-small-left uk-flex-column uk-text-left">
                                 <div *ngIf="date.events.length <= 2">
-                                    <span id="event_month" *ngFor="let event of date.events" class="uk-label uk-text-light">
+                                    <span id="event_month" [ngStyle]="{backgroundColor: getBackgroundColor(event.colorId)}" *ngFor="let event of date.events" class="uk-label uk-text-light">
                                         {{ ellipsify(event.title, 7) }}
                                     </span>
                                 </div>
                                 <div *ngIf="date.events.length > 2">
-                                    <span id="event_month" *ngFor="let event of date.events | slice:0:1" class="uk-label uk-text-light">
+                                    <span id="event_month" [ngStyle]="{backgroundColor: getBackgroundColor(event.colorId)}" *ngFor="let event of date.events | slice:0:1" class="uk-label uk-text-light">
                                         {{ ellipsify(event.title, 7) }}
                                     </span>
                                     <span class="uk-text-muted uk-text-light uk-text-nowrap uk-margin-small-left">
