@@ -51,10 +51,14 @@ npm               | 6.1     | Package and dependency manager
 ### To run the server :
 
 1. `cd ./server`.
-1. Required __one time__ to install all dependencies : `npm install`.
-2. `node server.js`.
+2. Required __one time__ to install all dependencies : `npm install`.
+3. `node server.js`.
 
 ### To run the client :
+
+1. `cd ./web-client`.
+2. Required __one time__ to install all dependencies : `npm install`.
+3. `ng serve`.
 
 ## Features
 
