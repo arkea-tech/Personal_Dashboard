@@ -28,10 +28,15 @@ import { SubscriptionsComponent } from './settings/subscriptions/subscriptions.c
 import { ProfileComponent } from './settings/profile/profile.component';
 import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
-import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.component';
+
 import { WeatherWidgetComponent } from './widgets/weather-widget/weather-widget.component';
 import { YoutubeWidgetComponent } from './widgets/youtube-widget/youtube-widget.component';
 import { CalendarWidgetComponent } from './widgets/calendar-widget/calendar-widget.component';
+
+import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.component';
+import { CalendarFormComponent } from './widgets/forms/calendar-form/calendar-form.component';
+import { StepOneFormComponent } from './widgets/forms/youtube-form/step-one-form/step-one-form.component';
+import { StepTwoFormComponent } from './widgets/forms/youtube-form/step-two-form/step-two-form.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -47,10 +52,13 @@ import { CalendarWidgetComponent } from './widgets/calendar-widget/calendar-widg
     ProfileComponent,
     MainComponent,
     AboutComponent,
-    WeatherFormComponent,
     WeatherWidgetComponent,
     YoutubeWidgetComponent,
-    CalendarWidgetComponent
+    CalendarWidgetComponent,
+    WeatherFormComponent,
+    CalendarFormComponent,
+    StepOneFormComponent,
+    StepTwoFormComponent
   ],
   imports: [
     BrowserModule,

@@ -3,98 +3,110 @@
     </button>
 </div>
 
-    <div id="modal-service" uk-modal>
-        <div class="uk-modal-dialog uk-margin-large-top">
+<div id="modal-service" uk-modal>
+    <div class="uk-modal-dialog uk-margin-large-top">
 
-            <button class="uk-modal-close-default" type="button" uk-close></button>
+        <button class="uk-modal-close-default" type="button" uk-close></button>
 
-            <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Select a Service</h2>
-            </div>
-
-            <div class="uk-modal-body uk-flex uk-flex-around">
-                <div class="uk-transition-toggle" tabindex="0">
-                    <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#modal-entertainment" data-src="../assets/entertainment.jpg" uk-img uk-toggle>
-                        <h3>Entertainment</h3>
-                    </a>
-                </div>
-                <div class="uk-transition-toggle uk-light" tabindex="0">
-                    <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#modal-productivity" data-src="../assets/productivity.jpg" uk-img uk-toggle>
-                        <h3>Productivity</h3>
-                    </a>
-                </div>
-           </div>
-
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">Select a Service</h2>
         </div>
-    </div>
 
-    <div id="modal-entertainment" uk-modal>
-        <div class="uk-modal-dialog uk-margin-large-top">
-
-            <button class="uk-modal-close-default" type="button" uk-close></button>
-
-            <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Select a Widget</h2>
-            </div>
-
-            <div class="uk-modal-body uk-flex uk-flex-around uk-margin-top">
-                <div class="uk-transition-toggle" tabindex="0">
-                    <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#" data-src="../assets/entertainment.jpg" uk-img>
-                        <h3>YouTube Videos</h3>
-                    </a>
-                </div>
-                <div class="uk-transition-toggle uk-text-center" tabindex="0">
-                    <div class="uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" data-src="../assets/entertainment.jpg" uk-img>
-                        <h3>Music Player</h3>
-                    </div>
-                    <p class="uk-text-danger uk-margin-remove-bottom uk-transition-slide-top">
-                        <span class="uk-margin-small-right" uk-icon="warning">
-                        </span>
-                        Currently not available
-                    </p>
-                </div>
-           </div>
-
-            <div class="uk-modal-footer uk-text-center">
-                <a href="#modal-service" class="uk-button uk-button-primary" uk-toggle>
-                    Previous
+        <div class="uk-modal-body uk-flex uk-flex-around">
+            <div class="uk-transition-toggle" tabindex="0">
+                <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#modal-entertainment" data-src="../assets/entertainment.jpg" uk-img uk-toggle>
+                    <h3>Entertainment</h3>
                 </a>
             </div>
-        </div>
-    </div>
-
-    <div id="modal-productivity" uk-modal>
-        <div class="uk-modal-dialog uk-margin-large-top">
-
-            <button class="uk-modal-close-default" type="button" uk-close></button>
-
-            <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Select a Widget</h2>
-            </div>
-
-            <div class="uk-modal-body uk-flex uk-flex-around">
-                <div class="uk-transition-toggle uk-light" tabindex="0">
-                    <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#modal-weather" data-src="../assets/productivity.jpg" uk-img uk-toggle>
-                        <h4>Weather Forecast</h4>
-                    </a>
-                </div>
-                <div class="uk-transition-toggle uk-light" tabindex="0">
-                    <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#" data-src="../assets/productivity.jpg" uk-img>
-                        <h4>Google Calendar</h4>
-                    </a>
-                </div>
-           </div>
-
-           <div class="uk-modal-footer uk-text-center">
-                <a href="#modal-service" class="uk-button uk-button-primary" uk-toggle>
-                    Previous
+            <div class="uk-transition-toggle uk-light" tabindex="0">
+                <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#modal-productivity" data-src="../assets/productivity.jpg" uk-img uk-toggle>
+                    <h3>Productivity</h3>
                 </a>
             </div>
-        </div>
-    </div>
+       </div>
 
-    <div id="modal-weather" uk-modal>
-        <div class="uk-modal-dialog uk-margin-large-top">
-            <app-weather-form></app-weather-form>
+    </div>
+</div>
+
+<div id="modal-entertainment" uk-modal>
+    <div class="uk-modal-dialog uk-margin-large-top">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">Select a Widget</h2>
+        </div>
+
+        <div class="uk-modal-body uk-flex uk-flex-around uk-margin-top">
+            <div class="uk-transition-toggle" tabindex="0">
+                <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#modal-youtube-step-1" data-src="../assets/entertainment.jpg" uk-img uk-toggle>
+                    <h3>YouTube Videos</h3>
+                </a>
+            </div>
+            <div class="uk-transition-toggle uk-text-center" tabindex="0">
+                <div class="uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" data-src="../assets/entertainment.jpg" uk-img>
+                    <h3>Music Player</h3>
+                </div>
+                <p class="uk-text-danger uk-margin-remove-bottom uk-transition-slide-top">
+                    <span class="uk-margin-small-right" uk-icon="warning">
+                    </span>
+                    Currently not available
+                </p>
+            </div>
+       </div>
+
+        <div class="uk-modal-footer uk-text-center">
+            <a href="#modal-service" class="uk-button uk-button-primary" uk-toggle>
+                Previous
+            </a>
         </div>
     </div>
+</div>
+
+<div id="modal-productivity" uk-modal>
+    <div class="uk-modal-dialog uk-margin-large-top">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">Select a Widget</h2>
+        </div>
+
+        <div class="uk-modal-body uk-flex uk-flex-around">
+            <div class="uk-transition-toggle uk-light" tabindex="0">
+                <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#modal-weather" data-src="../assets/productivity.jpg" uk-img uk-toggle>
+                    <h4>Weather Forecast</h4>
+                </a>
+            </div>
+            <div class="uk-transition-toggle uk-light" tabindex="0">
+                <a class="uk-link-reset uk-tile uk-transition-scale-up uk-transition-opaque uk-background-cover" href="#modal-calendar" data-src="../assets/productivity.jpg" uk-img uk-toggle>
+                    <h4>Google Calendar</h4>
+                </a>
+            </div>
+       </div>
+
+       <div class="uk-modal-footer uk-text-center">
+            <a href="#modal-service" class="uk-button uk-button-primary" uk-toggle>
+                Previous
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-weather" uk-modal>
+    <div class="uk-modal-dialog uk-margin-large-top">
+        <app-weather-form></app-weather-form>
+    </div>
+</div>
+
+<div id="modal-calendar" uk-modal>
+    <div class="uk-modal-dialog uk-margin-large-top">
+        <app-calendar-form></app-calendar-form>
+    </div>
+</div>
+
+<div id="modal-youtube-step-1" uk-modal>
+    <div class="uk-modal-dialog uk-margin-large-top">
+        <app-step-one-form></app-step-one-form>
+    </div>
+</div>

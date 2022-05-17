@@ -1,0 +1,63 @@
+<!-- Form step 1 -->
+<div>
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+
+    <div class="uk-modal-header">
+        <h2 class="uk-modal-title">YouTube Videos Step 1</h2>
+    </div>
+
+    <div class="uk-modal-body">
+        <form class="uk-form-stacked uk-margin-xlarge-left uk-margin-top" (ngSubmit)="onSubmitStep1(formStep1)" #formStep1="ngForm">
+
+            <div class="uk-margin-large-left uk-margin-medium-bottom">
+                <label class="uk-form-label uk-margin-bottom" for="categories">
+                    Select a category
+                </label>
+                <div class="uk-form-controls">
+                    <div class="uk-grid uk-flex-column" id="categories">
+                        <label class="uk-margin-small-bottom">
+                            <div class="uk-flex uk-text-normal">
+                                <input class="uk-radio" type="radio" value="Most Popular"
+                                name="category" ngModel required>
+                                <span class="uk-margin-small-left">Most Popular</span>
+                            </div>
+                        </label>
+                        <label class="uk-margin-small-bottom">
+                            <div class="uk-flex uk-text-normal">
+                                <input class="uk-radio" type="radio" value="Channel Uploads"
+                                name="category" ngModel required>
+                                <span class="uk-margin-small-left">Channel Uploads</span>
+                            </div>
+                        </label>
+                        <label>
+                            <div class="uk-flex uk-text-normal">
+                                <input class="uk-radio" type="radio" value="My Liked"
+                                name="category" ngModel required>
+                                <span class="uk-margin-small-left">My Liked</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button href="#modal-youtube-step-2" class="uk-button uk-button-primary uk-margin uk-width-2-3@s" type="submit" [disabled]="formStep1.invalid" uk-toggle>
+                Next
+            </button>
+
+        </form>
+    </div>
+
+    <div class="uk-modal-footer uk-text-center">
+         <a href="#modal-entertainment" class="uk-button uk-button-primary" uk-toggle>
+            Previous
+         </a>
+    </div>
+</div>
+
+<!-- Form step 2 -->
+
+<div id="modal-youtube-step-2" uk-modal>
+    <div class="uk-modal-dialog uk-margin-large-top">
+        <app-step-two-form [category]="category"></app-step-two-form>
+    </div>
+</div>

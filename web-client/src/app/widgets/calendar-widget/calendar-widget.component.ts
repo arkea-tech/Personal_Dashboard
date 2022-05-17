@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { Calendar } from '../../models/Calendar.model';
 import { Event } from '../../models/Event.model';
-import UIkit from 'uikit';
 const DAY_MS = 60 * 60 * 24 * 1000;
 
 @Component({
