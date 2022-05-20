@@ -12,20 +12,18 @@
 <div class="uk-card uk-card-default">
     <div class="uk-card-header">
         <div class="uk-flex-between" uk-grid>
-            <div>
-                <ul class="uk-switcher">
-                    <li class="uk-active">
-                        <h3 class="uk-card-title">{{ dates[currentDateIndex].date | date:'d, MMMM, y' }}</h3>
-                    </li>
-                    <li>
-                        <h3 class="uk-card-title">{{ date | date:'MMMM, y' }}</h3>
-                    </li>
-                    <li>
-                        <h3 class="uk-card-title">{{ date | date:'MMMM, y' }}</h3>
-                    </li>
-                </ul>
-            </div>
-            <ul uk-tab="connect: .uk-switcher">
+            <ul class="uk-switcher">
+                <li class="uk-active">
+                    <h3 class="uk-card-title">{{ dates[currentDateIndex].date | date:'d, MMMM, y' }}</h3>
+                </li>
+                <li>
+                    <h3 class="uk-card-title">{{ date | date:'MMMM, y' }}</h3>
+                </li>
+                <li>
+                    <h3 class="uk-card-title">{{ date | date:'MMMM, y' }}</h3>
+                </li>
+            </ul>
+            <ul class="uk-margin-left" uk-tab="connect: .uk-switcher">
                 <li class="uk-active"><a href="#">Day</a></li>
                 <li><a href="#">Week</a></li>
                 <li><a href="#">Month</a></li>
@@ -47,6 +45,7 @@
                     <button class="uk-icon-button" uk-icon="chevron-right" (click)="setMonth(+1)"></button>
                 </li>
             </ul>
+            <app-edit-delete-widget editForm="Google Calendar"></app-edit-delete-widget>
         </div>
     </div>
 

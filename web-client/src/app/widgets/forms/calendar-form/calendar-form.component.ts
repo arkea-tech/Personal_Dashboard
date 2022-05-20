@@ -19,7 +19,7 @@ export class CalendarFormComponent implements OnInit {
         let events: boolean = false;
 
         view = form.value["view"];
-        events = form.value["events"];
+        events = !form.value["events"] ? false : form.value["events"];
         console.log("view: " + view + " events: " + events);
     }
 

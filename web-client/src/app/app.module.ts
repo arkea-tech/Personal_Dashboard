@@ -32,6 +32,7 @@ import { AboutComponent } from './about/about.component';
 import { WeatherWidgetComponent } from './widgets/weather-widget/weather-widget.component';
 import { YoutubeWidgetComponent } from './widgets/youtube-widget/youtube-widget.component';
 import { CalendarWidgetComponent } from './widgets/calendar-widget/calendar-widget.component';
+import { EditDeleteWidgetComponent } from './widgets/edit-delete-widget/edit-delete-widget.component';
 
 import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.component';
 import { CalendarFormComponent } from './widgets/forms/calendar-form/calendar-form.component';
@@ -58,7 +59,8 @@ import { StepTwoFormComponent } from './widgets/forms/youtube-form/step-two-form
     WeatherFormComponent,
     CalendarFormComponent,
     StepOneFormComponent,
-    StepTwoFormComponent
+    StepTwoFormComponent,
+    EditDeleteWidgetComponent
   ],
   imports: [
     BrowserModule,
