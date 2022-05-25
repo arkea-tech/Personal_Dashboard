@@ -45,7 +45,9 @@
                     <button class="uk-icon-button" uk-icon="chevron-right" (click)="setMonth(+1)"></button>
                 </li>
             </ul>
-            <app-edit-delete-widget editForm="Google Calendar"></app-edit-delete-widget>
+            <app-edit-delete-widget
+                [editForm]="'google-calendar-' + calendarWidget._id"
+            ></app-edit-delete-widget>
         </div>
     </div>
 

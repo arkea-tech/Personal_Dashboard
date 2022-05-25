@@ -7,11 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class EditDeleteWidgetComponent implements OnInit {
 
-    @Input() editForm: any;
+    @Input() editForm: string;
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit(): void {
+        console.log(this.editForm);
     }
 
 }

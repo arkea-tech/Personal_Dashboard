@@ -1,6 +1,9 @@
 <div class="uk-card uk-card-small uk-card-default">
     <div class="uk-card-body uk-text-center">
-        <app-edit-delete-widget editForm="Weather Forecast" class="uk-position-top-right uk-margin-right uk-margin-top "></app-edit-delete-widget>
+        <app-edit-delete-widget
+            [editForm]="'weather-forecast-' + weatherWidget._id"
+            class="uk-position-top-right uk-margin-right uk-margin-top">
+        </app-edit-delete-widget>
         <div class="uk-child-width-expand@s uk-flex-middle" uk-grid>
             <div>
                 <h3>{{ weatherWidget.temperature }} °C</h3>

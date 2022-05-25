@@ -6,12 +6,14 @@
             <button class="uk-dropdown-close uk-margin" type="button" uk-close></button>
             <div class="uk-dropdown-grid uk-grid-row-small uk-flex-center" uk-grid>
                 <div>
-                    <button class="uk-button uk-button-default uk-margin-small-bottom uk-dropdown-close" uk-toggle="target: #modal-edit-widget">
+                    <button class="uk-button uk-button-default uk-margin-small-bottom uk-dropdown-close" [attr.uk-toggle]="'#modal-edit-widget-' + editForm">
                         Edit
                     </button>
                 </div>
                 <div>
-                    <button class="uk-button uk-button-danger uk-dropdown-close" uk-toggle="target: #modal-delete-widget-confirm">
+                    <button class="uk-button uk-button-danger uk-dropdown-close"
+                    [attr.uk-toggle]="'#modal-delete-widget-confirm-' + editForm"
+                    >
                         Delete
                     </button>
                 </div>
@@ -20,7 +22,8 @@
     </div>
 
     <!-- Modal to confirm the deletion of the widget -->
-    <div id="modal-delete-widget-confirm" uk-modal>
+    <div [id]="'modal-delete-widget-confirm-' + editForm"
+    uk-modal>
         <div class="uk-margin-auto-vertical uk-modal-dialog">
             <button class="uk-modal-close-default" type="button" uk-close></button>
             <div class="uk-modal-header">
@@ -36,11 +39,11 @@
         </div>
     </div>
 
-    <div id="modal-edit-widget" uk-modal>
+    <div [id]="'modal-edit-widget-' + editForm" uk-modal>
         <div class="uk-modal-dialog uk-margin-large-top">
-            <app-step-one-form *ngIf="editForm === 'YouTube Videos'"></app-step-one-form>
-            <app-calendar-form *ngIf="editForm === 'Google Calendar'"></app-calendar-form>
-            <app-weather-form *ngIf="editForm === 'Weather Forecast'"></app-weather-form>
+            <app-calendar-form *ngIf="editForm.includes('google-calendar')"></app-calendar-form>
+            <app-step-one-form *ngIf="editForm.includes('youtube-videos')"></app-step-one-form>
+            <app-weather-form *ngIf="editForm.includes('weather-forecast')"></app-weather-form>
         </div>
     </div>
 
