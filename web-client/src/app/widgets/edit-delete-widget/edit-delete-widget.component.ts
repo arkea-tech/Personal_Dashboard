@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Calendar } from '../../models/Calendar.model';
 
 @Component({
   selector: 'app-edit-delete-widget',
@@ -8,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EditDeleteWidgetComponent implements OnInit {
 
     @Input() editForm: string;
+    @Input() calendarWidget: Calendar;
 
     constructor() {
     }

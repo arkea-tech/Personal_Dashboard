@@ -1,6 +1,5 @@
 <div>
     <div class="uk-inline">
-
         <button class="uk-icon-button" uk-icon="more-vertical"></button>
         <div uk-dropdown="mode: click">
             <button class="uk-dropdown-close uk-margin" type="button" uk-close></button>
@@ -41,9 +40,11 @@
 
     <div [id]="'modal-edit-widget-' + editForm" uk-modal>
         <div class="uk-modal-dialog uk-margin-large-top">
-            <app-calendar-form *ngIf="editForm.includes('google-calendar')"></app-calendar-form>
-            <app-step-one-form *ngIf="editForm.includes('youtube-videos')"></app-step-one-form>
-            <app-weather-form *ngIf="editForm.includes('weather-forecast')"></app-weather-form>
+            <app-calendar-form mode="edition"
+            [calendarWidget]="calendarWidget"
+            *ngIf="editForm.includes('google-calendar')"></app-calendar-form>
+            <app-step-one-form mode="edition" *ngIf="editForm.includes('youtube-videos')"></app-step-one-form>
+            <app-weather-form mode="edition" *ngIf="editForm.includes('weather-forecast')"></app-weather-form>
         </div>
     </div>
 

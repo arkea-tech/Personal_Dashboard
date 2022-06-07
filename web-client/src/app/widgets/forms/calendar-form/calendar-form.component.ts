@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Calendar } from '../../../models/Calendar.model';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,6 +8,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./calendar-form.component.scss']
 })
 export class CalendarFormComponent implements OnInit {
+
+    @Input() mode: string;
+    @Input() calendarWidget: Calendar;
 
     constructor() { }
 
