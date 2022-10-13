@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { DatepickerModule } from 'ng2-datepicker';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -38,6 +39,7 @@ import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.
 import { CalendarFormComponent } from './widgets/forms/calendar-form/calendar-form.component';
 import { StepOneFormComponent } from './widgets/forms/youtube-form/step-one-form/step-one-form.component';
 import { StepTwoFormComponent } from './widgets/forms/youtube-form/step-two-form/step-two-form.component';
+import { ProfileFormComponent } from './widgets/forms/profile-form/profile-form.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -60,7 +62,8 @@ import { StepTwoFormComponent } from './widgets/forms/youtube-form/step-two-form
     CalendarFormComponent,
     StepOneFormComponent,
     StepTwoFormComponent,
-    EditDeleteWidgetComponent
+    EditDeleteWidgetComponent,
+    ProfileFormComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { StepTwoFormComponent } from './widgets/forms/youtube-form/step-two-form
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    OrigamiFormsModule
+    OrigamiFormsModule,
+    DatepickerModule
   ],
   providers: [
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

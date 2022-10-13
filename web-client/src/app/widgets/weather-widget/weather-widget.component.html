@@ -2,6 +2,7 @@
     <div class="uk-card-body uk-text-center">
         <app-edit-delete-widget
             [editForm]="'weather-forecast-' + weatherWidget._id"
+            [weatherWidget]="weatherWidget"
             class="uk-position-top-right uk-margin-right uk-margin-top">
         </app-edit-delete-widget>
         <div class="uk-child-width-expand@s uk-flex-middle" uk-grid>

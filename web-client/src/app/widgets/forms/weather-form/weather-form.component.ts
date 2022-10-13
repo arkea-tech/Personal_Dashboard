@@ -8,9 +8,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class WeatherFormComponent implements OnInit {
 
+    @Input() mode: string;
+    
     weatherForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder) {}
+
+    clearForm()
+    {
+        this.weatherForm.reset();
+    }
 
     ngOnInit(): void {
         this.weatherForm = this.formBuilder.group({
@@ -23,6 +30,8 @@ export class WeatherFormComponent implements OnInit {
     onSubmitForm()
     {
         const formValue = this.weatherForm.value;
+
+        this.clearForm();
         console.log(formValue);
     }
 

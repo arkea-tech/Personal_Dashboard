@@ -21,4 +21,8 @@ export class Youtube {
         }
     };
     videos: Array<Video>;
+
+    constructor(id) {
+        this._id = id;
+    }
 };

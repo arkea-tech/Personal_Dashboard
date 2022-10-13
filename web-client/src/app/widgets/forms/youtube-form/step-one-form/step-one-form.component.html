@@ -1,6 +1,6 @@
 <!-- Form step 1 -->
 <div>
-    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <button class="uk-modal-close-default" type="button" (click)="clearForm(formStep1)" uk-close></button>
 
     <div class="uk-modal-header">
         <h2 class="uk-modal-title">YouTube Videos</h2>
@@ -40,14 +40,14 @@
                 </div>
             </div>
 
-            <button href="#modal-youtube-step-2" class="uk-button uk-button-primary uk-margin uk-width-2-3@s" type="submit" [disabled]="formStep1.invalid" uk-toggle>
+            <button class="uk-button uk-button-primary uk-margin uk-width-2-3@s uk-dropdown-close" type="submit" [disabled]="formStep1.invalid" [attr.uk-toggle]="'#modal-youtube-step-2-' + youtubeWidget._id">
                 Next
             </button>
 
         </form>
     </div>
 
-    <div class="uk-modal-footer uk-text-center">
+    <div class="uk-modal-footer uk-text-center" *ngIf="mode !== 'edition'">
          <a href="#modal-entertainment" class="uk-button uk-button-primary" uk-toggle>
             Previous
          </a>
@@ -56,8 +56,9 @@
 
 <!-- Form step 2 -->
 
-<div id="modal-youtube-step-2" uk-modal>
+<div [id]="'modal-youtube-step-2-' + youtubeWidget._id" uk-modal>
     <div class="uk-modal-dialog uk-margin-large-top">
-        <app-step-two-form [category]="category"></app-step-two-form>
+        <app-step-two-form [category]="category">
+        </app-step-two-form>
     </div>
 </div>

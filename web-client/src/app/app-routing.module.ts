@@ -24,7 +24,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'main', component: MainComponent,
+        path: 'main', component: MainComponent, /*, canActivate: [AuthGuard],*/
         children: [
             { path: 'dashboard', component: DashboardComponent },
             {
@@ -40,15 +40,6 @@ const routes: Routes = [
             { path: 'about', component: AboutComponent },
             { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
             { path: '**', redirectTo: 'dashboard' }
-        ]
-    },
-    {
-        path: 'settings', component: SettingsComponent, canActivate: [AuthGuard],
-        children: [
-            { path: 'subscriptions', component: SubscriptionsComponent },
-            { path: 'profile', component: ProfileComponent },
-            { path: '', pathMatch: 'full', redirectTo: 'subscriptions' },
-            { path: '**', redirectTo: 'subscriptions' }
         ]
     },
     { path: '', pathMatch: 'full', redirectTo: 'home' }, //replace by home

@@ -33,18 +33,26 @@
             </div>
             <div class="uk-modal-footer uk-text-right">
                 <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                <button class="uk-button uk-button-danger" type="button">Delete</button>
+                <button class="uk-button uk-button-danger uk-modal-close" type="button">Delete</button>
             </div>
         </div>
     </div>
 
     <div [id]="'modal-edit-widget-' + editForm" uk-modal>
         <div class="uk-modal-dialog uk-margin-large-top">
-            <app-calendar-form mode="edition"
+            <app-calendar-form
+            mode="edition"
             [calendarWidget]="calendarWidget"
             *ngIf="editForm.includes('google-calendar')"></app-calendar-form>
-            <app-step-one-form mode="edition" *ngIf="editForm.includes('youtube-videos')"></app-step-one-form>
-            <app-weather-form mode="edition" *ngIf="editForm.includes('weather-forecast')"></app-weather-form>
+            <app-step-one-form
+            mode="edition"
+            [youtubeWidget]="youtubeWidget"
+            *ngIf="editForm.includes('youtube-videos')"></app-step-one-form>
+            <app-weather-form
+            mode="edition"
+            [weatherWidget]="weatherWidget"
+            *ngIf="editForm.includes('weather-forecast')"
+            ></app-weather-form>
         </div>
     </div>
 

@@ -51,8 +51,8 @@ export class AuthService {
         });
     }
 
-
     logout() {
+        console.log('here');
         this.isAuth$.next(false);
         this.userId = null;
         this.token = null;

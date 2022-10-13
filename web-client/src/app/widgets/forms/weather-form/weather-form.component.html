@@ -1,11 +1,11 @@
-<button class="uk-modal-close-default" type="button" uk-close></button>
+<button class="uk-modal-close-default" type="button" (click)="clearForm()" uk-close></button>
 
 <div class="uk-modal-header">
     <h2 class="uk-modal-title">Weather Forecast</h2>
 </div>
 
 <div class="uk-modal-body">
-    <form class="uk-form-stacked uk-margin-xlarge-left uk-margin-top" [formGroup]="weatherForm" (ngSubmit)="onSubmitForm()">
+    <form class="uk-form-stacked uk-margin-xlarge-left uk-margin-top" [formGroup]="weatherForm">
 
         <div class="uk-margin-large-left uk-margin-medium-bottom">
             <label class="uk-form-label uk-margin-small-bottom" for="city">
@@ -43,14 +43,14 @@
             </label>
         </div>
 
-        <button class="uk-button uk-button-primary uk-margin uk-width-2-3@s" type="submit" [disabled]="weatherForm.invalid">
+        <button class="uk-modal-close uk-button uk-button-primary uk-margin uk-width-2-3@s" type="button" [disabled]="weatherForm.invalid" (click)="onSubmitForm()">
             Submit
         </button>
 
     </form>
 </div>
 
-<div class="uk-modal-footer uk-text-center">
+<div class="uk-modal-footer uk-text-center" *ngIf="mode !== 'edition'">
      <a href="#modal-productivity" class="uk-button uk-button-primary" uk-toggle>
         Previous
      </a>

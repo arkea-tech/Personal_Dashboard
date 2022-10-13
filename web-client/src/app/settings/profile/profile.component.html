@@ -1,5 +1,8 @@
 
 <!-- <button class="uk-margin-large-left" uk-icon="pencil"></button> -->
+
+<button class="uk-icon-button uk-margin-xlarge-right uk-margin-xlarge-top" uk-icon="icon: pencil; ratio: 2" uk-toggle="target: #modal-edit-profile">
+</button>
 <div class="uk-grid uk-flex-center uk-text-center uk-flex-middle" uk-grid>
         <div>
             <img class="uk-border-circle" width="200" height="200" src="../../assets/mr_robot.jpg">
@@ -44,5 +47,10 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div id="modal-edit-profile" uk-modal>
+    <div class="uk-modal-dialog">
+        <app-profile-form></app-profile-form>
     </div>
 </div>

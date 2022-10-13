@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { clearForm } from '../../../../../utils/form';
 
 @Component({
   selector: 'app-step-two-form',
@@ -9,10 +10,13 @@ import { NgForm } from '@angular/forms';
 export class StepTwoFormComponent implements OnInit {
 
     @Input() category: string;
-    filter: string;
-    channel: string;
+
+    clearForm: (form: NgForm) => void;
+    // filter: string;
+    // channel: string;
 
     constructor() {
+        this.clearForm = clearForm;
     }
 
     ngOnInit(): void {
@@ -25,6 +29,7 @@ export class StepTwoFormComponent implements OnInit {
 
         filter = form.value["filter"];
         channel = form.value["channel"];
+        this.clearForm(form);
         console.log("category: " + this.category + " channel: " + channel + " " + "filter: " + filter);
     }
 

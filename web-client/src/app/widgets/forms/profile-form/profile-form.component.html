@@ -1,0 +1,96 @@
+<div>
+    <button class="uk-modal-close-default" type="button" (click)="clearForm(form)" uk-close></button>
+
+    <div class="uk-modal-header">
+        <h2 class="uk-modal-title">Edit Profile</h2>
+    </div>
+
+    <div class="uk-modal-body">
+        <form class="uk-form-stacked" #form="ngForm">
+
+            <div class="uk-margin-left uk-margin-bottom">
+                <label class="uk-form-label uk-margin-small-bottom" for="username">
+                    Username
+                </label>
+                <div class="uk-form-controls">
+                    <input class="uk-input uk-form-width-small" type="text" id="username" name="username" ngModel required>
+                </div>
+            </div>
+
+            <div class="uk-margin-left uk-margin-bottom">
+                <label class="uk-form-label uk-margin-small-bottom" for="bio">
+                    Bio
+                </label>
+                <div class="uk-form-controls">
+                    <textarea class="uk-textarea" rows="5" placeholder="Enter a bio..." id="bio" name="bio" ngModel required></textarea>
+                </div>
+            </div>
+
+            <div class="uk-margin-left uk-margin-bottom">
+                <label class="uk-form-label uk-margin-small-bottom" for="gender">
+                    Gender
+                </label>
+                <div class="uk-form-controls">
+                    <div class="uk-grid uk-grid-small" id="gender">
+                        <label class="uk-flex uk-text-normal">
+                            <input class="uk-radio" type="radio" value="male"
+                            name="gender" ngModel required
+                            >
+                            <span class="uk-margin-small-left">Male</span>
+                        </label>
+                        <label class="uk-flex uk-text-normal">
+                            <input class="uk-radio" type="radio" value="female"
+                            name="gender" ngModel required>
+                            <span class="uk-margin-small-left">Female</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-margin-left uk-margin-bottom">
+                <label class="uk-form-label uk-margin-small-bottom" for="job">
+                    Job Title
+                </label>
+                <div class="uk-form-controls">
+                    <select class="uk-select uk-form-width-small" id="job" name="job" ngModel required>
+                        <option>Developer</option>
+                        <option>Engineer</option>
+                        <option>Business analyst</option>
+                        <option>Manager</option>
+                        <option>Student</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="uk-margin-left uk-margin-bottom">
+                <label class="uk-form-label uk-margin-small-bottom" for="birthdate">
+                    Birthdate
+                </label>
+                <div class="uk-form-controls">
+                    <ngx-datepicker id="birthdate" name="birthdate" [(ngModel)]="birthdate" required [options]="datePickerOptions"></ngx-datepicker>
+                </div>
+            </div>
+
+
+            <div class="uk-margin-left uk-margin-medium-bottom">
+                <label class="uk-form-label uk-margin-small-bottom" for="picture">
+                    Profile picture
+                </label>
+                <div class="uk-form-controls">
+                    <div id="picture" class="js-upload" uk-form-custom>
+                        <input type="file" name="picture" ngModel required>
+                        <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                            Select a profile picture
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="uk-modal-close uk-button uk-button-primary uk-margin uk-width-2-3@s uk-align-center" type="button" [disabled]="form.invalid" (click)="onSubmitForm(form)">
+                Submit
+            </button>
+
+        </form>
+    </div>
+
+</div>

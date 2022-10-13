@@ -5,3 +5,15 @@
 .uk-card-title {
     color: #353d41;
 }
+
+.uk-icon-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    // z-index: 10;
+    height: 70px;
+    width: 70px;
+    // background-color: transparent;
+    border: 2px solid;
+    color: #353d41;
+}
