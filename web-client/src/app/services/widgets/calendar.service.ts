@@ -78,13 +78,20 @@ export class CalendarService {
                         end_date: "2022-05-10T15:00:00+02:00"
                     }
                 },
-
                 {
                     title: 'IT MCA(demain de 10h à 11h)',
                     colorId: '11',
                     time: {
                         start_date: "2022-05-11T17:00:00+02:00",
                         end_date: "2022-05-11T18:00:00+02:00"
+                    }
+                },
+                {
+                    title: 'Un évènement test',
+                    colorId: '7',
+                    time: {
+                        start_date: "2022-10-14T17:00:00+02:00",
+                        end_date: "2022-10-14T18:00:00+02:00"
                     }
                 }
             ]

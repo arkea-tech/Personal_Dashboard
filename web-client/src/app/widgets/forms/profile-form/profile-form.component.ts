@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { getYear } from 'date-fns';
 import { DatepickerOptions } from 'ng2-datepicker';
 
-import { clearForm } from '../../../../utils/form';
+//import { clearForm } from '../../../../utils/form';
 
 @Component({
   selector: 'app-profile-form',
@@ -13,19 +13,26 @@ import { clearForm } from '../../../../utils/form';
 export class ProfileFormComponent implements OnInit {
 
     clearForm: (form: NgForm) => void;
-    birthdate: string;
     datePickerOptions: DatepickerOptions = {
         minYear: getYear(new Date()) - 150,
         maxYear: getYear(new Date()),
         firstCalendarDay: 1,
         placeholder: "Select your birthdate..."
     };
+    initialFormState;
 
     constructor() { }
 
     ngOnInit(): void {
-      this.clearForm = clearForm;
-      this.birthdate = "";
+      //this.clearForm = clearForm;
+      this.initialFormState = {
+          username: "Mr Robot",
+          bio: "I'm a hacker and I always make sure to be invisible.",
+          gender: "male",
+          job: "Developer",
+          birthdate: new Date(1992, 0, 5),
+          picture: ""
+      };
     }
 
     onSubmitForm(form: NgForm)
@@ -42,8 +49,8 @@ export class ProfileFormComponent implements OnInit {
         gender = form.value["gender"];
         jobTitle = form.value["job"];
         birthdate = form.value["birthdate"];
-        picture = form.value["picture"];
-        this.clearForm(form);
+        picture = form.value["picture"] ? form.value["picture"] : this.initialFormState.picture;
+        //this.clearForm(form);
         console.log("username: " + username
         + "\nbio: " + bio + "\ngender: " + gender + "\njob title: " + jobTitle + "\npicture: " + picture + "\nbirthdate: " + birthdate);
     }
