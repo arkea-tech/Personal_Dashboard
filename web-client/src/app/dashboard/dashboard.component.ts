@@ -18,8 +18,11 @@ export class DashboardComponent implements OnInit {
 
     public loadingYoutube: boolean;
     public loadingWeather: boolean;
+    public loadingCalendar: boolean;
 
+    public errorYoutube: string;
     public errorWeather: string;
+    public errorCalendar: string;
 
     public youtubeWidgets: Youtube[] = [];
     public weatherWidgets: Weather[] = [];
@@ -27,7 +30,10 @@ export class DashboardComponent implements OnInit {
 
     private youtubeSubscription: Subscription;
     private weatherSubscription: Subscription;
+    private calendarSubscription: Subscription;
+    private youtubeErrorSubscription: Subscription;
     private weatherErrorSubscription: Subscription;
+    private calendarErrorSubscription: Subscription;
 
     constructor(private youtubeService: YoutubeService,
     private weatherService: WeatherService,
@@ -36,6 +42,7 @@ export class DashboardComponent implements OnInit {
     ngOnInit(): void {
         this.loadingYoutube = true;
         this.loadingWeather = true;
+        this.loadingCalendar = true;
         this.youtubeSubscription = this.youtubeService.youtubeSubject.subscribe(
             (youtubeWidgets: Youtube[]) => {
                 this.youtubeWidgets = youtubeWidgets;
@@ -48,23 +55,44 @@ export class DashboardComponent implements OnInit {
                 this.loadingWeather = false;
             }
         );
+        this.calendarSubscription = this.calendarService.calendarSubject.subscribe(
+            (calendarWidgets: Calendar[]) => {
+                this.calendarWidgets = calendarWidgets;
+                this.loadingCalendar = false;
+            }
+        );
+
+        this.youtubeErrorSubscription = this.youtubeService.errorSubject.subscribe(
+            (error: string) => {
+                this.errorYoutube = error;
+                this.loadingYoutube = false;
+            }
+        );
         this.weatherErrorSubscription = this.weatherService.errorSubject.subscribe(
             (error: string) => {
                 this.errorWeather = error;
                 this.loadingWeather = false;
             }
         );
+        this.calendarErrorSubscription = this.calendarService.errorSubject.subscribe(
+            (error: string) => {
+                this.errorCalendar = error;
+                this.loadingCalendar = false;
+            }
+        );
         this.youtubeService.getYoutubeWidgets();
         this.weatherService.getWeatherWidgets();
-        // this.weatherWidgets = this.weatherService.weatherWidgets;
-        this.calendarWidgets = this.calendarService.calendarWidgets;
+        this.calendarService.getCalendarWidgets();
     }
 
     ngOnDestroy(): void
     {
         this.youtubeSubscription.unsubscribe();
         this.weatherSubscription.unsubscribe();
+        this.calendarSubscription.unsubscribe();
+        this.youtubeErrorSubscription.unsubscribe();
         this.weatherErrorSubscription.unsubscribe();
+        this.calendarErrorSubscription.unsubscribe();
     }
 
 }

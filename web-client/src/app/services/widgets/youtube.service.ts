@@ -12,12 +12,18 @@ export class YoutubeService {
     private apiURL: string = "http://localhost:8080/widget";
 
     public youtubeSubject = new Subject<Youtube[]>();
+    public errorSubject = new Subject<string>();
 
     constructor(private http: HttpClient) {}
 
     emitYoutubeSubject()
     {
         this.youtubeSubject.next(this.youtubeWidgets.slice());
+    }
+
+    emitErrorSubject(error)
+    {
+        this.errorSubject.next(error);
     }
 
     getYoutubeWidgets()
@@ -29,9 +35,7 @@ export class YoutubeService {
               this.emitYoutubeSubject();
             }
           },
-          (error) => {
-            console.log(error);
-          }
+          this.emitErrorSubject
         );
     }
 }
