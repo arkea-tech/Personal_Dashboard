@@ -12,7 +12,7 @@
 <div class="uk-card uk-card-default">
     <div class="uk-card-header">
         <div class="uk-flex-between" uk-grid>
-            <ul class="uk-switcher">
+            <ul [id]="'calendar-switcher-' + calendarWidget._id" class="uk-switcher">
                 <li class="uk-active">
                     <h3 class="uk-card-title">{{ dates[currentDateIndex].date | date:'d, MMMM, y' }}</h3>
                 </li>
@@ -23,12 +23,12 @@
                     <h3 class="uk-card-title">{{ date | date:'MMMM, y' }}</h3>
                 </li>
             </ul>
-            <ul class="uk-margin-left" uk-tab="connect: .uk-switcher">
+            <ul class="uk-margin-left" [attr.uk-tab]="'connect: #calendar-switcher-' + calendarWidget._id">
                 <li class="uk-active"><a href="#">Day</a></li>
                 <li><a href="#">Week</a></li>
                 <li><a href="#">Month</a></li>
             </ul>
-            <ul class="uk-switcher">
+            <ul [id]="'calendar-switcher-' + calendarWidget._id" class="uk-switcher">
                 <li class="uk-active">
                     <button class="uk-icon-button" uk-icon="chevron-left" (click)="setDay(-1)"></button>
                     <button class="uk-button" (click)="setCurrentMonth()">Today</button>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="uk-card-body">
-        <ul class="uk-switcher uk-margin">
+        <ul [id]="'calendar-switcher-' + calendarWidget._id" class="uk-switcher uk-margin">
 
             <li class="uk-active">
                 <div class="uk-text-center uk-flex-column" uk-grid>

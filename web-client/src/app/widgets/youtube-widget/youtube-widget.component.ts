@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import ellipsify from '../../../utils/ellipsify';
+
 import { Youtube } from '../../models/Youtube.model';
 
 @Component({
@@ -9,12 +11,15 @@ import { Youtube } from '../../models/Youtube.model';
 })
 export class YoutubeWidgetComponent implements OnInit {
 
-        //replace any by YouTube
-        @Input() youtubeWidget: Youtube;
+    @Input() youtubeWidget: Youtube;
 
-        constructor() { }
+    ellipsify: (str: string, lengthMax: number) => string;
 
-        ngOnInit(): void {
-        }
+    constructor() {
+        this.ellipsify = ellipsify;
+    }
+
+    ngOnInit(): void {
+    }
 
 }

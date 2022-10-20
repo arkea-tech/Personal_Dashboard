@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { YoutubeService } from '../services/widgets/youtube.service';
 import { WeatherService } from '../services/widgets/weather.service';
@@ -15,18 +16,35 @@ import { Calendar } from '../models/Calendar.model';
 })
 export class DashboardComponent implements OnInit {
 
+    public loadingYoutube: boolean;
+
     public youtubeWidgets: Youtube[] = [];
     public weatherWidgets: Weather[] = [];
     public calendarWidgets: Calendar[] = [];
+
+    private youtubeSubscription: Subscription;
 
     constructor(private youtubeService: YoutubeService,
     private weatherService: WeatherService,
     private calendarService: CalendarService) { }
 
     ngOnInit(): void {
-        this.youtubeWidgets = this.youtubeService.youtubeWidgets;
+        //this.youtubeWidgets = this.youtubeService.youtubeWidgets;
+        this.loadingYoutube = true;
+        this.youtubeSubscription = this.youtubeService.youtubeSubject.subscribe(
+            (youtubeWidgets: Youtube[]) => {
+                this.youtubeWidgets = youtubeWidgets;
+                this.loadingYoutube = false;
+            }
+        );
+        this.youtubeService.getYoutubeWidgets();
         this.weatherWidgets = this.weatherService.weatherWidgets;
         this.calendarWidgets = this.calendarService.calendarWidgets;
+    }
+
+    ngOnDestroy(): void
+    {
+        this.youtubeSubscription.unsubscribe();
     }
 
 }
