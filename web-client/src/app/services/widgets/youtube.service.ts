@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 import { Youtube } from '../../models/Youtube.model';
+import { YoutubeData } from '../../models/interactions/youtube/YoutubeData.model';
 
 @Injectable()
 export class YoutubeService {
@@ -37,5 +38,19 @@ export class YoutubeService {
           },
           this.emitErrorSubject
         );
+    }
+
+    createYoutubeWidget(youtubeData: YoutubeData)
+    {
+        return new Promise((resolve, reject) => {
+            this.http.post(`${this.apiURL}/youtube`, youtubeData).subscribe(
+                (response) => {
+                  resolve(response);
+                },
+                (error) => {
+                  reject(error);
+                }
+            );
+        });
     }
 }

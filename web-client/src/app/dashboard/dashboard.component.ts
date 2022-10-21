@@ -39,10 +39,9 @@ export class DashboardComponent implements OnInit {
     private weatherService: WeatherService,
     private calendarService: CalendarService) { }
 
-    ngOnInit(): void {
-        this.loadingYoutube = true;
-        this.loadingWeather = true;
-        this.loadingCalendar = true;
+
+    subscribeServicesWidgets():void
+    {
         this.youtubeSubscription = this.youtubeService.youtubeSubject.subscribe(
             (youtubeWidgets: Youtube[]) => {
                 this.youtubeWidgets = youtubeWidgets;
@@ -61,7 +60,10 @@ export class DashboardComponent implements OnInit {
                 this.loadingCalendar = false;
             }
         );
+    }
 
+    subscribeServicesError():void
+    {
         this.youtubeErrorSubscription = this.youtubeService.errorSubject.subscribe(
             (error: string) => {
                 this.errorYoutube = error;
@@ -80,6 +82,14 @@ export class DashboardComponent implements OnInit {
                 this.loadingCalendar = false;
             }
         );
+    }
+
+    ngOnInit(): void {
+        this.loadingYoutube = true;
+        this.loadingWeather = true;
+        this.loadingCalendar = true;
+        this.subscribeServicesWidgets();
+        this.subscribeServicesError();
         this.youtubeService.getYoutubeWidgets();
         this.weatherService.getWeatherWidgets();
         this.calendarService.getCalendarWidgets();
