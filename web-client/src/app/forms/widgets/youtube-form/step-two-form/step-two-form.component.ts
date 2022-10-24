@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { clearForm } from '../../../../../utils/form';
+import wait from '../../../../../utils/wait';
 
 import { YoutubeData } from '../../../../models/interactions/youtube/YoutubeData.model';
 import { SecondStep } from '../../../../models/interactions/youtube/SecondStep.model';
@@ -17,9 +18,11 @@ import { YoutubeService } from '../../../../services/widgets/youtube.service';
 export class StepTwoFormComponent implements OnInit {
 
     @Input() category: string;
+    @Input() youtubeWidgetId: string;
 
     public loading: boolean;
     public errorMessage: string;
+    public successfulMessage:string;
 
     clearForm: (form: NgForm) => void;
     // filter: string;
@@ -33,8 +36,17 @@ export class StepTwoFormComponent implements OnInit {
     }
 
     redirectTo(uri: string) {
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
         this.router.navigate([uri]));
+    }
+
+    closeModal(form: NgForm):void
+    {
+        UIkit.modal('#modal-youtube-step-2-' + this.youtubeWidgetId).hide();
+        this.clearForm(form);
+        this.successfulMessage = "";
+        this.errorMessage = "";
+        this.redirectTo('/main/dashboard');
     }
 
     onSubmitStep2(form: NgForm)
@@ -43,12 +55,13 @@ export class StepTwoFormComponent implements OnInit {
         const youtubeData: YoutubeData = new YoutubeData(this.category, secondStep);
 
         this.loading = true;
-
         this.youtubeService.createYoutubeWidget(youtubeData).then(
-            () => {
-                this.clearForm(form);
+            (response) => {
+                this.successfulMessage = response.message;
                 this.loading = false;
-                this.redirectTo('/main/dashboard');
+                wait(1000).then(
+                    () => this.closeModal(form)
+                );
             }
         ).catch(
             (error) => {

@@ -30,10 +30,23 @@
             </div>
             <div class="uk-modal-body">
                 <p class="uk-alert-danger uk-text-default" uk-alert>Are you sure you want to delete the widget ? <span class="uk-text-bold">Warning: You can't undo this action!</span></p>
+                <div *ngIf="loading" class="uk-flex uk-flex-center" uk-spinner></div>
+                <div *ngIf="successfulMessage" uk-alert class="uk-alert-success uk-margin-top">
+                    <button class="uk-alert-close" uk-close></button>
+                    <span>
+                        {{ successfulMessage }}
+                    </span>
+                </div>
+                <div *ngIf="errorMessage" uk-alert class="uk-alert-danger uk-margin-top">
+                    <button class="uk-alert-close" uk-close></button>
+                    <span>
+                        {{ errorMessage }}
+                    </span>
+                </div>
             </div>
             <div class="uk-modal-footer uk-text-right">
                 <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                <button class="uk-button uk-button-danger uk-modal-close" type="button">Delete</button>
+                <button class="uk-button uk-button-danger" type="button" (click)="onDeleteWidget()">Delete</button>
             </div>
         </div>
     </div>

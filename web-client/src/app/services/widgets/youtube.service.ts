@@ -53,4 +53,17 @@ export class YoutubeService {
             );
         });
     }
+
+    deleteYoutubeWidget(id: string) {
+        return new Promise((resolve, reject) => {
+          this.http.delete(`${this.apiURL}/youtube/` + id).subscribe(
+            (response) => {
+              resolve(response);
+            },
+            (error) => {
+              reject(error);
+            }
+          );
+        });
+    }
 }

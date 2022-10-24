@@ -35,11 +35,11 @@ import { YoutubeWidgetComponent } from './widgets/youtube-widget/youtube-widget.
 import { CalendarWidgetComponent } from './widgets/calendar-widget/calendar-widget.component';
 import { EditDeleteWidgetComponent } from './widgets/edit-delete-widget/edit-delete-widget.component';
 
-import { WeatherFormComponent } from './widgets/forms/weather-form/weather-form.component';
-import { CalendarFormComponent } from './widgets/forms/calendar-form/calendar-form.component';
-import { StepOneFormComponent } from './widgets/forms/youtube-form/step-one-form/step-one-form.component';
-import { StepTwoFormComponent } from './widgets/forms/youtube-form/step-two-form/step-two-form.component';
-import { ProfileFormComponent } from './widgets/forms/profile-form/profile-form.component';
+import { WeatherFormComponent } from './forms/widgets/weather-form/weather-form.component';
+import { CalendarFormComponent } from './forms/widgets/calendar-form/calendar-form.component';
+import { StepOneFormComponent } from './forms/widgets/youtube-form/step-one-form/step-one-form.component';
+import { StepTwoFormComponent } from './forms/widgets/youtube-form/step-two-form/step-two-form.component';
+import { ProfileFormComponent } from './forms/profile-form/profile-form.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
