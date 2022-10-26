@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
+import UIkit from "uikit/dist/js/uikit.min.js";
+
 import wait from '../../../utils/wait';
 
 import { Calendar } from '../../models/Calendar.model';

@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { Youtube } from '../../models/Youtube.model';
 import { YoutubeData } from '../../models/interactions/youtube/YoutubeData.model';
 
+import { Success } from '../../models/http/response';
+
 @Injectable()
 export class YoutubeService {
 
@@ -44,7 +46,7 @@ export class YoutubeService {
     {
         return new Promise((resolve, reject) => {
             this.http.post(`${this.apiURL}/youtube`, youtubeData).subscribe(
-                (response) => {
+                (response: Success) => {
                   resolve(response);
                 },
                 (error) => {
