@@ -45,10 +45,10 @@ export class StepTwoFormComponent implements OnInit {
 
     closeModal(form: NgForm):void
     {
+        UIkit.modal('#modal-youtube-step-2-' + this.youtubeWidgetId).hide();
         this.clearForm(form);
         this.successfulMessage = "";
         this.errorMessage = "";
-        UIkit.modal('#modal-youtube-step-2-' + this.youtubeWidgetId).hide();
         this.redirectTo('/main/dashboard');
     }
 
