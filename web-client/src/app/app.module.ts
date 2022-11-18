@@ -7,6 +7,7 @@ import { DatepickerModule } from 'ng2-datepicker';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { YoutubeService } from './services/widgets/youtube.service';
@@ -14,7 +15,7 @@ import { WeatherService } from './services/widgets/weather.service';
 import { CalendarService } from './services/widgets/calendar.service';
 import { ManagedServicesService } from './services/managed-services.service';
 import { UserServicesService } from './services/user-services.service';
-import { AuthGuard } from './services/auth-guard.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -76,15 +77,16 @@ import { ProfileFormComponent } from './forms/profile-form/profile-form.componen
     DatepickerModule
   ],
   providers: [
-      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-      AuthService,
-      ProfileService,
-      YoutubeService,
-      WeatherService,
-      CalendarService,
-      ManagedServicesService,
-      UserServicesService,
-      AuthGuard
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+        AuthService,
+        AuthGuard,
+        ProfileService,
+        YoutubeService,
+        WeatherService,
+        CalendarService,
+        ManagedServicesService,
+        UserServicesService,
+        LocalStorageService
   ],
   bootstrap: [AppComponent]
 })

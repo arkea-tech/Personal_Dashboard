@@ -41,8 +41,8 @@ const routes: Routes = [
             { path: '**', redirectTo: 'dashboard' }
         ]
     },
-    { path: '', pathMatch: 'full', redirectTo: 'home' }, //replace by home
-    { path: '**', redirectTo: 'home' } //replace by home
+    { path: '', pathMatch: 'full', redirectTo: 'home' },
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

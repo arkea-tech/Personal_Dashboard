@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class AuthService {
 
-    token: string;
+    //token: string;
     userId: string;
-    isAuth$ = new BehaviorSubject<boolean>(false);
+    //isAuth$ = new BehaviorSubject<boolean>(false);
 
-    constructor(private http: HttpClient)
+    constructor(private http: HttpClient, private localStorageService: LocalStorageService)
     {}
 
     signUp(username: string, password: string)
@@ -39,9 +40,10 @@ export class AuthService {
                 password: password
             }).subscribe(
                 (data: { message: string, token: string, userId: string }) => {
-                    this.token = data.token;
+                    //this.token = data.token;
                     this.userId = data.userId;
-                    this.isAuth$.next(true);
+                    this.localStorageService.saveData("token", data.token);
+                    //this.isAuth$.next(true);
                     resolve(data.message);
                 },
                 (error) => {
@@ -51,10 +53,17 @@ export class AuthService {
         });
     }
 
-    logout() {
-        this.isAuth$.next(false);
+    logout()
+    {
+        //this.isAuth$.next(false);
         this.userId = null;
-        this.token = null;
+        this.localStorageService.removeData("token");
+        //this.token = null;
+    }
+
+    getToken():string
+    {
+        return this.localStorageService.getData("token");
     }
 
 };

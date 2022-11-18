@@ -25,7 +25,7 @@ export class StepTwoFormComponent implements OnInit {
 
     public loading: boolean;
     public errorMessage: string;
-    public successfulMessage:string;
+    public successfulMessage: string;
 
     clearForm: (form: NgForm) => void;
     // filter: string;
@@ -35,8 +35,7 @@ export class StepTwoFormComponent implements OnInit {
         this.clearForm = clearForm;
     }
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     redirectTo(uri: string) {
         this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
@@ -58,6 +57,9 @@ export class StepTwoFormComponent implements OnInit {
         const youtubeData: YoutubeData = new YoutubeData(this.category, secondStep);
 
         this.loading = true;
+        console.log('here');
+        console.log(secondStep);
+        console.log(youtubeData);
         this.youtubeService.createYoutubeWidget(youtubeData).then(
             (response: Success) => {
                 this.successfulMessage = response.message;
