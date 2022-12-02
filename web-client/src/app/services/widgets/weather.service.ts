@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 import { Weather } from '../../models/Weather.model';
+import { WeatherData } from '../../models/interactions/weather/WeatherData.model';
+
+import { Success } from '../../models/http/response';
 
 @Injectable()
 export class WeatherService {
@@ -37,5 +40,32 @@ export class WeatherService {
           },
           this.emitErrorSubject
         );
+    }
+
+    createWeatherWidget(weatherData: WeatherData)
+    {
+        return new Promise((resolve, reject) => {
+            this.http.post(`${this.apiURL}/weather`, weatherData).subscribe(
+                (response: Success) => {
+                  resolve(response);
+                },
+                (error) => {
+                  reject(error);
+                }
+            );
+        });
+    }
+
+    deleteWeatherWidget(id: string) {
+        return new Promise((resolve, reject) => {
+          this.http.delete(`${this.apiURL}/weather/` + id).subscribe(
+            (response) => {
+              resolve(response);
+            },
+            (error) => {
+              reject(error);
+            }
+          );
+        });
     }
 }

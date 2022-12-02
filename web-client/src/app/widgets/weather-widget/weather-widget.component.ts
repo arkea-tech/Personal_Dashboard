@@ -14,7 +14,6 @@ export class WeatherWidgetComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
 }

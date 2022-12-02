@@ -2,6 +2,7 @@ import { Forecast } from './Forecast.model';
 
 export class Weather {
     _id: string;
+    unit: string;
     city: string;
     date: string;
     temperature: number;

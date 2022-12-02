@@ -7,7 +7,10 @@
         </app-edit-delete-widget>
         <div class="uk-child-width-expand@s uk-flex-middle" uk-grid>
             <div>
-                <h3>{{ weatherWidget.temperature }} °C</h3>
+                <h3> {{ weatherWidget.temperature }}
+                    <span *ngIf="weatherWidget.unit === 'celsius'">°C</span>
+                    <span *ngIf="weatherWidget.unit === 'fahrenheit'">°F</span>
+                </h3>
             </div>
             <div>
                 <h3 class="uk-card-title">
@@ -21,13 +24,13 @@
                 </label>
             </div>
             <div>
-                <p>wind {{ weatherWidget.wind }} km/h</p>
-                <p>humidity {{ weatherWidget.humidity }}%</p>
-                <p>pressure {{ weatherWidget.pressure }} PA</p>
+                <p *ngIf="weatherWidget.wind">wind {{ weatherWidget.wind }} km/h</p>
+                <p *ngIf="weatherWidget.humidity">humidity {{ weatherWidget.humidity }}%</p>
+                <p *ngIf="weatherWidget.pressure">pressure {{ weatherWidget.pressure }} PA</p>
             </div>
         </div>
     </div>
-    <div class="uk-card-footer">
+    <div class="uk-card-footer" *ngIf="weatherWidget.forecast">
         <div class="uk-grid-collapse uk-child-width-expand@s uk-margin-top uk-margin-left uk-margin-right uk-margin-bottom" uk-grid>
             <div *ngFor="let day of weatherWidget.forecast">
                 <div class="uk-card uk-card-default uk-card-body">
@@ -36,8 +39,16 @@
                     </h3>
                     <img data-src="{{ day.condition.icon }}" width="" height="" alt="" uk-img>
                     <p id='forecastCondition'>{{ day.condition.condition }}</p>
-                    <p> High <span>{{ day.high }}°C</span></p>
-                    <p> Low <span>{{ day.low }}°C</span></p>
+                    <p> High
+                        <span>{{ day.high }}</span>
+                        <span *ngIf="weatherWidget.unit === 'celsius'">°C</span>
+                        <span *ngIf="weatherWidget.unit === 'fahrenheit'">°F</span>
+                    </p>
+                    <p> Low
+                        <span>{{ day.low }}</span>
+                        <span *ngIf="weatherWidget.unit === 'celsius'">°C</span>
+                        <span *ngIf="weatherWidget.unit === 'fahrenheit'">°F</span>
+                    </p>
                 </div>
             </div>
         </div>

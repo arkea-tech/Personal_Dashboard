@@ -3,7 +3,7 @@ import { SecondStep } from "./SecondStep.model";
 export class YoutubeData {
 
     first_step: string;
-    second_step: SecondStep
+    second_step: SecondStep;
 
     constructor(first_step: string, second_step: SecondStep)
     {

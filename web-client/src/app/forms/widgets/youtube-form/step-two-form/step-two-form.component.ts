@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import UIkit from "uikit/dist/js/uikit.min.js";
 
 import { clearForm } from '../../../../../utils/form';
+import {redirectTo } from '../../../../../utils/navigation';
 import wait from '../../../../../utils/wait';
 
 import { YoutubeData } from '../../../../models/interactions/youtube/YoutubeData.model';
@@ -37,18 +38,14 @@ export class StepTwoFormComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    redirectTo(uri: string) {
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-        this.router.navigate([uri]));
-    }
-
     closeModal(form: NgForm):void
     {
         UIkit.modal('#modal-youtube-step-2-' + this.youtubeWidgetId).hide();
         this.clearForm(form);
         this.successfulMessage = "";
         this.errorMessage = "";
-        this.redirectTo('/main/dashboard');
+        //this.router.navigate(['/main/about']);
+        redirectTo('/main/dashboard', this.router);
     }
 
     onSubmitStep2(form: NgForm)
@@ -57,9 +54,6 @@ export class StepTwoFormComponent implements OnInit {
         const youtubeData: YoutubeData = new YoutubeData(this.category, secondStep);
 
         this.loading = true;
-        console.log('here');
-        console.log(secondStep);
-        console.log(youtubeData);
         this.youtubeService.createYoutubeWidget(youtubeData).then(
             (response: Success) => {
                 this.successfulMessage = response.message;

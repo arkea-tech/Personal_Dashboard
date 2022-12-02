@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import UIkit from "uikit/dist/js/uikit.min.js";
 
+import {redirectTo } from '../../../utils/navigation';
 import wait from '../../../utils/wait';
 
 import { Calendar } from '../../models/Calendar.model';
@@ -10,6 +11,7 @@ import { Weather } from '../../models/Weather.model';
 import { Youtube } from '../../models/Youtube.model';
 
 import { YoutubeService } from '../../services/widgets/youtube.service';
+import { WeatherService } from '../../services/widgets/weather.service';
 
 @Component({
   selector: 'app-edit-delete-widget',
@@ -27,15 +29,10 @@ export class EditDeleteWidgetComponent implements OnInit {
     @Input() weatherWidget: Weather;
     @Input() youtubeWidget: Youtube;
 
-    constructor(private youtubeService: YoutubeService, private router: Router) {
+    constructor(private youtubeService: YoutubeService, private weatherService: WeatherService, private router: Router) {
     }
 
     ngOnInit(): void {
-    }
-
-    redirectTo(uri: string) {
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-        this.router.navigate([uri]));
     }
 
     closeModal():void
@@ -43,7 +40,18 @@ export class EditDeleteWidgetComponent implements OnInit {
         UIkit.modal('#modal-delete-widget-confirm-' + this.editForm).hide();
         this.successfulMessage = "";
         this.errorMessage = "";
-        this.redirectTo('/main/dashboard');
+        redirectTo('/main/dashboard', this.router);
+    }
+
+    assignDeleteWidget()
+    {
+        let deleteWidget = null;
+
+        if (this.youtubeWidget)
+            deleteWidget = this.youtubeService.deleteYoutubeWidget(this.youtubeWidget._id);
+        if (this.weatherWidget)
+            deleteWidget = this.weatherService.deleteWeatherWidget(this.weatherWidget._id);
+        return deleteWidget;
     }
 
     onDeleteWidget():void
@@ -51,8 +59,7 @@ export class EditDeleteWidgetComponent implements OnInit {
         let deleteWidget = null;
 
         this.loading = true;
-        if (this.youtubeWidget)
-            deleteWidget = this.youtubeService.deleteYoutubeWidget(this.youtubeWidget._id);
+        deleteWidget = this.assignDeleteWidget();
         deleteWidget.then(
           (response) => {
             this.loading = false;

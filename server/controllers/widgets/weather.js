@@ -68,6 +68,7 @@ exports.createWidget = (req, res, next) => {
     getWeather(req.body.city, req.body.unit, req.body.details).then(
         weatherDatas => {
             weather = new Weather({
+                unit: req.body.unit,
                 city: weatherDatas.city,
                 date: weatherDatas.date,
                 temperature: weatherDatas.temperature,

@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const weatherSchema = mongoose.Schema({
+    unit: { type: String, required: true },
     city: { type: String, required: true },
-    date: { type: String, required: true }, 
+    date: { type: String, required: true },
     temperature: { type: Number, required: true },
     condition: { type: Object, required: true},
     wind: { type: Number, required: false },
