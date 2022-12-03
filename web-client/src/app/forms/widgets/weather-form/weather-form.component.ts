@@ -52,7 +52,6 @@ export class WeatherFormComponent implements OnInit {
         this.clearForm();
         this.successfulMessage = "";
         this.errorMessage = "";
-        //this.router.navigate(['/main/about']);
         redirectTo('/main/dashboard', this.router);
     }
 

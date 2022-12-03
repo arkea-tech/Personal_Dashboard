@@ -139,12 +139,13 @@ exports.modifyWidget = (req, res, next) => {
         _id: req.params.id
     }).then(
         (weatherWidget) => {
-            if (req.body.city != weatherWidget.city || req.body.details && !weatherWidget.forecast) {
+            if (req.body.city != weatherWidget.city || req.body.unit != weatherWidget.unit || (req.body.details && !weatherWidget.forecast)) {
                 //upadte all
-                promise = getWeather(req.body.city, 'celsius', req.body.details).then(
+                promise = getWeather(req.body.city, req.body.unit, req.body.details).then(
                     weatherDatas => {
                         weather = new Weather({
                             _id: req.params.id,
+                            unit: req.body.unit,
                             city: weatherDatas.city,
                             date: weatherDatas.date,
                             temperature: weatherDatas.temperature,
@@ -162,10 +163,11 @@ exports.modifyWidget = (req, res, next) => {
                         });
                     }
                 );
-            } else if (req.body.city == weatherWidget.city && !req.body.details && weatherWidget.forecast) {
+            } else if (req.body.city == weatherWidget.city && req.body.unit == weatherWidget.unit && !req.body.details && weatherWidget.forecast) {
                 //disable details
                 weather = new Weather({
                     _id: req.params.id,
+                    unit: weatherWidget.unit,
                     city: weatherWidget.city,
                     date: weatherWidget.date,
                     temperature: weatherWidget.temperature,
