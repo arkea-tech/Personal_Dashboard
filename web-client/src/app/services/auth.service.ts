@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
 
+import jwt_decode from 'jwt-decode';
+
 @Injectable()
 export class AuthService {
 
@@ -55,13 +57,23 @@ export class AuthService {
 
     logout()
     {
-        //this.isAuth$.next(false);
         this.userId = null;
         this.localStorageService.removeData("token");
-        //this.token = null;
     }
 
-    getToken():string
+    isTokenExpired(): boolean {
+        const token: string = this.localStorageService.getData("token");
+        const decodedToken: { [key: string]: string } = jwt_decode(token);
+        const expiryTime: number = Number(decodedToken.exp);
+
+        if (expiryTime) {
+            return ((1000 * expiryTime) - (new Date()).getTime()) < 5000;
+        }
+        else
+            return false;
+    }
+
+    getToken(): string
     {
         return this.localStorageService.getData("token");
     }

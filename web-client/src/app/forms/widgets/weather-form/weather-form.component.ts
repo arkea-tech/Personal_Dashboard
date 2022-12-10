@@ -44,9 +44,9 @@ export class WeatherFormComponent implements OnInit {
         });
     }
 
-    closeModal():void
+    closeModal(): void
     {
-        let weatherModalId = this.mode === "edition" ? "#modal-edit-widget-weather-forecast-" + this.weatherWidget._id : "#modal-weather";
+        const weatherModalId = this.mode === "edition" ? "#modal-edit-widget-weather-forecast-" + this.weatherWidget._id : "#modal-weather";
 
         UIkit.modal(weatherModalId).hide();
         this.clearForm();

@@ -7,6 +7,8 @@
 <div class="uk-modal-body">
     <form class="uk-form-stacked uk-margin-xlarge-left uk-margin-top"
     (ngSubmit)="onSubmitForm()" [formGroup]="weatherForm">
+    <!-- <form class="uk-form-stacked uk-margin-xlarge-left uk-margin-top"
+    [formGroup]="weatherForm"> -->
 
         <div class="uk-margin-large-left uk-margin-medium-bottom">
             <label class="uk-form-label uk-margin-small-bottom" for="city">
@@ -47,7 +49,11 @@
         <button class="uk-button uk-button-primary uk-margin uk-width-2-3@s" type="submit" [disabled]="weatherForm.invalid">
             Submit
         </button>
-
+        <!-- <a routerLink="/home">
+            <button class="uk-button uk-button-primary uk-margin uk-width-2-3@s" (click)="onSubmitForm()" [disabled]="weatherForm.invalid">
+                Submit
+            </button>
+        <a> -->
     </form>
 
     <div *ngIf="loading" class="uk-flex uk-flex-center" uk-spinner></div>
