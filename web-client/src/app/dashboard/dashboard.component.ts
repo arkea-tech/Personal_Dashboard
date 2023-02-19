@@ -19,10 +19,14 @@ export class DashboardComponent implements OnInit {
     public loadingYoutube: boolean;
     public loadingWeather: boolean;
     public loadingCalendar: boolean;
+    public loadingWidget: boolean;
 
     public errorYoutube: string;
     public errorWeather: string;
     public errorCalendar: string;
+    public errorWidget: string;
+
+    public successfulMessageWidget: string;
 
     public youtubeWidgets: Youtube[] = [];
     public weatherWidgets: Weather[] = [];
@@ -35,10 +39,21 @@ export class DashboardComponent implements OnInit {
     private weatherErrorSubscription: Subscription;
     private calendarErrorSubscription: Subscription;
 
+    setErrorWidget = (error: string) => {
+        this.errorWidget = error;
+    }
+
+    setLoadingWidget = (isLoading: boolean) => {
+        this.loadingWidget = true;
+    }
+
+    setSuccessfulMessageWidget = (message: string) => {
+        this.successfulMessageWidget = message;
+    }
+
     constructor(private youtubeService: YoutubeService,
     private weatherService: WeatherService,
     private calendarService: CalendarService) { }
-
 
     subscribeServicesWidgets():void
     {

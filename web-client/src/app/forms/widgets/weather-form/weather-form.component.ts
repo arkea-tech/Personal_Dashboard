@@ -23,9 +23,13 @@ export class WeatherFormComponent implements OnInit {
     @Input() mode: string;
     @Input() weatherWidget: Weather;
 
-    public loading: boolean;
-    public errorMessage: string;
-    public successfulMessage: string;
+    @Input() setErrorWidget: (error: string) => void;
+    @Input() setLoadingWidget: (isLoading: boolean) => void;
+    @Input() setSuccessfulMessageWidget: (message: string) => void;
+
+    // public loading: boolean;
+    // public errorMessage: string;
+    // public successfulMessage: string;
 
     weatherForm: FormGroup;
 
@@ -44,14 +48,11 @@ export class WeatherFormComponent implements OnInit {
         });
     }
 
-    closeModal(): void
+    clearFormData(): void
     {
-        const weatherModalId = this.mode === "edition" ? "#modal-edit-widget-weather-forecast-" + this.weatherWidget._id : "#modal-weather";
-
-        UIkit.modal(weatherModalId).hide();
         this.clearForm();
-        this.successfulMessage = "";
-        this.errorMessage = "";
+        //this.setErrorWidget("");
+        //this.setSuccessfulMessageWidget("");
         redirectTo('/main/dashboard', this.router);
     }
 
@@ -60,19 +61,23 @@ export class WeatherFormComponent implements OnInit {
         const formValue = this.weatherForm.value;
         const weatherData: WeatherData = new WeatherData(formValue["city"], formValue["unit"], formValue["details"]);
 
-        this.loading = true;
+        this.setLoadingWidget(true);
         this.weatherService.createWeatherWidget(weatherData).then(
             (response: Success) => {
-                this.successfulMessage = response.message;
-                this.loading = false;
-                wait(1000).then(
-                    () => this.closeModal()
-                );
+                this.setLoadingWidget(false);
+                this.setSuccessfulMessageWidget(response.message); this.clearFormData();
+                // wait(1000).then(
+                //     () => this.clearFormData()
+                // );
             }
         ).catch(
             (error) => {
-                this.loading = false;
-                this.errorMessage = error.message;
+                this.setLoadingWidget(false);
+                this.setErrorWidget(error.message);
+                //this.clearFormData()
+                // wait(1000).then(
+                //     () => this.clearFormData()
+                // );
             }
         );
     }

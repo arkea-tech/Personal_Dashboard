@@ -5,10 +5,10 @@
 </div>
 
 <div class="uk-modal-body">
-    <form class="uk-form-stacked uk-margin-xlarge-left uk-margin-top"
-    (ngSubmit)="onSubmitForm()" [formGroup]="weatherForm">
     <!-- <form class="uk-form-stacked uk-margin-xlarge-left uk-margin-top"
-    [formGroup]="weatherForm"> -->
+    (ngSubmit)="onSubmitForm()" [formGroup]="weatherForm"> -->
+    <form class="uk-form-stacked uk-margin-xlarge-left uk-margin-top"
+    [formGroup]="weatherForm">
 
         <div class="uk-margin-large-left uk-margin-medium-bottom">
             <label class="uk-form-label uk-margin-small-bottom" for="city">
@@ -46,17 +46,15 @@
             </label>
         </div>
 
-        <button class="uk-button uk-button-primary uk-margin uk-width-2-3@s" type="submit" [disabled]="weatherForm.invalid">
+        <!-- <button class="uk-button uk-button-primary uk-margin uk-width-2-3@s" type="submit" [disabled]="weatherForm.invalid">
+            Submit
+        </button> -->
+        <button class="uk-modal-close uk-button uk-button-primary uk-margin uk-width-2-3@s" type="button" (click)="onSubmitForm()" [disabled]="weatherForm.invalid">
             Submit
         </button>
-        <!-- <a routerLink="/home">
-            <button class="uk-button uk-button-primary uk-margin uk-width-2-3@s" (click)="onSubmitForm()" [disabled]="weatherForm.invalid">
-                Submit
-            </button>
-        <a> -->
     </form>
 
-    <div *ngIf="loading" class="uk-flex uk-flex-center" uk-spinner></div>
+    <!-- <div *ngIf="loading" class="uk-flex uk-flex-center" uk-spinner></div>
     <div *ngIf="successfulMessage" uk-alert class="uk-alert-success">
         <button class="uk-alert-close" uk-close></button>
         <span>
@@ -68,7 +66,7 @@
         <span>
             {{ errorMessage }}
         </span>
-    </div>
+    </div> -->
 
 </div>
 

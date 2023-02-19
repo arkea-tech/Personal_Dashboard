@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-floating-button',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FloatingButtonComponent implements OnInit {
 
-  constructor() { }
+    @Input() setErrorWidget: (error: string) => void;
+    @Input() setLoadingWidget: (isLoading: boolean) => void;
+    @Input() setSuccessfulMessageWidget: (message: string) => void;
 
-  ngOnInit(): void {
-  }
+    constructor() { }
+
+    ngOnInit(): void {
+    }
 
 }
